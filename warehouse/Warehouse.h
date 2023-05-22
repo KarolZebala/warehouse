@@ -7,12 +7,15 @@
 
 class Warehouse {
 public:
-    explicit Warehouse(const std::string& name);
+    explicit Warehouse(const std::string name);
 
     std::string getName() const;
+    int getId();
 
 private:
-    std::string name;
+    int Id;
+    std::string Name;
+    
 };
 
 #endif // WAREHOUSE_H

@@ -1,6 +1,6 @@
 #include "WarehouseDbContext.h"
 
-void WarehouseDbContext::addWarehouse(const std::shared_ptr<Warehouse>& warehouse)
+void WarehouseDbContext::addWarehouse(Warehouse* warehouse)
 {
     warehouses.push_back(warehouse);
 }

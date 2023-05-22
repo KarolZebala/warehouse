@@ -5,15 +5,16 @@
 #include <memory>
 #include "Warehouse.h"
 #include "WarehouseDbContext.h"
+#include "WarehosueDto.h"
 
 class WarehouseService {
 public:
-    explicit WarehouseService(const std::shared_ptr<WarehouseDbContext>& dbContext);
+    explicit WarehouseService();
 
-    std::shared_ptr<Warehouse> createWarehouse(const std::string& name);
+    int createWarehouse(WarehosueDto* dto);
 
 private:
-    std::shared_ptr<WarehouseDbContext> dbContext;
+    WarehouseDbContext* dbContext;
 };
 
 #endif // WAREHOUSESERVICE_H

@@ -128,8 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Program.cpp" />
+    <ClCompile Include="WarehosueDto.cpp" />
     <ClCompile Include="Warehouse.cpp" />
-    <ClCompile Include="warehouseApp.cpp" />
+    <ClCompile Include="WarehouseApp.cpp" />
     <ClCompile Include="WarehouseDbContext.cpp" />
     <ClCompile Include="WarehouseDocument.cpp" />
     <ClCompile Include="WarehouseDocumentReception.cpp" />
@@ -139,7 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Product.h" />
+    <ClInclude Include="WarehosueDto.h" />
     <ClInclude Include="Warehouse.h" />
+    <ClInclude Include="WarehouseApp.h" />
     <ClInclude Include="WarehouseDbContext.h" />
     <ClInclude Include="WarehouseDocument.h" />
     <ClInclude Include="WarehouseDocumentReception.h" />

@@ -1,14 +1,14 @@
 #include "WarehouseService.h"
 
-WarehouseService::WarehouseService(const std::shared_ptr<WarehouseDbContext>& dbContext)
-    : dbContext(dbContext)
+WarehouseService::WarehouseService()
 {
+    dbContext = new WarehouseDbContext();
 }
 
-std::shared_ptr<Warehouse> WarehouseService::createWarehouse(const std::string& name)
+int WarehouseService::createWarehouse(WarehosueDto* dto)
 {
-    auto warehouse = std::make_shared<Warehouse>(name);
+    auto warehouse = new Warehouse(dto->Name);
     dbContext->addWarehouse(warehouse);
     dbContext->saveChanges();
-    return warehouse;
+    return warehouse->getId();
 }

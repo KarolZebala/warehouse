@@ -1,10 +1,14 @@
-// warehouse.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include "WarehouseApp.h"
 
-#include <iostream>
-#include "Warehouse.h"
 
-int main()
+WarehouseApp::WarehouseApp()
 {
-    std::cout << "Hello World!\n";
+	service = new WarehouseService();
 }
+
+int WarehouseApp::CreateWarehouse(WarehosueDto* dto)
+{
+	int id = service->createWarehouse(dto);
+	return id;
+}
+

@@ -7,11 +7,11 @@
 
 class WarehouseDbContext {
 public:
-    void addWarehouse(const std::shared_ptr<Warehouse>& warehouse);
+    void addWarehouse(Warehouse* warehouse);
     void saveChanges();
 
 private:
-    std::vector<std::shared_ptr<Warehouse>> warehouses;
+    std::vector<Warehouse*> warehouses;
 };
 
 #endif // WAREHOUSEDBCONTEXT_H
