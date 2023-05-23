@@ -8,10 +8,12 @@
 class WarehouseDocument {
 public:
     virtual ~WarehouseDocument() = default;
-    void addProduct(const std::shared_ptr<Product>& product);
+    virtual void addProductToDocunent(Product product);
 
 protected:
-    std::vector<std::shared_ptr<Product>> products;
+    std::string DocumentName;
+    
+    std::vector<Product> products;
 };
 
 #endif // WAREHOUSEDOCUMENT_H

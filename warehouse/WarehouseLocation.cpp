@@ -1,11 +1,11 @@
 #include "WarehouseLocation.h"
 
 WarehouseLocation::WarehouseLocation(const std::string& name)
-    : name(name)
+    : Name(name)
 {
 }
 
 std::string WarehouseLocation::getName() const
 {
-    return name;
+    return Name;
 }

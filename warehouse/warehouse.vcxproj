@@ -127,8 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HumidityStorageConditions.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Program.cpp" />
+    <ClCompile Include="StorageArea.cpp" />
+    <ClCompile Include="StorageConditions.cpp" />
+    <ClCompile Include="TemperaturStorageConditions.cpp" />
     <ClCompile Include="WarehosueDto.cpp" />
     <ClCompile Include="Warehouse.cpp" />
     <ClCompile Include="WarehouseApp.cpp" />
@@ -140,7 +144,11 @@
     <ClCompile Include="WarehouseService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HumidityStorageConditions.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="StorageArea.h" />
+    <ClInclude Include="StorageConditions.h" />
+    <ClInclude Include="TemperaturStorageConditions.h" />
     <ClInclude Include="WarehosueDto.h" />
     <ClInclude Include="Warehouse.h" />
     <ClInclude Include="WarehouseApp.h" />
