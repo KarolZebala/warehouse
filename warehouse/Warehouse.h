@@ -10,8 +10,18 @@ class Warehouse {
 public:
     explicit Warehouse(const std::string name);
 
-    void AddStorageArea();
+    void AddWarehouseLocations(
+        std::string name,
+        int width,
+        int depth,
+        int height
+    );
     void UpdateStorageArea();
+
+
+    void AddWarehouseDocument();
+    void UpdateWarehosueDocument();
+
 
     std::string getName() const;
     int getId();
@@ -21,7 +31,7 @@ private:
     std::string Name;
     std::time_t CreateDate;
     std::time_t LastUpdateDate;
-    std::vector<StorageArea> _storageAreas;
+    std::vector<WarehouseLocation*> _warehouseLocations;
     
 };
 

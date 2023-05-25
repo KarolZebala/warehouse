@@ -8,8 +8,20 @@ Warehouse::Warehouse(const std::string name)
 
 }
 
-void Warehouse::AddStorageArea()
+void Warehouse::AddWarehouseLocations(
+    std::string name,
+    int width,
+    int depth,
+    int height
+)
 {
+    auto location = new WarehouseLocation(
+        name,
+        width,
+        depth,
+        height
+    );
+    _warehouseLocations.push_back(location);
 }
 
 void Warehouse::UpdateStorageArea()

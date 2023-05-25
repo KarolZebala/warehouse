@@ -8,7 +8,12 @@
 
 class WarehouseLocation {
 public:
-    explicit WarehouseLocation(const std::string& name);
+    explicit WarehouseLocation(
+        std::string name,
+        int width,
+        int depth,
+        int height
+    );
 
     std::string getName() const; 
 
@@ -19,6 +24,9 @@ public:
 
 private:
     std::string Name;
+    int Width;
+    int Depth;
+    int Height;
     std::vector<Product> _products;
     std::vector<StorageConditions> _storageConditions;
     

@@ -1,6 +1,6 @@
 #pragma once
 #include "StorageConditions.h"
-class TemperaturStorageConditions :
+class TemperatureStorageConditions :
     public StorageConditions
 {
 };

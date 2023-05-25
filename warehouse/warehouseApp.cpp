@@ -8,7 +8,12 @@ WarehouseApp::WarehouseApp()
 
 int WarehouseApp::CreateWarehouse(WarehosueDto* dto)
 {
-	int id = service->createWarehouse(dto);
+	int id = service->CreateWarehouse(dto);
 	return id;
+}
+
+std::vector<WarehosueDto> WarehouseApp::GetAll()
+{
+	return service->GetAllWarehouses();
 }
 

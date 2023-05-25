@@ -30,6 +30,11 @@ int main() {
 			auto id = warehosueApp->CreateWarehouse(warehosueDto);
 			std::cout << "dzia³a z id: " << id << std::endl;
 		}
+		if (userInput == "2") {
+			auto results = warehosueApp->GetAll();
+			std::cout << "Pddasfa";
+
+		}
 	}
 	return 1;
 }

@@ -16,6 +16,15 @@
     <Filter Include="Source Files\Dto">
       <UniqueIdentifier>{160b8d9c-a6b0-4481-b717-ec2c0434d6ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Dto">
+      <UniqueIdentifier>{babb59f9-6ccf-4975-93c4-919a72c55df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{3ac35f0f-f008-46dd-8510-f16fb2b2c0c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Services">
+      <UniqueIdentifier>{766a01cd-c649-4c8a-84c3-0d1c5f57bc24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Warehouse.cpp">
@@ -63,48 +72,60 @@
     <ClCompile Include="HumidityStorageConditions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WarehouseDocumentService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WarehouseLocationDto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Warehouse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseLocation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Product.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseDocument.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseDocumentReception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseDocumentRelease.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="WarehouseDbContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WarehouseApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WarehosueDto.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Dto</Filter>
     </ClInclude>
-    <ClInclude Include="StorageArea.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StorageConditions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TemperaturStorageConditions.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Product.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="HumidityStorageConditions.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="StorageArea.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="StorageConditions.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="TemperaturStorageConditions.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Warehouse.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseDocument.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseDocumentReception.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseDocumentRelease.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseLocation.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseService.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseDocumentService.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseLocationDto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

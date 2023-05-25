@@ -140,7 +140,9 @@
     <ClCompile Include="WarehouseDocument.cpp" />
     <ClCompile Include="WarehouseDocumentReception.cpp" />
     <ClCompile Include="WarehouseDocumentRelease.cpp" />
+    <ClCompile Include="WarehouseDocumentService.cpp" />
     <ClCompile Include="WarehouseLocation.cpp" />
+    <ClCompile Include="WarehouseLocationDto.cpp" />
     <ClCompile Include="WarehouseService.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +158,9 @@
     <ClInclude Include="WarehouseDocument.h" />
     <ClInclude Include="WarehouseDocumentReception.h" />
     <ClInclude Include="WarehouseDocumentRelease.h" />
+    <ClInclude Include="WarehouseDocumentService.h" />
     <ClInclude Include="WarehouseLocation.h" />
+    <ClInclude Include="WarehouseLocationDto.h" />
     <ClInclude Include="WarehouseService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

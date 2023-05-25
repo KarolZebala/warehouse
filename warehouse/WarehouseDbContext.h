@@ -9,9 +9,10 @@ class WarehouseDbContext {
 public:
     void addWarehouse(Warehouse* warehouse);
     void saveChanges();
+    std::vector<Warehouse*> GetAllWarehouses1();
 
 private:
-    std::vector<Warehouse*> warehouses;
+    std::vector<Warehouse*> _warehouses;
 };
 
 #endif // WAREHOUSEDBCONTEXT_H

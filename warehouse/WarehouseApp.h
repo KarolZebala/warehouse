@@ -6,6 +6,7 @@ class WarehouseApp
 public:
 	 WarehouseApp();
 	 int CreateWarehouse(WarehosueDto* dto);
+	 std::vector<WarehosueDto> GetAll();
 	 
 
 private:
