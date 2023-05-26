@@ -20,15 +20,18 @@ public:
     void AddStorageConditon();
     void UpdateStorageConditon();
     bool CheckIfLocationHasStorageCondition();
+    int GetId();
+    void AddProduct(Product* product);
 
 
 private:
+    int WarehouseLocationId;
     std::string Name;
     int Width;
     int Depth;
     int Height;
-    std::vector<Product> _products;
-    std::vector<StorageConditions> _storageConditions;
+    std::vector<Product*> _products;
+    std::vector<StorageConditions*> _storageConditions;
     
 };
 

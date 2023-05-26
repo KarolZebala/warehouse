@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <ctime>
+//#include"WarehouseDocument.h"
 class Warehouse {
 public:
     explicit Warehouse(const std::string name);
@@ -19,12 +20,13 @@ public:
     void UpdateStorageArea();
 
 
-    void AddWarehouseDocument();
+    //void AddWarehouseDocument(WarehouseDocument* document);
     void UpdateWarehosueDocument();
 
 
-    std::string getName() const;
+    std::string getName();
     int getId();
+    WarehouseLocation* GetLocationById(int id);
 
 private:
     int Id;

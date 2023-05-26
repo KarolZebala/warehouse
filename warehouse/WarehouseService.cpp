@@ -8,7 +8,7 @@ WarehouseService::WarehouseService()
 int WarehouseService::CreateWarehouse(WarehosueDto* dto)
 {
     auto warehouse = new Warehouse(dto->Name);
-    for (auto location : dto->WarehosueLocations)
+    for (auto& location : dto->WarehosueLocations)
     {
         
         warehouse->AddWarehouseLocations(

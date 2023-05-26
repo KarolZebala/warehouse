@@ -10,6 +10,7 @@ public:
     void addWarehouse(Warehouse* warehouse);
     void saveChanges();
     std::vector<Warehouse*> GetAllWarehouses1();
+    Warehouse* GetById(int id);
 
 private:
     std::vector<Warehouse*> _warehouses;

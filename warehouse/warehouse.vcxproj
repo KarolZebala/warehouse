@@ -129,15 +129,18 @@
   <ItemGroup>
     <ClCompile Include="HumidityStorageConditions.cpp" />
     <ClCompile Include="Product.cpp" />
+    <ClCompile Include="ProductDto.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="StorageArea.cpp" />
     <ClCompile Include="StorageConditions.cpp" />
+    <ClCompile Include="StorageConditionsDto.cpp" />
     <ClCompile Include="TemperaturStorageConditions.cpp" />
     <ClCompile Include="WarehosueDto.cpp" />
     <ClCompile Include="Warehouse.cpp" />
     <ClCompile Include="WarehouseApp.cpp" />
     <ClCompile Include="WarehouseDbContext.cpp" />
     <ClCompile Include="WarehouseDocument.cpp" />
+    <ClCompile Include="WarehouseDocumentDto.cpp" />
     <ClCompile Include="WarehouseDocumentReception.cpp" />
     <ClCompile Include="WarehouseDocumentRelease.cpp" />
     <ClCompile Include="WarehouseDocumentService.cpp" />
@@ -148,14 +151,17 @@
   <ItemGroup>
     <ClInclude Include="HumidityStorageConditions.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="ProductDto.h" />
     <ClInclude Include="StorageArea.h" />
     <ClInclude Include="StorageConditions.h" />
+    <ClInclude Include="StorageConditionsDto.h" />
     <ClInclude Include="TemperaturStorageConditions.h" />
     <ClInclude Include="WarehosueDto.h" />
     <ClInclude Include="Warehouse.h" />
     <ClInclude Include="WarehouseApp.h" />
     <ClInclude Include="WarehouseDbContext.h" />
     <ClInclude Include="WarehouseDocument.h" />
+    <ClInclude Include="WarehouseDocumentDto.h" />
     <ClInclude Include="WarehouseDocumentReception.h" />
     <ClInclude Include="WarehouseDocumentRelease.h" />
     <ClInclude Include="WarehouseDocumentService.h" />

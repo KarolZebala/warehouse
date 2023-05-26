@@ -2,18 +2,18 @@
 #define WAREHOUSEDOCUMENT_H
 
 #include <vector>
-#include <memory>
+#include <string>
 #include "Product.h"
 
 class WarehouseDocument {
 public:
-    virtual ~WarehouseDocument() = default;
-    virtual void addProductToDocunent(Product product);
+    explicit WarehouseDocument(std::string documentName);
+    virtual void addProductToDocunent(Product* product);
 
 protected:
     std::string DocumentName;
     
-    std::vector<Product> products;
+    std::vector<Product*> _products;
 };
 
 #endif // WAREHOUSEDOCUMENT_H

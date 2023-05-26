@@ -78,6 +78,15 @@
     <ClCompile Include="WarehouseLocationDto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WarehouseDocumentDto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProductDto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StorageConditionsDto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -125,7 +134,16 @@
     <ClInclude Include="WarehouseDocumentService.h">
       <Filter>Header Files\Services</Filter>
     </ClInclude>
+    <ClInclude Include="WarehouseDocumentDto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductDto.h">
+      <Filter>Header Files\Dto</Filter>
+    </ClInclude>
     <ClInclude Include="WarehouseLocationDto.h">
+      <Filter>Header Files\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="StorageConditionsDto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

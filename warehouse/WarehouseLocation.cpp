@@ -18,3 +18,14 @@ std::string WarehouseLocation::getName() const
 {
     return Name;
 }
+
+int WarehouseLocation::GetId()
+{
+    return this->WarehouseLocationId;
+}
+
+void WarehouseLocation::AddProduct(Product* product)
+{
+    //warunki do dodania produktu
+    _products.push_back(product);
+}

@@ -11,7 +11,13 @@ Product::Product(
     int zDimension
 )
 {
-
+    Name = name;
+    Condition = condition;
+    Price = price;
+    Quantity = quantity;
+    XDimension = xDimension;
+    YDimension = yDimension;
+    ZDimension = zDimension;
 }
 
 std::string Product::getName() const
@@ -36,7 +42,7 @@ void Product::ChangeMainAttributes(
     Quantity = quantity;
     XDimension = xDimension;
     YDimension = yDimension;
-    ZDimension = ZDimension;
+    ZDimension = zDimension;
 
 }
 

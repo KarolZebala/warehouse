@@ -28,9 +28,9 @@ void Warehouse::UpdateStorageArea()
 {
 }
 
-std::string Warehouse::getName() const
+std::string Warehouse::getName()
 {
-    return Name;
+    return this->Name;
 }
 
 int Warehouse::getId()
@@ -39,4 +39,14 @@ int Warehouse::getId()
         return this->Id;
     }
     return 0;
+}
+
+WarehouseLocation* Warehouse::GetLocationById(int id)
+{
+    for (const auto& obj : _warehouseLocations) {
+        if (obj->GetId() == id) {
+            return obj;
+        }
+    }
+    return nullptr;
 }

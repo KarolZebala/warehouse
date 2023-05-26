@@ -14,3 +14,13 @@ std::vector<Warehouse*> WarehouseDbContext::GetAllWarehouses1()
 {
     return _warehouses;
 }
+
+Warehouse* WarehouseDbContext::GetById(int id)
+{
+    for (const auto& obj : _warehouses) {
+        if (obj->getId() == id) {
+            return obj;
+        }
+    }
+    return nullptr;
+}
