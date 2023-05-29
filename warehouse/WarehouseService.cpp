@@ -36,3 +36,9 @@ std::vector<WarehosueDto> WarehouseService::GetAllWarehouses()
     }
     return res;
 }
+
+WarehosueDto WarehouseService::GetWarehosueById()
+{
+
+    return WarehosueDto();
+}

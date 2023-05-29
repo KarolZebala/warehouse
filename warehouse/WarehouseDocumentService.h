@@ -9,10 +9,14 @@ public:
     explicit WarehouseDocumentService();
 
     int CreateWarehouseReceptionDocument(WarehouseDocumentDto* dto);
+    int CreateWarehouseReleaseDocument(WarehouseDocumentDto* dto);
     void UpdateWarehouseDocument(WarehouseDocumentDto* dto);
 
-    std::vector<WarehouseDocumentDto> GetAllWarehouses();
-    WarehouseDocumentDto GetWarehosueById();
+    std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReleasesDocuements(int warehouseId);
+    std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReceptionsDocuements(int warehosueId);
+
+    WarehouseDocumentDto* GetWarehosueDocumentReceptionById(int warehouseId, int documentId);
+    WarehouseDocumentDto* GetWarehosueDocumentReleaseById(int warehouseId, int documentId);
 
 private:
     WarehouseDbContext* _dbContext;

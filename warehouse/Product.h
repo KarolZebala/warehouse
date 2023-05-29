@@ -18,7 +18,8 @@ public:
         int quantity,
         int xDimension,
         int yDimension,
-        int zDimension
+        int zDimension,
+        int locationId
     );
 
     std::string getName() const;
@@ -37,7 +38,11 @@ public:
     void AddStorageConditon(std::string type, int minValue, int maxValue);
     void UpdateStorageConditon(std::string type, int minValue, int maxValue);
 
+    int getProductId();
+
 private:
+    int ProductId;
+
     std::string Name;
     std::string StorageMethod;
     std::string Condition;
@@ -48,6 +53,8 @@ private:
     int XDimension;
     int ZDimension;
     int YDimension;
+
+    int WarehouseLocationId;
 
     std::vector<StorageConditions*> _storageConditions;
 };

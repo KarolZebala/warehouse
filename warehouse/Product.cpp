@@ -8,7 +8,8 @@ Product::Product(
     int quantity,
     int xDimension,
     int yDimension,
-    int zDimension
+    int zDimension,
+    int locationId
 )
 {
     Name = name;
@@ -18,6 +19,7 @@ Product::Product(
     XDimension = xDimension;
     YDimension = yDimension;
     ZDimension = zDimension;
+    WarehouseLocationId = locationId;
 }
 
 std::string Product::getName() const
@@ -61,4 +63,9 @@ void Product::AddStorageConditon(std::string type, int minValue, int maxValue)
 
     auto storageConditon = new StorageConditions();
     _storageConditions.push_back(storageConditon);
+}
+
+int Product::getProductId()
+{
+    return this->ProductId;
 }

@@ -3,6 +3,8 @@
 
 #include <string>
 #include "StorageArea.h"
+#include "WarehouseDocumentReception.h"
+#include "WarehouseDocumentRelease.h"
 #include <vector>
 #include <memory>
 #include <ctime>
@@ -20,7 +22,8 @@ public:
     void UpdateStorageArea();
 
 
-    //void AddWarehouseDocument(WarehouseDocument* document);
+    void AddWarehouseDocument(WarehouseDocumentReception* document);
+    void AddWarehouseDocument(WarehouseDocumentRelease* document);
     void UpdateWarehosueDocument();
 
 
@@ -28,12 +31,43 @@ public:
     int getId();
     WarehouseLocation* GetLocationById(int id);
 
+
+    std::vector<WarehouseDocumentReception*> GetAllWarehouseDocumentReceptions() {
+        return _warehouseDocumentReceptions;
+    }
+    std::vector<WarehouseDocumentRelease*> GetAllWarehouseDocumentReleases() {
+        return _warehouseDocumentReleases;
+    }
+
+    WarehouseDocumentReception* GetWarehouseDocumentReceptionById(int docuementId ) {
+
+        for (auto it = _warehouseDocumentReceptions.begin(); it != _warehouseDocumentReceptions.end(); ++it) {
+            if ((*it)->getDocuemntId() == docuementId) {
+                return (*it);
+            }
+        }
+        throw new std::exception("Not found reception");
+    }
+    WarehouseDocumentRelease* GetWarehouseDocumentReleaseById(int docuementId) {
+
+        for (auto it = _warehouseDocumentReleases.begin(); it != _warehouseDocumentReleases.end(); ++it) {
+            if ((*it)->getDocuemntId() == docuementId) {
+                return (*it);
+            }
+        }
+        throw new std::exception("Not found realse");
+    }
+
+
 private:
     int Id;
     std::string Name;
     std::time_t CreateDate;
     std::time_t LastUpdateDate;
     std::vector<WarehouseLocation*> _warehouseLocations;
+    std::vector<WarehouseDocumentRelease*> _warehouseDocumentReleases;
+    std::vector<WarehouseDocumentReception*> _warehouseDocumentReceptions;
+    
     
 };
 

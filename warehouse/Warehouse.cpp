@@ -28,6 +28,16 @@ void Warehouse::UpdateStorageArea()
 {
 }
 
+void Warehouse::AddWarehouseDocument(WarehouseDocumentReception* document)
+{
+    _warehouseDocumentReceptions.push_back(document);
+}
+
+void Warehouse::AddWarehouseDocument(WarehouseDocumentRelease* document)
+{
+    _warehouseDocumentReleases.push_back(document);
+}
+
 std::string Warehouse::getName()
 {
     return this->Name;

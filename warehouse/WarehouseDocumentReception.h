@@ -6,6 +6,7 @@
 #include<ctime>
 class WarehouseDocumentReception : public WarehouseDocument {
 public:
+	explicit WarehouseDocumentReception(std::string name);
 	void ChangeMainAttributes();
 	void AddProduct();
 	void UpdateProduct();

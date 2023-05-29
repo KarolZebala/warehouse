@@ -22,6 +22,7 @@ public:
     bool CheckIfLocationHasStorageCondition();
     int GetId();
     void AddProduct(Product* product);
+    void RemoveProduct(Product* product);
 
 
 private:
@@ -30,6 +31,7 @@ private:
     int Width;
     int Depth;
     int Height;
+
     std::vector<Product*> _products;
     std::vector<StorageConditions*> _storageConditions;
     
