@@ -6,14 +6,20 @@ WarehouseApp::WarehouseApp()
 	service = new WarehouseService();
 }
 
-int WarehouseApp::CreateWarehouse(WarehosueDto* dto)
+std::string WarehouseApp::CreateWarehouse(WarehosueDto* dto)
 {
-	int id = service->CreateWarehouse(dto);
+	std::string id = service->CreateWarehouse(dto);
 	return id;
 }
 
 std::vector<WarehosueDto> WarehouseApp::GetAll()
 {
 	return service->GetAllWarehouses();
+}
+
+WarehosueDto WarehouseApp::GetById(std::string id)
+{
+	auto res = service->GetWarehosueById(id);
+	return WarehosueDto();
 }
 

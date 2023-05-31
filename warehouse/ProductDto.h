@@ -16,6 +16,6 @@ public:
     int ZDimension;
     int YDimension;
     std::vector<StorageConditionsDto> StorageConditions;
-    int WarehouseLocationId;
+    std::string WarehouseLocationIdGuid;
 };
 

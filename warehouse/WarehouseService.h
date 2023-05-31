@@ -10,11 +10,11 @@ class WarehouseService {
 public:
     explicit WarehouseService();
 
-    int CreateWarehouse(WarehosueDto* dto);
+    std::string CreateWarehouse(WarehosueDto* dto);
     void UpdateWarehouse(WarehosueDto* dto);
 
     std::vector<WarehosueDto> GetAllWarehouses();
-    WarehosueDto GetWarehosueById();
+    WarehosueDto GetWarehosueById(std::string id);
 
 private:
     WarehouseDbContext* dbContext;

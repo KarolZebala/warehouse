@@ -87,6 +87,9 @@
     <ClCompile Include="StorageConditionsDto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GuidProvider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files\Dto</Filter>
     </ClInclude>
     <ClInclude Include="StorageConditionsDto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuidProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

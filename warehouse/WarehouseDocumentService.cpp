@@ -2,7 +2,7 @@
 
 int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumentDto* dto)
 {
-	auto warehouse = _dbContext->GetById(9);
+	auto warehouse = _dbContext->GetById(dto->WarehouseIdGuid);
 	auto document = new WarehouseDocumentReception(dto->DocumentName);
 	auto productsToAdd = new std::vector<Product*>();
 	for (auto& product : dto->Products) {
@@ -15,7 +15,7 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 			product.XDimension,
 			product.YDimension,
 			product.ZDimension,
-			product.WarehouseLocationId
+			product.WarehouseLocationIdGuid
 		);
 		for (auto& storageConditon : product.StorageConditions) {
 			productToAdd->AddStorageConditon(
@@ -25,7 +25,7 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 			);
 		}
 		//add product to warehouse location
-		auto location = warehouse->GetLocationById(9);
+		auto location = warehouse->GetLocationById(product.WarehouseLocationIdGuid);
 		if (location == nullptr) {
 			throw new std::exception("Not found location");
 		}
@@ -40,7 +40,7 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 
 int WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDto* dto)
 {
-	auto warehouse = _dbContext->GetById(9);
+	auto warehouse = _dbContext->GetById(dto->WarehouseIdGuid);
 	auto document = new WarehouseDocumentReception(dto->DocumentName);
 
 	auto productsToAdd = new std::vector<Product*>();
@@ -54,16 +54,16 @@ int WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDt
 			productDto.XDimension,
 			productDto.YDimension,
 			productDto.ZDimension,
-			productDto.WarehouseLocationId
+			productDto.WarehouseLocationIdGuid
 		);
-		auto location = warehouse->GetLocationById(productDto.WarehouseLocationId);
+		auto location = warehouse->GetLocationById(productDto.WarehouseLocationIdGuid);
 		location->RemoveProduct(productToAdd);
 	}
 	warehouse->AddWarehouseDocument(document);
 	return 0;
 }
 
-std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocumentReleasesDocuements(int warehouseId)
+std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId)
 {
 	auto res = std::vector<WarehouseDocumentDto*>();
 	auto warehosue = _dbContext->GetById(warehouseId);
@@ -77,7 +77,7 @@ std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocu
 	return res;
 }
 
-std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocumentReceptionsDocuements(int warehouseId)
+std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocumentReceptionsDocuements(std::string warehouseId)
 {
 	auto res = std::vector<WarehouseDocumentDto*>();
 	auto warehosue = _dbContext->GetById(warehouseId);
@@ -91,7 +91,7 @@ std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocu
 	return res;
 }
 
-WarehouseDocumentDto* WarehouseDocumentService::GetWarehosueDocumentReceptionById(int warehouseId, int documentId)
+WarehouseDocumentDto* WarehouseDocumentService::GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId)
 {
 	auto warehosue = _dbContext->GetById(warehouseId);
 	auto document = warehosue->GetWarehouseDocumentReceptionById(documentId);
@@ -101,7 +101,7 @@ WarehouseDocumentDto* WarehouseDocumentService::GetWarehosueDocumentReceptionByI
 	return res;
 }
 
-WarehouseDocumentDto* WarehouseDocumentService::GetWarehosueDocumentReleaseById(int warehouseId, int documentId)
+WarehouseDocumentDto* WarehouseDocumentService::GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId)
 {
 	auto warehosue = _dbContext->GetById(warehouseId);
 	auto document = warehosue->GetWarehouseDocumentReleaseById(documentId);

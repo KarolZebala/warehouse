@@ -9,9 +9,10 @@ Product::Product(
     int xDimension,
     int yDimension,
     int zDimension,
-    int locationId
+    std::string locationId
 )
 {
+    ProductIdGuid = GuidProvider::GetGuidString();
     Name = name;
     Condition = condition;
     Price = price;
@@ -19,7 +20,7 @@ Product::Product(
     XDimension = xDimension;
     YDimension = yDimension;
     ZDimension = zDimension;
-    WarehouseLocationId = locationId;
+    WarehouseLocationIdGuid = locationId;
 }
 
 std::string Product::getName() const
@@ -65,7 +66,13 @@ void Product::AddStorageConditon(std::string type, int minValue, int maxValue)
     _storageConditions.push_back(storageConditon);
 }
 
-int Product::getProductId()
+std::string Product::getProductId()
 {
-    return this->ProductId;
+    return this->ProductIdGuid;
+}
+
+int Product::getVolume()
+{
+    auto res = this->XDimension * this->YDimension * this->ZDimension;
+    return res;
 }

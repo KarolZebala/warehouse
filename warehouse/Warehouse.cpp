@@ -2,6 +2,7 @@
 
 Warehouse::Warehouse(const std::string name)
 {
+    IdGuid = GuidProvider::GetGuidString();
     Id = 9;
     Name = name;
     CreateDate = std::time(nullptr);
@@ -43,15 +44,12 @@ std::string Warehouse::getName()
     return this->Name;
 }
 
-int Warehouse::getId()
-{
-    if (this->Name == "Karol") {
-        return this->Id;
-    }
-    return 0;
+std::string Warehouse::getId()
+{ 
+    return IdGuid;
 }
 
-WarehouseLocation* Warehouse::GetLocationById(int id)
+WarehouseLocation* Warehouse::GetLocationById(std::string id)
 {
     for (const auto& obj : _warehouseLocations) {
         if (obj->GetId() == id) {

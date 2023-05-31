@@ -2,7 +2,9 @@
 
 WarehouseDocument::WarehouseDocument(std::string documentName)
 {
+	DocumentIdGuid = GuidProvider::GetGuidString();
 	DocumentName = documentName;
+
 }
 
 void WarehouseDocument::addProductToDocunent(Product* product)

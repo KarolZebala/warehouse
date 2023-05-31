@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include "Product.h"
+#include "GuidProvider.h"
 
 class WarehouseLocation {
 public:
@@ -15,18 +16,35 @@ public:
         int height
     );
 
-    std::string getName() const; 
+    
 
     void AddStorageConditon();
     void UpdateStorageConditon();
     bool CheckIfLocationHasStorageCondition();
-    int GetId();
+    
     void AddProduct(Product* product);
     void RemoveProduct(Product* product);
 
 
+    std::string GetId();
+    std::string getName();
+    int getWidth() {
+        return this->Width;
+    }
+    int getDepth() {
+        return this->Depth;
+    }
+    int getHeight() {
+        return this->Height;
+    }
+    int getMaxVolume() {
+        return this->Width * this->Depth * this->Height;
+    }
+    int getOccupiedVolume();
+
 private:
     int WarehouseLocationId;
+    std::string WarehouseLocationIdGuid;
     std::string Name;
     int Width;
     int Depth;

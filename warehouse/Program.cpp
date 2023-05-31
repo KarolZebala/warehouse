@@ -2,7 +2,6 @@
 #include "WarehouseApp.h"
 #include "WarehosueDto.h"
 
-
 int main() {
 	//aplication start
 
@@ -32,6 +31,10 @@ int main() {
 		}
 		if (userInput == "2") {
 			auto results = warehosueApp->GetAll();
+			std::cout << "Pddasfa";
+
+		}if (userInput == "2") {
+			//auto results = warehosueApp->();
 			std::cout << "Pddasfa";
 
 		}

@@ -5,7 +5,7 @@ WarehouseService::WarehouseService()
     dbContext = new WarehouseDbContext();
 }
 
-int WarehouseService::CreateWarehouse(WarehosueDto* dto)
+std::string WarehouseService::CreateWarehouse(WarehosueDto* dto)
 {
     auto warehouse = new Warehouse(dto->Name);
     for (auto& location : dto->WarehosueLocations)
@@ -32,13 +32,14 @@ std::vector<WarehosueDto> WarehouseService::GetAllWarehouses()
     for (auto warehouse : warehouses) {
         WarehosueDto warehouseDto;
         warehouseDto.Name = warehouse->getName();
+        warehouseDto.WarehouseId = warehouse->getId();
         res.push_back(warehouseDto);
     }
     return res;
 }
 
-WarehosueDto WarehouseService::GetWarehosueById()
+WarehosueDto WarehouseService::GetWarehosueById(std::string id)
 {
-
+    auto wareshouse = dbContext->GetById(id);
     return WarehosueDto();
 }

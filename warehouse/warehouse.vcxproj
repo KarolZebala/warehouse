@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GuidProvider.cpp" />
     <ClCompile Include="HumidityStorageConditions.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="ProductDto.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="WarehouseService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GuidProvider.h" />
     <ClInclude Include="HumidityStorageConditions.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="ProductDto.h" />

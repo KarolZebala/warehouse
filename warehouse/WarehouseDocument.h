@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Product.h"
+#include "GuidProvider.h"
 
 class WarehouseDocument {
 public:
@@ -13,12 +14,13 @@ public:
     std::string getName() {
         return this->DocumentName;
     }
-    int getDocuemntId() {
-        return this->DocuementId;
+    std::string getDocuemntId() {
+        return this->DocumentIdGuid;
     }
 
 protected:
     int DocuementId;
+    std::string DocumentIdGuid;
     std::string DocumentName;
     
     std::vector<Product*> _products;

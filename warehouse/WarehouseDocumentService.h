@@ -12,11 +12,11 @@ public:
     int CreateWarehouseReleaseDocument(WarehouseDocumentDto* dto);
     void UpdateWarehouseDocument(WarehouseDocumentDto* dto);
 
-    std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReleasesDocuements(int warehouseId);
-    std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReceptionsDocuements(int warehosueId);
+    std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId);
+    std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReceptionsDocuements(std::string warehosueId);
 
-    WarehouseDocumentDto* GetWarehosueDocumentReceptionById(int warehouseId, int documentId);
-    WarehouseDocumentDto* GetWarehosueDocumentReleaseById(int warehouseId, int documentId);
+    WarehouseDocumentDto* GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId);
+    WarehouseDocumentDto* GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId);
 
 private:
     WarehouseDbContext* _dbContext;

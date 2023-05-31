@@ -7,21 +7,39 @@ WarehouseLocation::WarehouseLocation(
     int height
 )
 {
+    WarehouseLocationIdGuid = GuidProvider::GetGuidString();
     Name = name;
-    //to do: add validation
+    if (width <= 0) {
+        throw std::exception("Invalid value of width");
+    }
+    if (depth <= 0) {
+        throw std::exception("Invalid value of depth");
+    }
+    if (height <= 0) {
+        throw std::exception("Invalid value of height");
+    }
     Width = width;
     Depth = depth;
     Height = height;
 }
 
-std::string WarehouseLocation::getName() const
+std::string WarehouseLocation::getName()
 {
-    return Name;
+    return this->Name;
 }
 
-int WarehouseLocation::GetId()
+int WarehouseLocation::getOccupiedVolume()
 {
-    return this->WarehouseLocationId;
+    auto res = 0;
+    for (auto product : _products) {
+        res +=product->getVolume();
+    }
+    return res;
+}
+
+std::string WarehouseLocation::GetId()
+{
+    return this->WarehouseLocationIdGuid;
 }
 
 void WarehouseLocation::AddProduct(Product* product)

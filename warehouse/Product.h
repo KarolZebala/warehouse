@@ -4,6 +4,7 @@
 #include"StorageConditions.h"
 #include"TemperaturStorageConditions.h"
 #include"HumidityStorageConditions.h"
+#include "GuidProvider.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -19,7 +20,7 @@ public:
         int xDimension,
         int yDimension,
         int zDimension,
-        int locationId
+        std::string locationId
     );
 
     std::string getName() const;
@@ -38,11 +39,12 @@ public:
     void AddStorageConditon(std::string type, int minValue, int maxValue);
     void UpdateStorageConditon(std::string type, int minValue, int maxValue);
 
-    int getProductId();
+    std::string getProductId();
+    int getVolume();
 
 private:
     int ProductId;
-
+    std::string ProductIdGuid;
     std::string Name;
     std::string StorageMethod;
     std::string Condition;
@@ -54,7 +56,7 @@ private:
     int ZDimension;
     int YDimension;
 
-    int WarehouseLocationId;
+    std::string WarehouseLocationIdGuid;
 
     std::vector<StorageConditions*> _storageConditions;
 };
