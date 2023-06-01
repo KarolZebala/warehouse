@@ -24,6 +24,21 @@ private:
 		res->Volume = product->getVolume();
 		res->Price = product->getPrice();
 		res->Quantity = product->getQuantity();
+
+		return res;
+	}
+	std::vector<StorageConditionsDto*> MapStorageConditions(std::vector<StorageConditions> conditons) {
+		auto res = std::vector<StorageConditionsDto*>();
+		for (auto condition : conditons) {
+			auto conditonDto = MapStorageCondition(condition);
+			res.push_back(conditonDto);
+		}
+		return res;
+	}
+	StorageConditionsDto* MapStorageCondition(StorageConditions conditon) {
+		auto res = new StorageConditionsDto();
+		res->MaxValue = conditon.getMaxValue();
+		res->MinValue = conditon.getMinValue();
 		return res;
 	}
 };

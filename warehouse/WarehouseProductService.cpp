@@ -14,6 +14,13 @@ std::string WarehouseProductService::CreateProduct(ProductDto product)
 		product.ZDimension,
 		product.WarehouseLocationIdGuid
 	);
+	for (auto& storageConditon : product.StorageConditions) {
+		productToAdd->AddStorageConditon(
+			storageConditon.Type,
+			storageConditon.MinValue,
+			storageConditon.MaxValue
+		);
+	}
 	auto productId = warehouse->AddProdcut(productToAdd);
     return productId;
 }
