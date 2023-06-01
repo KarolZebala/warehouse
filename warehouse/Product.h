@@ -23,7 +23,7 @@ public:
         std::string locationId
     );
 
-    std::string getName() const;
+    
     
     void ChangeMainAttributes(
         std::string name,
@@ -39,8 +39,14 @@ public:
     void AddStorageConditon(std::string type, int minValue, int maxValue);
     void UpdateStorageConditon(std::string type, int minValue, int maxValue);
 
+    std::string getName();
     std::string getProductId();
     int getVolume();
+    std::string getConditon();
+    std::string getComents();
+    int getPrice();
+    int getQuantity();
+
 
 private:
     int ProductId;

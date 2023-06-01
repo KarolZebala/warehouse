@@ -62,6 +62,12 @@ public:
         throw new std::exception("Not found realse");
     }
 
+    std::string AddProdcut(Product* product);
+    Product* GetProductById(std::string productId);
+    std::vector<Product*> GetAllProducts() {
+        return _warehouseProducts;
+    }
+
 
 private:
     int Id;
@@ -72,6 +78,7 @@ private:
     std::vector<WarehouseLocation*> _warehouseLocations;
     std::vector<WarehouseDocumentRelease*> _warehouseDocumentReleases;
     std::vector<WarehouseDocumentReception*> _warehouseDocumentReceptions;
+    std::vector<Product*> _warehouseProducts;
     
     
 };

@@ -23,7 +23,7 @@ Product::Product(
     WarehouseLocationIdGuid = locationId;
 }
 
-std::string Product::getName() const
+std::string Product::getName()
 {
     return Name;
 }
@@ -75,4 +75,24 @@ int Product::getVolume()
 {
     auto res = this->XDimension * this->YDimension * this->ZDimension;
     return res;
+}
+
+std::string Product::getConditon()
+{
+    return this->Condition;
+}
+
+std::string Product::getComents()
+{
+    return this->Coments;
+}
+
+int Product::getPrice()
+{
+    return this->Price;
+}
+
+int Product::getQuantity()
+{
+    return this->Quantity;
 }

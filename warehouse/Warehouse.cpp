@@ -58,3 +58,19 @@ WarehouseLocation* Warehouse::GetLocationById(std::string id)
     }
     return nullptr;
 }
+
+std::string Warehouse::AddProdcut(Product* product)
+{
+    _warehouseProducts.push_back(product);
+    return product->getProductId();
+}
+
+Product* Warehouse::GetProductById(std::string productId)
+{
+    for (const auto& product : _warehouseProducts) {
+        if (product->getProductId() == productId){
+            return product;
+        }
+    }
+    return nullptr;
+}
