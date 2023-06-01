@@ -1,6 +1,5 @@
 #include "WarehouseDocumentRelease.h"
 
-void WarehouseDocumentRelease::process()
+WarehouseDocumentRelease::WarehouseDocumentRelease(const std::string name) : WarehouseDocument(name)
 {
-    // Implementacja procesu wydania dokumentu magazynowego
 }

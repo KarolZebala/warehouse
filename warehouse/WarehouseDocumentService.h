@@ -10,7 +10,7 @@ public:
 
     int CreateWarehouseReceptionDocument(WarehouseDocumentDto* dto);
     int CreateWarehouseReleaseDocument(WarehouseDocumentDto* dto);
-    void UpdateWarehouseDocument(WarehouseDocumentDto* dto);
+   
 
     std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId);
     std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReceptionsDocuements(std::string warehosueId);

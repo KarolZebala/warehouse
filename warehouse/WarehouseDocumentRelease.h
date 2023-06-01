@@ -5,7 +5,7 @@
 
 class WarehouseDocumentRelease : public WarehouseDocument {
 public:
-    void process();
+    WarehouseDocumentRelease(const std::string name);
 };
 
 #endif // WAREHOUSEDOCUMENTRELEASE_H

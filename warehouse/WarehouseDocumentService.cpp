@@ -41,7 +41,7 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 int WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDto* dto)
 {
 	auto warehouse = _dbContext->GetById(dto->WarehouseIdGuid);
-	auto document = new WarehouseDocumentReception(dto->DocumentName);
+	auto document = new WarehouseDocumentRelease(dto->DocumentName);
 
 	auto productsToAdd = new std::vector<Product*>();
 	for (auto& productDto : dto->Products) {

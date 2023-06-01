@@ -6,6 +6,7 @@
 #include <memory>
 #include "Product.h"
 #include "GuidProvider.h"
+#include "WarehouseLocationProduct.h"
 
 class WarehouseLocation {
 public:
@@ -50,7 +51,7 @@ private:
     int Depth;
     int Height;
 
-    std::vector<Product*> _products;
+    std::vector<WarehouseLocationProduct*> _products;
     std::vector<StorageConditions*> _storageConditions;
     
 };

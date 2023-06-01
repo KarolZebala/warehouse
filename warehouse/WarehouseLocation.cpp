@@ -32,7 +32,7 @@ int WarehouseLocation::getOccupiedVolume()
 {
     auto res = 0;
     for (auto product : _products) {
-        res +=product->getVolume();
+        res += product->getVolume();
     }
     return res;
 }
@@ -45,7 +45,8 @@ std::string WarehouseLocation::GetId()
 void WarehouseLocation::AddProduct(Product* product)
 {
     //warunki do dodania produktu
-    _products.push_back(product);
+    auto locationProduct = new WarehouseLocationProduct(product->getProductId(), product->getVolume());
+    _products.push_back(locationProduct);
 }
 
 void WarehouseLocation::RemoveProduct(Product* product)

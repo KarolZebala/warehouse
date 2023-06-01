@@ -9,6 +9,8 @@ int main() {
 
 	auto warehosueApp = new WarehouseApp();
 	auto isProgramRunning = true;
+	
+	std::cout << std::time(0);
 
 	while (true) {
 		std::cout<< "Podaj co chcesz zrobiæ: \n";
