@@ -4,6 +4,7 @@ class WarehouseLocationDto
 {
 
 	public:
+		std::string WarehouseId;
 		std::string WarehouseLocationName;
 		int Width;
 		int Depth;

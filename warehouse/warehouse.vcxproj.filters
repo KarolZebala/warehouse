@@ -90,6 +90,12 @@
     <ClCompile Include="GuidProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WarehouseLocationService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WarehouseProductService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -151,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="GuidProvider.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseLocationService.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseProductService.h">
+      <Filter>Header Files\Services</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

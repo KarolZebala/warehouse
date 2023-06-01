@@ -31,6 +31,9 @@ public:
     std::string getName();
     std::string getId();
     WarehouseLocation* GetLocationById(std::string id);
+    std::vector<WarehouseLocation*> getAllLocations() {
+        return this->_warehouseLocations;
+    }
 
 
     std::vector<WarehouseDocumentReception*> GetAllWarehouseDocumentReceptions() {
