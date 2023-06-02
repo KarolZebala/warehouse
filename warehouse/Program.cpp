@@ -1,9 +1,9 @@
 #include <iostream>
 #include "WarehouseApp.h"
 #include "WarehosueDto.h"
-
+#include <sqlite3.h>
 int main() {
-	//aplication start
+
 
 	//Create warehosuse app 
 

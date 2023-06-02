@@ -99,6 +99,9 @@
     <ClCompile Include="WarehouseLocationProduct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\sqlite\sqlite-amalgamation-3420000\sqlite3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -170,5 +173,8 @@
     <ClInclude Include="WarehouseLocationProduct.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

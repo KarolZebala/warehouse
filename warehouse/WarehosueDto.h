@@ -7,7 +7,7 @@ class WarehosueDto
 {
 public:
 	std::string Name;
-	std::string WarehouseId;
+	std::string IdGuid;
 	std::time_t CreateDate;
 	std::time_t LastUpdateDate;
 	std::vector<WarehouseLocationDto> WarehosueLocations;

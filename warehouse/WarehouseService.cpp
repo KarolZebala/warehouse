@@ -32,7 +32,7 @@ std::vector<WarehosueDto> WarehouseService::GetAllWarehouses()
     for (auto warehouse : warehouses) {
         WarehosueDto warehouseDto;
         warehouseDto.Name = warehouse->getName();
-        warehouseDto.WarehouseId = warehouse->getId();
+        warehouseDto.IdGuid = warehouse->getId();
         res.push_back(warehouseDto);
     }
     return res;
