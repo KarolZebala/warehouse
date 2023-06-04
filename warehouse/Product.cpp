@@ -4,15 +4,25 @@ Product::Product(
     std::string name,
     std::string condition,
     std::string comments,
+    std::string storageMethod,
     int price,
     int quantity,
     int xDimension,
     int yDimension,
     int zDimension,
-    std::string locationId
+    std::string locationId,
+    std::string warehouseId,
+    std::string productId
 )
 {
-    ProductIdGuid = GuidProvider::GetGuidString();
+    //for prevent problem during read from database
+    if (productId == "") {
+        ProductIdGuid = GuidProvider::GetGuidString();
+    }
+    else {
+        ProductIdGuid = productId;
+    }
+    
     Name = name;
     Condition = condition;
     Price = price;
@@ -21,6 +31,8 @@ Product::Product(
     YDimension = yDimension;
     ZDimension = zDimension;
     WarehouseLocationIdGuid = locationId;
+    WarehouseId = warehouseId;
+    StorageMethod = storageMethod;
 }
 
 std::string Product::getName()
@@ -95,4 +107,14 @@ int Product::getPrice()
 int Product::getQuantity()
 {
     return this->Quantity;
+}
+
+std::string Product::getStorageMethod()
+{
+    return this->StorageMethod;
+}
+
+std::string Product::getWarehouseId()
+{
+    return this->WarehouseId;
 }

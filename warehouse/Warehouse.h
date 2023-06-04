@@ -12,7 +12,7 @@
 //#include"WarehouseDocument.h"
 class Warehouse {
 public:
-    explicit Warehouse(const std::string name);
+    explicit Warehouse(const std::string name, const std::string warehouseId = "");
 
     void AddWarehouseLocations(
         std::string name,
@@ -30,6 +30,11 @@ public:
 
     std::string getName();
     std::string getId();
+
+    void setId(std::string id) {
+        IdGuid = id;
+    }
+
     WarehouseLocation* GetLocationById(std::string id);
     std::vector<WarehouseLocation*> getAllLocations() {
         return this->_warehouseLocations;
@@ -70,7 +75,6 @@ public:
 
 
 private:
-    int Id;
     std::string Name;
     std::string IdGuid;
     std::time_t CreateDate;

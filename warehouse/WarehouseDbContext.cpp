@@ -33,7 +33,7 @@ void WarehouseDbContext::saveChanges()
 
 std::vector<Warehouse*> WarehouseDbContext::GetAllWarehouses1()
 {
-    std::vector<WarehosueDto> warehouses1;
+    std::vector<WarehouseDto> warehouses1;
 
     sqlite3* db;
     int rc = sqlite3_open("test.db", &db);
@@ -53,7 +53,7 @@ std::vector<Warehouse*> WarehouseDbContext::GetAllWarehouses1()
     }
 
     while (sqlite3_step(stmt) == SQLITE_ROW) {
-        WarehosueDto warehouse;
+        WarehouseDto warehouse;
         warehouse.IdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
         warehouse.Name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
         warehouses1.push_back(warehouse);

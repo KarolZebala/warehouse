@@ -15,12 +15,15 @@ public:
         std::string name,
         std::string condition,
         std::string comments,
+        std::string storageMethod,
         int price,
         int quantity,
         int xDimension,
         int yDimension,
         int zDimension,
-        std::string locationId
+        std::string locationId,
+        std::string warehouseId,
+        std::string productId = ""
     );
 
     
@@ -46,6 +49,8 @@ public:
     std::string getComents();
     int getPrice();
     int getQuantity();
+    std::string getStorageMethod();
+    std::string getWarehouseId();
 
 
 private:
@@ -63,7 +68,7 @@ private:
     int YDimension;
 
     std::string WarehouseLocationIdGuid;
-
+    std::string WarehouseId;
     std::vector<StorageConditions*> _storageConditions;
 };
 

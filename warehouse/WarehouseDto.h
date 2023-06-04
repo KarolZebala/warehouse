@@ -3,7 +3,7 @@
 #include <ctime>
 #include <vector>
 #include "WarehouseLocationDto.h"
-class WarehosueDto
+class WarehouseDto
 {
 public:
 	std::string Name;

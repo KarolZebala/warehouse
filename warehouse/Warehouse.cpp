@@ -1,9 +1,13 @@
 #include "Warehouse.h"
 
-Warehouse::Warehouse(const std::string name)
+Warehouse::Warehouse(const std::string name, std::string warehosueId)
 {
-    IdGuid = GuidProvider::GetGuidString();
-    Id = 9;
+    if (warehosueId == "") {
+        IdGuid = GuidProvider::GetGuidString();
+    }else{
+        IdGuid = warehosueId;
+    }
+    
     Name = name;
     CreateDate = std::time(nullptr);
 

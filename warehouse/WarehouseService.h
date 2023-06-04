@@ -4,20 +4,22 @@
 #include <string>
 #include "Warehouse.h"
 #include "WarehouseDbContext.h"
-#include "WarehosueDto.h"
+#include "WarehouseDto.h"
+#include "WarehouseRepository.h"
 
 class WarehouseService {
 public:
     explicit WarehouseService();
 
-    std::string CreateWarehouse(WarehosueDto* dto);
-    void UpdateWarehouse(WarehosueDto* dto);
+    std::string CreateWarehouse(WarehouseDto* dto);
+    void UpdateWarehouse(WarehouseDto* dto);
 
-    std::vector<WarehosueDto> GetAllWarehouses();
-    WarehosueDto GetWarehosueById(std::string id);
+    std::vector<WarehouseDto> GetAllWarehouses();
+    WarehouseDto GetWarehosueById(std::string id);
 
 private:
     WarehouseDbContext* dbContext;
+    WarehouseRepository* _warehouseRepository;
 };
 
 #endif // WAREHOUSESERVICE_H

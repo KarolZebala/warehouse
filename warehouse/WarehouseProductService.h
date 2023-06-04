@@ -1,11 +1,13 @@
 #pragma once
 #include "ProductDto.h"
 #include "WarehouseDbContext.h"
+#include "ProuductRepository.h"
 class WarehouseProductService
 {
 public:
 	WarehouseProductService() {
 		_context = new WarehouseDbContext;
+		_productRepository = new ProuductRepository;
 	}
 
 	std::string CreateProduct(ProductDto dto);
@@ -15,6 +17,7 @@ public:
 	std::vector<ProductDto*> GetAllProducts(std::string warehouseId);
 private:
 	WarehouseDbContext* _context;
+	ProuductRepository* _productRepository;
 	ProductDto* MapProduct(Product* product) {
 		auto res = new ProductDto();
 		res->Name = product->getName();

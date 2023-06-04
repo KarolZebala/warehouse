@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include "Warehouse.h"
-#include "WarehosueDto.h"
+#include "WarehouseDto.h"
 #include <sqlite3.h>
 class WarehouseDbContext {
 public:

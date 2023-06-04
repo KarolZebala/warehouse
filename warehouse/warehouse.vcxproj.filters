@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Services">
       <UniqueIdentifier>{766a01cd-c649-4c8a-84c3-0d1c5f57bc24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Repositories">
+      <UniqueIdentifier>{3ae8e26f-52e0-437c-a6f3-bf5d186c61c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Warehouse.cpp">
@@ -102,6 +105,18 @@
     <ClCompile Include="C:\sqlite\sqlite-amalgamation-3420000\sqlite3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WarehouseRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WarehouseLocationRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WarehouseDocumentRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProuductRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -110,7 +125,7 @@
     <ClInclude Include="WarehouseApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WarehosueDto.h">
+    <ClInclude Include="WarehouseDto.h">
       <Filter>Header Files\Dto</Filter>
     </ClInclude>
     <ClInclude Include="Product.h">
@@ -149,17 +164,11 @@
     <ClInclude Include="WarehouseDocumentService.h">
       <Filter>Header Files\Services</Filter>
     </ClInclude>
-    <ClInclude Include="WarehouseDocumentDto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProductDto.h">
       <Filter>Header Files\Dto</Filter>
     </ClInclude>
     <ClInclude Include="WarehouseLocationDto.h">
       <Filter>Header Files\Dto</Filter>
-    </ClInclude>
-    <ClInclude Include="StorageConditionsDto.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GuidProvider.h">
       <Filter>Header Files</Filter>
@@ -172,6 +181,24 @@
     </ClInclude>
     <ClInclude Include="WarehouseLocationProduct.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseRepository.h">
+      <Filter>Header Files\Repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseLocationRepository.h">
+      <Filter>Header Files\Repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseDocumentRepository.h">
+      <Filter>Header Files\Repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseDocumentDto.h">
+      <Filter>Header Files\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="StorageConditionsDto.h">
+      <Filter>Header Files\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="ProuductRepository.h">
+      <Filter>Header Files\Repositories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

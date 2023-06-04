@@ -1,13 +1,13 @@
 #pragma once
 #include "WarehouseService.h"
-#include "WarehosueDto.h"
+#include "WarehouseDto.h"
 class WarehouseApp
 {
 public:
 	 WarehouseApp();
-	 std::string CreateWarehouse(WarehosueDto* dto);
-	 std::vector<WarehosueDto> GetAll();
-	 WarehosueDto GetById(std::string id);
+	 std::string CreateWarehouse(WarehouseDto* dto);
+	 std::vector<WarehouseDto> GetAll();
+	 WarehouseDto GetById(std::string id);
 	 
 
 private:

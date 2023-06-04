@@ -3,34 +3,34 @@
 WarehouseService::WarehouseService()
 {
     dbContext = new WarehouseDbContext();
+    _warehouseRepository = new WarehouseRepository();
 }
 
-std::string WarehouseService::CreateWarehouse(WarehosueDto* dto)
+std::string WarehouseService::CreateWarehouse(WarehouseDto* dto)
 {
     auto warehouse = new Warehouse(dto->Name);
     for (auto& location : dto->WarehosueLocations)
     {
-        
         warehouse->AddWarehouseLocations(
             location.WarehouseLocationName,
             location.Width,
             location.Depth,
             location.Height
         );
-
     }
 
-    dbContext->addWarehouse(warehouse);
-    dbContext->saveChanges();
+    /*dbContext->addWarehouse(warehouse);
+    dbContext->saveChanges();*/
+    
     return warehouse->getId();
 }
 
-std::vector<WarehosueDto> WarehouseService::GetAllWarehouses()
+std::vector<WarehouseDto> WarehouseService::GetAllWarehouses()
 {
     auto warehouses = dbContext->GetAllWarehouses1();
-    std::vector<WarehosueDto> res;
+    std::vector<WarehouseDto> res;
     for (auto warehouse : warehouses) {
-        WarehosueDto warehouseDto;
+        WarehouseDto warehouseDto;
         warehouseDto.Name = warehouse->getName();
         warehouseDto.IdGuid = warehouse->getId();
         res.push_back(warehouseDto);
@@ -38,8 +38,8 @@ std::vector<WarehosueDto> WarehouseService::GetAllWarehouses()
     return res;
 }
 
-WarehosueDto WarehouseService::GetWarehosueById(std::string id)
+WarehouseDto WarehouseService::GetWarehosueById(std::string id)
 {
     auto wareshouse = dbContext->GetById(id);
-    return WarehosueDto();
+    return WarehouseDto();
 }
