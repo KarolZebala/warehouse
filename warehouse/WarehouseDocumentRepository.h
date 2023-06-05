@@ -12,5 +12,10 @@ public:
 	void addRecepiton(WarehouseDocumentRelease* release);
 	std::vector<WarehouseDocumentRelease*> getAllReleases();
 	WarehouseDocumentRelease* getReleaseById(std::string releaseId);
+
+private:
+	void addDocumentProduct(DocumentProduct* product, sqlite3* db);
+	std::vector<DocumentProduct*> getAllDocumentProducts(std::string documentId, sqlite3* db);
 };
+
 

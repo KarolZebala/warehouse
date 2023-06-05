@@ -25,7 +25,7 @@ void ProuductRepository::addProduct(Product* product)
     rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
 	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
 	std::string sqlQuery1 = "INSERT INTO Product (ProductIdGuid, Name, WarehouseId, StorageMethod, Condition, Comments, Price) \n"
-		"VALUES ('" + product->getProductId() + "', '" + product->getName() + "', '"  + product->getWarehouseId() + "', '" + product->getStorageMethod() + "', '" + product->getConditon() + "', '" + product->getComents() + "', '" + std::to_string(10/*product->getPrice()*/) +"');";
+		"VALUES ('" + product->getProductId() + "', '" + product->getName() + "', '"  + product->getWarehouseId() + "', '" + product->getStorageMethod() + "', '" + product->getConditon() + "', '" + product->getComents() + "', '" + std::to_string(product->getPrice()) +"');";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
 	if (rc != SQLITE_OK) {

@@ -6,15 +6,24 @@
 #include<ctime>
 class WarehouseDocumentReception : public WarehouseDocument {
 public:
-	explicit WarehouseDocumentReception(std::string name);
-	void AddProduct();
+	explicit WarehouseDocumentReception(std::string name, std::string warehosueId, std::string documentId = "");
+	void addProductToDocunent(DocumentProduct* product);
+	std::vector<DocumentProduct*> getAllReceptionProduct() {
+		return this->_products;
+	};
 	void UpdateProduct();
 
+	std::time_t getCreateDate() {
+		return this->CreateDate;
+	}
+
+	std::time_t getIssueDate() {
+		return this->IssueDate;
+	}
+
 private:
-	std::string Name;
 	std::time_t CreateDate;
 	std::time_t IssueDate;
-	std::vector<Product> _products;
 };
 
 #endif // WAREHOUSEDOCUMENTRECEPTION_H

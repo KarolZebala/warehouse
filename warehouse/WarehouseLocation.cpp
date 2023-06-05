@@ -42,14 +42,14 @@ std::string WarehouseLocation::GetId()
     return this->WarehouseLocationIdGuid;
 }
 
-void WarehouseLocation::AddProduct(Product* product)
+void WarehouseLocation::AddProductFromDocument(DocumentProduct* product)
 {
     //warunki do dodania produktu
     auto locationProduct = new WarehouseLocationProduct(product->getProductId(), product->getVolume());
     _products.push_back(locationProduct);
 }
 
-void WarehouseLocation::RemoveProduct(Product* product)
+void WarehouseLocation::RemoveProduct(DocumentProduct* product)
 {
     auto productIdToRemove = product->getProductId();
     //trzeba dopisaæ logikê do usuwania produktu na rózne sposoby

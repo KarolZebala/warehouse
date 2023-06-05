@@ -3,43 +3,40 @@
 WarehouseDocumentService::WarehouseDocumentService()
 {
 	_dbContext = new WarehouseDbContext();
+	_documentRepository = new WarehouseDocumentRepository;
 }
 
 int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumentDto* dto)
 {
 	auto warehouse = _dbContext->GetById(dto->WarehouseIdGuid);//do wywalenia
-	auto document = new WarehouseDocumentReception(dto->DocumentName);
+	auto document = new WarehouseDocumentReception(dto->DocumentName, dto->WarehouseIdGuid);
 	auto productsToAdd = new std::vector<Product*>();
 	for (auto& product : dto->Products) {
-		auto productToAdd = new Product(
+		auto productToAdd = new DocumentProduct(
+			product.ProductId,
 			product.Name,
-			product.Condition,
-			product.Coments,
-			product.StorageMethod,
 			product.Price,
-			product.Quantity,
-			product.XDimension,
-			product.YDimension,
-			product.ZDimension,
-			product.WarehouseLocationIdGuid,
+			product.Volume,
+			product.StorageMethod,
 			product.WarehouseIdGuid
 		);
-		for (auto& storageConditon : product.StorageConditions) {
-			productToAdd->AddStorageConditon(
-				storageConditon.Type,
-				storageConditon.MinValue,
-				storageConditon.MaxValue
-			);
-		}
+		//for (auto& storageConditon : product.StorageConditions) {
+		//	productToAdd->AddStorageConditon(
+		//		storageConditon.Type,
+		//		storageConditon.MinValue,
+		//		storageConditon.MaxValue
+		//	);
+		//}
 		//add product to warehouse location
 		auto location = warehouse->GetLocationById(product.WarehouseLocationIdGuid);//dodaæ getLocation do db
 		if (location == nullptr) {
 			throw new std::exception("Not found location");
 		}
-		location->AddProduct(productToAdd);
+		location->AddProductFromDocument(productToAdd);
 
 		document->addProductToDocunent(productToAdd);
-		warehouse->AddWarehouseDocument(document);//przenieœæ do db - dodanie warehouse id
+		//warehouse->AddWarehouseDocument(document);//przenieœæ do db - dodanie warehouse id
+		_documentRepository->addRecepiton(document);
 
 	}
 	
@@ -49,24 +46,19 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 int WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDto* dto)
 {
 	auto warehouse = _dbContext->GetById(dto->WarehouseIdGuid);
-	auto document = new WarehouseDocumentRelease(dto->DocumentName);
+	auto document = new WarehouseDocumentRelease(dto->DocumentName, dto->WarehouseIdGuid);
 
 	auto productsToAdd = new std::vector<Product*>();
-	for (auto& productDto : dto->Products) {
-		auto productToAdd = new Product(
-			productDto.Name,
-			productDto.Condition,
-			productDto.Coments,
-			productDto.StorageMethod,
-			productDto.Price,
-			productDto.Quantity,
-			productDto.XDimension,
-			productDto.YDimension,
-			productDto.ZDimension,
-			productDto.WarehouseLocationIdGuid,
-			productDto.WarehouseIdGuid
+	for (auto& product : dto->Products) {
+		auto productToAdd = new DocumentProduct(
+			product.ProductId,
+			product.Name,
+			product.Price,
+			product.Volume,
+			product.StorageMethod,
+			product.WarehouseIdGuid
 		);
-		auto location = warehouse->GetLocationById(productDto.WarehouseLocationIdGuid);
+		auto location = warehouse->GetLocationById(product.WarehouseLocationIdGuid);
 		location->RemoveProduct(productToAdd);
 	}
 	warehouse->AddWarehouseDocument(document);

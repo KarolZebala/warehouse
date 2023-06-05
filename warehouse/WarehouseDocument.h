@@ -5,11 +5,12 @@
 #include <string>
 #include "Product.h"
 #include "GuidProvider.h"
+#include "DocumentProduct.h"
 
 class WarehouseDocument {
 public:
-    explicit WarehouseDocument(std::string documentName);
-    virtual void addProductToDocunent(Product* product);
+    explicit WarehouseDocument(std::string documentName, std::string warehosueId, std::string documentId = "");
+    virtual void addProductToDocunent(DocumentProduct* product) {};
 
     std::string getName() {
         return this->DocumentName;
@@ -17,13 +18,15 @@ public:
     std::string getDocuemntId() {
         return this->DocumentIdGuid;
     }
+    std::string getWarehouseId() {
+        return this->WarehouseId;
+    }
 
 protected:
-    int DocuementId;
     std::string DocumentIdGuid;
     std::string DocumentName;
-    
-    std::vector<Product*> _products;
+    std::string WarehouseId;
+    std::vector<DocumentProduct*> _products;
 };
 
 #endif // WAREHOUSEDOCUMENT_H

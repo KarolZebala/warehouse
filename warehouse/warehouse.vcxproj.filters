@@ -117,6 +117,9 @@
     <ClCompile Include="ProuductRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReceptionProduct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="ProuductRepository.h">
       <Filter>Header Files\Repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentProduct.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

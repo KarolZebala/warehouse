@@ -5,7 +5,8 @@
 
 class WarehouseDocumentRelease : public WarehouseDocument {
 public:
-    WarehouseDocumentRelease(const std::string name);
+    WarehouseDocumentRelease(const std::string documentName, std::string warehouseId, std::string docuemntId = "");
+    void addProductToDocunent(DocumentProduct* product);
 };
 
 #endif // WAREHOUSEDOCUMENTRELEASE_H

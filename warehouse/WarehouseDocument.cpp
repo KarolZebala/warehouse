@@ -1,13 +1,16 @@
 #include "WarehouseDocument.h"
 
-WarehouseDocument::WarehouseDocument(std::string documentName)
+WarehouseDocument::WarehouseDocument(std::string documentName, std::string warehouseId, std::string docuemntId)
 {
-	DocumentIdGuid = GuidProvider::GetGuidString();
+	if (docuemntId == "") {
+		DocumentIdGuid = GuidProvider::GetGuidString();
+	}
+	else {
+		DocumentIdGuid = docuemntId;
+
+	}
 	DocumentName = documentName;
-
+	WarehouseId = warehouseId;
 }
 
-void WarehouseDocument::addProductToDocunent(Product* product)
-{
-	_products.push_back(product);
-}
+

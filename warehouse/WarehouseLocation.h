@@ -7,6 +7,7 @@
 #include "Product.h"
 #include "GuidProvider.h"
 #include "WarehouseLocationProduct.h"
+#include "DocumentProduct.h"
 
 class WarehouseLocation {
 public:
@@ -23,8 +24,8 @@ public:
     void UpdateStorageConditon();
     bool CheckIfLocationHasStorageCondition();
     
-    void AddProduct(Product* product);
-    void RemoveProduct(Product* product);
+    void AddProductFromDocument(DocumentProduct* product);
+    void RemoveProduct(DocumentProduct* product);
 
 
     std::string GetId();
