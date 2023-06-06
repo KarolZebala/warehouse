@@ -28,36 +28,35 @@ std::string WarehouseLocation::getName()
     return this->Name;
 }
 
-int WarehouseLocation::getOccupiedVolume()
-{
-    auto res = 0;
-    for (auto product : _products) {
-        res += product->getVolume();
-    }
-    return res;
-}
 
 std::string WarehouseLocation::GetId()
 {
     return this->WarehouseLocationIdGuid;
 }
 
+bool WarehouseLocation::CheckIfLocationHasStorageCondition()
+{
+    return true;
+}
+
+bool WarehouseLocation::CheckIfLocationHasSpace(int volume)
+{
+    auto maxVolume = getMaxVolume();
+    if (maxVolume < volume) {
+        return false;
+    }
+    auto occupiedVolume = getOccupiedVolume();
+    if (maxVolume - occupiedVolume < volume) {
+        return false;
+    }
+    return true;
+}
+
 void WarehouseLocation::AddProductFromDocument(DocumentProduct* product)
 {
-    //warunki do dodania produktu
-    auto locationProduct = new WarehouseLocationProduct(product->getProductId(), product->getVolume());
-    _products.push_back(locationProduct);
+    
 }
 
 void WarehouseLocation::RemoveProduct(DocumentProduct* product)
 {
-    auto productIdToRemove = product->getProductId();
-    //trzeba dopisaæ logikê do usuwania produktu na rózne sposoby
-    for (auto curentProduct = _products.begin(); curentProduct != _products.end(); ++curentProduct) {
-        if ((*curentProduct)->getProductId() == productIdToRemove) {
-            delete* curentProduct;
-            _products.erase(curentProduct);
-            break;
-        }
-    }
 }

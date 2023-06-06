@@ -23,9 +23,10 @@ public:
     void AddStorageConditon();
     void UpdateStorageConditon();
     bool CheckIfLocationHasStorageCondition();
+    bool CheckIfLocationHasSpace(int volume);
     
-    void AddProductFromDocument(DocumentProduct* product);
-    void RemoveProduct(DocumentProduct* product);
+    virtual void AddProductFromDocument(DocumentProduct* product);
+    virtual void RemoveProduct(DocumentProduct* product);
 
 
     std::string GetId();
@@ -42,15 +43,16 @@ public:
     int getMaxVolume() {
         return this->Width * this->Depth * this->Height;
     }
-    int getOccupiedVolume();
+    virtual int getOccupiedVolume() { return 0; };
 
 private:
-    int WarehouseLocationId;
     std::string WarehouseLocationIdGuid;
+    std::string WarehouseIdGuid;
     std::string Name;
     int Width;
     int Depth;
     int Height;
+
 
     std::vector<WarehouseLocationProduct*> _products;
     std::vector<StorageConditions*> _storageConditions;

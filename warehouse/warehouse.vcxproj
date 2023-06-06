@@ -151,6 +151,8 @@
     <ClCompile Include="WarehouseDocumentService.cpp" />
     <ClCompile Include="WarehouseLocation.cpp" />
     <ClCompile Include="WarehouseLocationDto.cpp" />
+    <ClCompile Include="WarehouseLocationFifo.cpp" />
+    <ClCompile Include="WarehouseLocationFilo.cpp" />
     <ClCompile Include="WarehouseLocationProduct.cpp" />
     <ClCompile Include="WarehouseLocationRepository.cpp" />
     <ClCompile Include="WarehouseLocationService.cpp" />
@@ -181,6 +183,8 @@
     <ClInclude Include="WarehouseDocumentService.h" />
     <ClInclude Include="WarehouseLocation.h" />
     <ClInclude Include="WarehouseLocationDto.h" />
+    <ClInclude Include="WarehouseLocationFifo.h" />
+    <ClInclude Include="WarehouseLocationFilo.h" />
     <ClInclude Include="WarehouseLocationProduct.h" />
     <ClInclude Include="WarehouseLocationRepository.h" />
     <ClInclude Include="WarehouseLocationService.h" />

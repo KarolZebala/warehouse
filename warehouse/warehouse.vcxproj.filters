@@ -120,6 +120,12 @@
     <ClCompile Include="ReceptionProduct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WarehouseLocationFifo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WarehouseLocationFilo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -204,6 +210,12 @@
       <Filter>Header Files\Repositories</Filter>
     </ClInclude>
     <ClInclude Include="DocumentProduct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseLocationFifo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseLocationFilo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,7 @@ public:
 	std::vector<WarehouseDocumentReception*> getAllReceptions();
 	WarehouseDocumentReception* getRecepitonById(std::string receptionId);
 
-	void addRecepiton(WarehouseDocumentRelease* release);
+	void addRelease(WarehouseDocumentRelease* release);
 	std::vector<WarehouseDocumentRelease*> getAllReleases();
 	WarehouseDocumentRelease* getReleaseById(std::string releaseId);
 
