@@ -9,6 +9,8 @@ public:
 		DocumentName = name;
 	}
 	std::string DocumentName;
+	std::string ClientName;
+	std::string AssignedEmployeeName;
 	std::string DocumentIdGuid;
 	std::string WarehouseIdGuid;
 	std::vector<ProductDto> Products;

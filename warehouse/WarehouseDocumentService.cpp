@@ -8,7 +8,6 @@ WarehouseDocumentService::WarehouseDocumentService()
 
 int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumentDto* dto)
 {
-	auto warehouse = _dbContext->GetById(dto->WarehouseIdGuid);//do wywalenia
 	auto document = new WarehouseDocumentReception(dto->DocumentName, dto->WarehouseIdGuid);
 	auto productsToAdd = new std::vector<Product*>();
 	for (auto& product : dto->Products) {
@@ -28,11 +27,11 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 		//	);
 		//}
 		//add product to warehouse location
-		auto location = warehouse->GetLocationById(product.WarehouseLocationIdGuid);//dodaæ getLocation do db
-		if (location == nullptr) {
+		//auto location = warehouse->GetLocationById(product.WarehouseLocationIdGuid);//dodaæ getLocation do db
+		/*if (location == nullptr) {
 			throw new std::exception("Not found location");
 		}
-		location->AddProductFromDocument(productToAdd);
+		location->AddProductFromDocument(productToAdd);*/
 
 		document->addProductToDocunent(productToAdd);
 		//warehouse->AddWarehouseDocument(document);//przenieœæ do db - dodanie warehouse id

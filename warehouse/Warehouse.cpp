@@ -20,13 +20,13 @@ void Warehouse::AddWarehouseLocations(
     int height
 )
 {
-    auto location = new WarehouseLocation(
+   /* auto location = new WarehouseLocation(
         name,
         width,
         depth,
         height
     );
-    _warehouseLocations.push_back(location);
+    _warehouseLocations.push_back(location);*/
 }
 
 void Warehouse::UpdateStorageArea()

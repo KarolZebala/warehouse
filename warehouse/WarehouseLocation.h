@@ -15,7 +15,9 @@ public:
         std::string name,
         int width,
         int depth,
-        int height
+        int height,
+        std::string warhouseId,
+        std::string locationId = ""
     );
 
     
@@ -44,6 +46,7 @@ public:
         return this->Width * this->Depth * this->Height;
     }
     virtual int getOccupiedVolume() { return 0; };
+    std::string getWarehouseId() { return this->WarehouseIdGuid; };
 
 private:
     std::string WarehouseLocationIdGuid;

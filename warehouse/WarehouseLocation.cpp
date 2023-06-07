@@ -4,10 +4,19 @@ WarehouseLocation::WarehouseLocation(
     std::string name,
     int width,
     int depth,
-    int height
+    int height,
+    std::string warhouseId,
+    std::string locationId
 )
 {
-    WarehouseLocationIdGuid = GuidProvider::GetGuidString();
+    if (locationId == "") {
+        WarehouseLocationIdGuid = GuidProvider::GetGuidString();
+
+    }
+    else {
+        WarehouseLocationIdGuid = locationId;
+    }
+    WarehouseIdGuid = warhouseId;
     Name = name;
     if (width <= 0) {
         throw std::exception("Invalid value of width");

@@ -11,15 +11,15 @@ void WarehouseLocationFilo::AddProductFromDocument(DocumentProduct* product)
 	if (!isEnoughSpaceInLocation) {
 		throw new std::exception("not enough space in location");
 	}
-
-	_products.push(product);
+    auto productToAdd = new WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
+	_products.push(productToAdd);
 }
 
 void WarehouseLocationFilo::RemoveProduct(DocumentProduct* product)
 {
     auto productIdToRemove = product->getProductId();
 
-    std::stack<DocumentProduct*> temporaryProducts;
+    std::stack<WarehouseLocationProduct*> temporaryProducts;
     while (!_products.empty()) {
         auto productOnTop = _products.top();
         _products.pop();
@@ -29,7 +29,7 @@ void WarehouseLocationFilo::RemoveProduct(DocumentProduct* product)
         }
     }
 
-    std::stack<DocumentProduct*> finalProducts;
+    std::stack<WarehouseLocationProduct*> finalProducts;
     while (!temporaryProducts.empty()) {
         auto item = temporaryProducts.top();
         temporaryProducts.pop();
@@ -42,7 +42,7 @@ void WarehouseLocationFilo::RemoveProduct(DocumentProduct* product)
 int WarehouseLocationFilo::getOccupiedVolume()
 {
     int res = 0;
-    std::stack<DocumentProduct*> tempStack = _products;
+    std::stack<WarehouseLocationProduct*> tempStack = _products;
 
     while (!tempStack.empty()) {
         auto productOnTop = tempStack.top();

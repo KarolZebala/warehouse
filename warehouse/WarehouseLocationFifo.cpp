@@ -11,15 +11,16 @@ void WarehouseLocationFifo::AddProductFromDocument(DocumentProduct* product)
 	if (!isEnoughSpaceInLocation) {
 		throw new std::exception("not enough space in location");
 	}
-	_products.push(product);
+	auto locationProduct = new WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
+	_products.push(locationProduct);
 }
 
 void WarehouseLocationFifo::RemoveProduct(DocumentProduct* product)
 {
 	auto targetId = product->getProductId();
-	auto newProductQueue = std::queue<DocumentProduct*>();
+	auto newProductQueue = std::queue<WarehouseLocationProduct*>();
 	while (!_products.empty()) {
-		DocumentProduct* item = _products.front();
+		WarehouseLocationProduct* item = _products.front();
 
 		if (item->getProductId() != targetId) {
 			newProductQueue.push(item);
@@ -34,7 +35,7 @@ void WarehouseLocationFifo::RemoveProduct(DocumentProduct* product)
 int WarehouseLocationFifo::getOccupiedVolume()
 {
 	int res = 0;
-	std::queue<DocumentProduct*> temporaryProductQueue = _products;
+	std::queue<WarehouseLocationProduct*> temporaryProductQueue = _products;
 
 	while (!temporaryProductQueue.empty()) {
 		auto frontProduct = temporaryProductQueue.front();

@@ -7,12 +7,18 @@ public: WarehouseLocationFifo(
     std::string name,
     int width,
     int depth,
-    int height
-) : WarehouseLocation(name, width, depth, height) {};
+    int height,
+    std::string warhouseId,
+    std::string locationId = ""
+) : WarehouseLocation(name, width, depth, height, warhouseId, locationId) {};
       void AddProductFromDocument(DocumentProduct* product);
       void RemoveProduct(DocumentProduct* product);
       int getOccupiedVolume();
+      void AddRangeProduct(std::vector<WarehouseLocationProduct*> products) {
+         // std::queue<WarehouseLocationProduct*> queue(products);
+          _products = queue;
+      }
 private: 
-    std::queue<DocumentProduct*> _products;
+    std::queue<WarehouseLocationProduct*> _products;
 };
 

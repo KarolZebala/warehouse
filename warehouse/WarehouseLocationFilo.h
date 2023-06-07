@@ -7,14 +7,16 @@ public: WarehouseLocationFilo(
     std::string name,
     int width,
     int depth,
-    int height
-) : WarehouseLocation(name, width, depth, height) {};
+    int height,
+    std::string warehouseId,
+    std::string locationId
+) : WarehouseLocation(name, width, depth, height, warehouseId, locationId) {};
 
       void AddProductFromDocument(DocumentProduct* product);
       void RemoveProduct(DocumentProduct* product);
       int getOccupiedVolume();
 private:
-    std::stack<DocumentProduct*> _products;
+    std::stack<WarehouseLocationProduct*> _products;
 
 
 };
