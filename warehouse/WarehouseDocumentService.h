@@ -4,6 +4,7 @@
 #include "vector"
 #include "WarehouseDbContext.h"
 #include "WarehouseDocumentRepository.h"
+#include "WarehouseLocationRepository.h"
 class WarehouseDocumentService
 {
 public:
@@ -22,5 +23,7 @@ public:
 private:
     WarehouseDbContext* _dbContext;
     WarehouseDocumentRepository* _documentRepository;
+    WarehouseLocationRepository* _locationRepository;
+
 };
 

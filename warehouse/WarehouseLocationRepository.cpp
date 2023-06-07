@@ -1,11 +1,10 @@
 #include "WarehouseLocationRepository.h"
 
-void WarehouseLocationRepository::addLocatation(WarehouseLocationFifo* location)
+void WarehouseLocationRepository::addLocatation(WarehouseLocation* location)
 {
     sqlite3* db;
     auto rc = sqlite3_open("test.db", &db);
 
-    // Tworzenie tabeli
     std::string createTableQuery = "CREATE TABLE IF NOT EXISTS WarehouseLocation (WarehouseLocationIdGuid TEXT, WarehouseIdGuid TEXT, Name TEXT, Width INTEGER, Depth INTEGER, Height INTEGER);";
     rc = sqlite3_exec(db, createTableQuery.c_str(), 0, 0, 0);
 
@@ -44,11 +43,46 @@ WarehouseLocationFifo* WarehouseLocationRepository::getFifoById(std::string id)
         sqlite3_close(db);
         auto location =  new WarehouseLocationFifo(name, width, depth, height, warehouseId, locationId);
         auto products = getAllLocationProdut(locationId, db);
-
+        location->AddRangeProduct(products);
+        return location;
 
     }
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+    return nullptr;
+}
+
+WarehouseLocationFilo* WarehouseLocationRepository::getFiloById(std::string id)
+{
+    sqlite3* db;
+    auto rc = sqlite3_open("test.db", &db);
+
+    std::string sqlQuery = "SELECT WarehouseLocationIdGuid, WarehouseIdGuid, Name, Width, Depth, Height FROM WarehouseLocation WHERE WarehouseLocationIdGuid = " + id + ";";
+    sqlite3_stmt* stmt;
+
+    rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
+
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        std::string locationId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+        std::string warehouseId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        std::string name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+        int width = sqlite3_column_int(stmt, 3);
+        int depth = sqlite3_column_int(stmt, 4);
+        int height = sqlite3_column_int(stmt, 5);
+
+
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        auto location = new WarehouseLocationFilo(name, width, depth, height, warehouseId, locationId);
+        auto products = getAllLocationProdut(locationId, db);
+        location->addRangeProduct(products);
+        return location;
+
+    }
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    return nullptr;
 }
 
 std::vector<WarehouseLocation*> WarehouseLocationRepository::getAll()
@@ -132,5 +166,4 @@ std::vector<WarehouseLocationProduct*> WarehouseLocationRepository::getAllLocati
     sqlite3_close(db);
     return products;
 
-    return std::vector<WarehouseLocationProduct*>();
 }

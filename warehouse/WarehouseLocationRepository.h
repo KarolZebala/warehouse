@@ -9,7 +9,7 @@
 class WarehouseLocationRepository
 {
 public:
-	void addLocatation(WarehouseLocationFifo* location);
+	void addLocatation(WarehouseLocation* location);
 	WarehouseLocationFifo* getFifoById(std::string id);
 	WarehouseLocationFilo* getFiloById(std::string id);
 	std::vector<WarehouseLocation*> getAll();

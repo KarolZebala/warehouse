@@ -15,7 +15,11 @@ public: WarehouseLocationFifo(
       void RemoveProduct(DocumentProduct* product);
       int getOccupiedVolume();
       void AddRangeProduct(std::vector<WarehouseLocationProduct*> products) {
-         // std::queue<WarehouseLocationProduct*> queue(products);
+          std::queue<WarehouseLocationProduct*> queue;
+          for (const auto& element : products) {
+              queue.push(element);
+          }
+
           _products = queue;
       }
 private: 

@@ -4,6 +4,7 @@ WarehouseDocumentService::WarehouseDocumentService()
 {
 	_dbContext = new WarehouseDbContext();
 	_documentRepository = new WarehouseDocumentRepository;
+	_locationRepository = new WarehouseLocationRepository();
 }
 
 int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumentDto* dto)
@@ -27,14 +28,25 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 		//	);
 		//}
 		//add product to warehouse location
-		//auto location = warehouse->GetLocationById(product.WarehouseLocationIdGuid);//dodaæ getLocation do db
-		/*if (location == nullptr) {
-			throw new std::exception("Not found location");
+		
+		
+		if (product.StorageMethod == "FIFO") {
+			auto location = _locationRepository->getFifoById(product.WarehouseLocationIdGuid);
+			if (location == nullptr) {
+				throw new std::exception("Not found location");
+			}
+			location->AddProductFromDocument(productToAdd);
 		}
-		location->AddProductFromDocument(productToAdd);*/
+		else {
+			auto location = _locationRepository->getFiloById(product.WarehouseLocationIdGuid);
+			if (location == nullptr) {
+				throw new std::exception("Not found location");
+			}
+			location->AddProductFromDocument(productToAdd);
+		}
+		
 
 		document->addProductToDocunent(productToAdd);
-		//warehouse->AddWarehouseDocument(document);//przenieœæ do db - dodanie warehouse id
 		_documentRepository->addRecepiton(document);
 
 	}
@@ -57,8 +69,20 @@ int WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDt
 			product.StorageMethod,
 			product.WarehouseIdGuid
 		);
-		auto location = warehouse->GetLocationById(product.WarehouseLocationIdGuid);
-		location->RemoveProduct(productToAdd);
+		if (product.StorageMethod == "FIFO") {
+			auto location = _locationRepository->getFifoById(product.WarehouseLocationIdGuid);
+			if (location == nullptr) {
+				throw new std::exception("Not found location");
+			}
+			location->RemoveProduct(productToAdd);
+		}
+		else {
+			auto location = _locationRepository->getFiloById(product.WarehouseLocationIdGuid);
+			if (location == nullptr) {
+				throw new std::exception("Not found location");
+			}
+			location->RemoveProduct(productToAdd);
+		}
 	}
 	warehouse->AddWarehouseDocument(document);
 	return 0;
