@@ -16,7 +16,7 @@ public:
 
 	std::vector<ProductDto*> GetAllProducts(std::string warehouseId);
 private:
-	WarehouseDbContext* _context;
+	WarehouseDbContext* _context{nullptr};
 	ProuductRepository* _productRepository;
 	ProductDto* MapProduct(Product* product) {
 		auto res = new ProductDto();
