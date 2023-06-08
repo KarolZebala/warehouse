@@ -2,7 +2,16 @@
 #include "ProductDto.h"
 #include "WarehouseDbContext.h"
 #include "ProuductRepository.h"
-class WarehouseProductService
+/// <summary>
+/// 
+/// </summary>
+class IWarehouseProductService {
+public:
+	virtual std::string CreateProduct(ProductDto dto) { return ""; };
+	virtual ProductDto* GetProductById(std::string warehouseId, std::string productId) { return new ProductDto(); };
+	virtual std::vector<ProductDto*> GetAllProducts(std::string warehouseId) { return std::vector<ProductDto*>(); };
+};
+class WarehouseProductService : IWarehouseProductService
 {
 public:
 	WarehouseProductService() {
