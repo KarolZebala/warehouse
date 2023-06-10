@@ -116,12 +116,16 @@ Warehouse WarehouseRepository::GetById(std::string id)
     if (sqlite3_step(stmt) == SQLITE_ROW) {
         auto id = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
         auto name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         Warehouse warehouse = Warehouse(name, id);
         return warehouse;
     }
 
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+    Warehouse warehouse = Warehouse("");
+    return warehouse;
 }
 
 WarehouseDto WarehouseRepository::GetByIddDto(std::string id)
@@ -147,10 +151,12 @@ WarehouseDto WarehouseRepository::GetByIddDto(std::string id)
         WarehouseDto warehouse = WarehouseDto();
         warehouse.IdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
         warehouse.Name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-        
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return warehouse;
     }
 
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+    return WarehouseDto();
 }
