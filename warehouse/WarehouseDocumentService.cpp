@@ -2,17 +2,22 @@
 
 WarehouseDocumentService::WarehouseDocumentService()
 {
-	_dbContext = new WarehouseDbContext();
-	_documentRepository = new WarehouseDocumentRepository;
-	_locationRepository = new WarehouseLocationRepository();
+	auto documentRepository = WarehouseDocumentRepository();
+	_documentRepository = std::make_shared<WarehouseDocumentRepository>(documentRepository);
+	auto locationRepository = WarehouseLocationRepository();
+	_locationRepository = std::make_shared<WarehouseLocationRepository>(locationRepository);
+	auto warehouseRepository = WarehouseRepository();
+	_warehouseRepository = std::make_shared<WarehouseRepository>(warehouseRepository);
+
 }
 
-int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumentDto* dto)
+void WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumentDto dto)
 {
-	auto document = new WarehouseDocumentReception(dto->DocumentName, dto->WarehouseIdGuid);
-	auto productsToAdd = new std::vector<Product*>();
-	for (auto& product : dto->Products) {
-		auto productToAdd = new DocumentProduct(
+	auto document = WarehouseDocumentReception(dto.DocumentName, dto.WarehouseIdGuid);
+	auto documentPtr = std::make_shared<WarehouseDocumentReception>(document);
+	auto productsToAdd =  std::vector<std::shared_ptr<Product>>();
+	for (auto& product : dto.Products) {
+		auto productToAdd =  DocumentProduct(
 			product.ProductId,
 			product.Name,
 			product.Price,
@@ -20,6 +25,7 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 			product.StorageMethod,
 			product.WarehouseIdGuid
 		);
+		auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
 		//for (auto& storageConditon : product.StorageConditions) {
 		//	productToAdd->AddStorageConditon(
 		//		storageConditon.Type,
@@ -35,33 +41,32 @@ int WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocument
 			if (location == nullptr) {
 				throw new std::exception("Not found location");
 			}
-			location->AddProductFromDocument(productToAdd);
+			location->AddProductFromDocument(productToAddPtr);
 		}
 		else {
 			auto location = _locationRepository->getFiloById(product.WarehouseLocationIdGuid);
 			if (location == nullptr) {
 				throw new std::exception("Not found location");
 			}
-			location->AddProductFromDocument(productToAdd);
+			location->AddProductFromDocument(productToAddPtr);
 		}
 		
 
-		document->addProductToDocunent(productToAdd);
-		_documentRepository->addRecepiton(document);
+		documentPtr->addProductToDocument(productToAddPtr);
+		_documentRepository->addRecepiton(documentPtr);
 
 	}
 	
-	return 0;
 }
 
-int WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDto* dto)
+void WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDto dto)
 {
-	auto warehouse = _dbContext->GetById(dto->WarehouseIdGuid);
-	auto document = new WarehouseDocumentRelease(dto->DocumentName, dto->WarehouseIdGuid);
-
+	auto warehouse = _warehouseRepository->GetById(dto.WarehouseIdGuid);
+	auto document =  WarehouseDocumentRelease(dto.DocumentName, dto.WarehouseIdGuid);
+	auto documentPtr = std::make_shared<WarehouseDocumentRelease>(document);
 	auto productsToAdd = new std::vector<Product*>();
-	for (auto& product : dto->Products) {
-		auto productToAdd = new DocumentProduct(
+	for (auto& product : dto.Products) {
+		auto productToAdd = DocumentProduct(
 			product.ProductId,
 			product.Name,
 			product.Price,
@@ -69,69 +74,73 @@ int WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDt
 			product.StorageMethod,
 			product.WarehouseIdGuid
 		);
+		auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
 		if (product.StorageMethod == "FIFO") {
 			auto location = _locationRepository->getFifoById(product.WarehouseLocationIdGuid);
 			if (location == nullptr) {
 				throw new std::exception("Not found location");
 			}
-			location->RemoveProduct(productToAdd);
+			location->RemoveProduct(productToAddPtr);
 		}
 		else {
 			auto location = _locationRepository->getFiloById(product.WarehouseLocationIdGuid);
 			if (location == nullptr) {
 				throw new std::exception("Not found location");
 			}
-			location->RemoveProduct(productToAdd);
+			location->RemoveProduct(productToAddPtr);
 		}
+		documentPtr->addProductToDocument(productToAddPtr);
 	}
-	warehouse->AddWarehouseDocument(document);
-	return 0;
+	warehouse->AddWarehouseDocument(documentPtr);
 }
 
-std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId)
+std::vector<std::shared_ptr<WarehouseDocumentDto>> WarehouseDocumentService::GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId)
 {
-	auto res = std::vector<WarehouseDocumentDto*>();
-	auto warehosue = _dbContext->GetById(warehouseId);
-	auto documents = warehosue->GetAllWarehouseDocumentReleases();// do db
+	auto res = std::vector<std::shared_ptr<WarehouseDocumentDto>>();
+	auto documents = _documentRepository->getAllReceptions();
 	for (auto document : documents) {
-		auto documentDto = new WarehouseDocumentDto(
+		auto documentDto = WarehouseDocumentDto(
 			document->getName()
 		);
-		res.push_back(documentDto);
+		auto doucmentDtoPtr = std::make_shared<WarehouseDocumentDto>(documentDto);
+		res.push_back(doucmentDtoPtr);
 	}
 	return res;
 }
 
-std::vector<WarehouseDocumentDto*> WarehouseDocumentService::GetAllWarehouseDocumentReceptionsDocuements(std::string warehouseId)
+std::vector<std::shared_ptr<WarehouseDocumentDto>> WarehouseDocumentService::GetAllWarehouseDocumentReceptionsDocuements(std::string warehouseId)
 {
-	auto res = std::vector<WarehouseDocumentDto*>();
-	auto warehosue = _dbContext->GetById(warehouseId);
-	auto documents = warehosue->GetAllWarehouseDocumentReceptions();
+	auto res = std::vector<std::shared_ptr<WarehouseDocumentDto>>();
+	auto warehosue = _warehouseRepository->GetById(warehouseId);
+	auto documents = _documentRepository->getAllReceptions();
 	for (auto document : documents) {
-		auto documentDto = new WarehouseDocumentDto(
+		auto documentDto = WarehouseDocumentDto(
 			document->getName()
 		);
-		res.push_back(documentDto);
+		auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(documentDto);
+		res.push_back(doucmentPtr);
 	}
 	return res;
 }
 
-WarehouseDocumentDto* WarehouseDocumentService::GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId)
+std::shared_ptr<WarehouseDocumentDto> WarehouseDocumentService::GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId)
 {
-	auto warehosue = _dbContext->GetById(warehouseId);
-	auto document = warehosue->GetWarehouseDocumentReceptionById(documentId);
-	auto res = new WarehouseDocumentDto(
+	auto document = _documentRepository->getRecepitonById(documentId);
+	auto res = WarehouseDocumentDto(
 		document->getName()
 	);
-	return res;
+	auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(res);
+
+	return doucmentPtr;
 }
 
-WarehouseDocumentDto* WarehouseDocumentService::GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId)
+std::shared_ptr<WarehouseDocumentDto> WarehouseDocumentService::GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId)
 {
-	auto warehosue = _dbContext->GetById(warehouseId);
-	auto document = warehosue->GetWarehouseDocumentReleaseById(documentId);
-	auto res = new WarehouseDocumentDto(
+	auto document = _documentRepository->getReleaseById(documentId);
+	auto res = WarehouseDocumentDto(
 		document->getName()
 	);
-	return res;
+	auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(res);
+
+	return doucmentPtr;
 }

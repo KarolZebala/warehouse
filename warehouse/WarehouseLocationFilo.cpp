@@ -1,6 +1,6 @@
 #include "WarehouseLocationFilo.h"
 
-void WarehouseLocationFilo::AddProductFromDocument(DocumentProduct* product)
+void WarehouseLocationFilo::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
 {
 	auto canProductBeAdded = CheckIfLocationHasStorageCondition();
 	if (!canProductBeAdded) {
@@ -15,7 +15,7 @@ void WarehouseLocationFilo::AddProductFromDocument(DocumentProduct* product)
 	_products.push(productToAdd);
 }
 
-void WarehouseLocationFilo::RemoveProduct(DocumentProduct* product)
+void WarehouseLocationFilo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
 {
     auto productIdToRemove = product->getProductId();
 

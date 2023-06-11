@@ -4,7 +4,7 @@ WarehouseDocumentReception::WarehouseDocumentReception(std::string name, std::st
 {
 }
 
-void WarehouseDocumentReception::addProductToDocunent(DocumentProduct* product)
+void WarehouseDocumentReception::addProductToDocument(std::shared_ptr<DocumentProduct> product)
 {
 	_products.push_back(product);
 }

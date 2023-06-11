@@ -33,15 +33,11 @@ void Warehouse::UpdateStorageArea()
 {
 }
 
-void Warehouse::AddWarehouseDocument(WarehouseDocumentReception* document)
+void Warehouse::AddWarehouseDocument(std::shared_ptr<WarehouseDocument> document)
 {
-    _warehouseDocumentReceptions.push_back(document);
+    _warehouseDocuments.push_back(document);
 }
 
-void Warehouse::AddWarehouseDocument(WarehouseDocumentRelease* document)
-{
-    _warehouseDocumentReleases.push_back(document);
-}
 
 std::string Warehouse::getName()
 {
@@ -53,28 +49,28 @@ std::string Warehouse::getId()
     return IdGuid;
 }
 
-WarehouseLocation* Warehouse::GetLocationById(std::string id)
-{
-    for (const auto& obj : _warehouseLocations) {
-        if (obj->GetId() == id) {
-            return obj;
-        }
-    }
-    return nullptr;
-}
+//std::shared_ptr<WarehouseLocation> Warehouse::GetLocationById(std::string id)
+//{
+//    for (const auto& obj : _warehouseLocations) {
+//        if (obj->GetId() == id) {
+//            return obj;
+//        }
+//    }
+//    return nullptr;
+//}
 
 std::string Warehouse::AddProdcut(Product* product)
 {
     _warehouseProducts.push_back(product);
     return product->getProductId();
 }
-
-Product* Warehouse::GetProductById(std::string productId)
-{
-    for (const auto& product : _warehouseProducts) {
-        if (product->getProductId() == productId){
-            return product;
-        }
-    }
-    return nullptr;
-}
+//
+//Product* Warehouse::GetProductById(std::string productId)
+//{
+//    for (const auto& product : _warehouseProducts) {
+//        if (product->getProductId() == productId){
+//            return product;
+//        }
+//    }
+//    return nullptr;
+//}

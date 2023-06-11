@@ -10,7 +10,7 @@
 class WarehouseDocument {
 public:
     explicit WarehouseDocument(std::string documentName, std::string warehosueId, std::string documentId = "");
-    virtual void addProductToDocunent(DocumentProduct* product) {};
+    virtual void addProductToDocument(std::shared_ptr<DocumentProduct> product) {};
 
     std::string getName() {
         return this->DocumentName;
@@ -26,7 +26,7 @@ protected:
     std::string DocumentIdGuid;
     std::string DocumentName;
     std::string WarehouseId;
-    std::vector<DocumentProduct*> _products;
+    std::vector<std::shared_ptr<DocumentProduct>> _products;
 };
 
 #endif // WAREHOUSEDOCUMENT_H

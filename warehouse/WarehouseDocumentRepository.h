@@ -5,7 +5,7 @@
 class WarehouseDocumentRepository
 {
 public:
-	void addRecepiton(WarehouseDocumentReception* reception);
+	void addRecepiton(std::shared_ptr<WarehouseDocumentReception>  reception);
 	std::vector<WarehouseDocumentReception*> getAllReceptions();
 	WarehouseDocumentReception* getRecepitonById(std::string receptionId);
 
@@ -14,8 +14,8 @@ public:
 	WarehouseDocumentRelease* getReleaseById(std::string releaseId);
 
 private:
-	void addDocumentProduct(DocumentProduct* product, sqlite3* db);
-	std::vector<DocumentProduct*> getAllDocumentProducts(std::string documentId, sqlite3* db);
+	void addDocumentProduct(std::shared_ptr<DocumentProduct> product, sqlite3* db);
+	std::vector<std::shared_ptr<DocumentProduct >> getAllDocumentProducts(std::string documentId, sqlite3* db);
 };
 
 

@@ -7,8 +7,8 @@
 class WarehouseDocumentReception : public WarehouseDocument {
 public:
 	explicit WarehouseDocumentReception(std::string name, std::string warehosueId, std::string documentId = "");
-	void addProductToDocunent(DocumentProduct* product);
-	std::vector<DocumentProduct*> getAllReceptionProduct() {
+	void addProductToDocument(std::shared_ptr<DocumentProduct> product);
+	std::vector<std::shared_ptr<DocumentProduct>> getAllReceptionProduct() {
 		return this->_products;
 	};
 	void UpdateProduct();

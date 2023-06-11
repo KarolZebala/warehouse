@@ -1,6 +1,6 @@
 #include "WarehouseLocationFifo.h"
 
-void WarehouseLocationFifo::AddProductFromDocument(DocumentProduct* product)
+void WarehouseLocationFifo::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
 {
 	auto canProductBeAdded = CheckIfLocationHasStorageCondition();
 	if (!canProductBeAdded) {
@@ -15,7 +15,7 @@ void WarehouseLocationFifo::AddProductFromDocument(DocumentProduct* product)
 	_products.push(locationProduct);
 }
 
-void WarehouseLocationFifo::RemoveProduct(DocumentProduct* product)
+void WarehouseLocationFifo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
 {
 	auto targetId = product->getProductId();
 	auto newProductQueue = std::queue<WarehouseLocationProduct*>();

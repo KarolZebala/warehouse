@@ -5,7 +5,7 @@ WarehouseDocumentRelease::WarehouseDocumentRelease(const std::string documentNam
 {
 }
 
-void WarehouseDocumentRelease::addProductToDocunent(DocumentProduct* product)
+void WarehouseDocumentRelease::addProductToDocument(std::shared_ptr<DocumentProduct> product)
 {
 	_products.push_back(product);
 }

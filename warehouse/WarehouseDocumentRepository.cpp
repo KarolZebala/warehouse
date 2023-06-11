@@ -1,5 +1,5 @@
 #include "WarehouseDocumentRepository.h"
-void WarehouseDocumentRepository::addRecepiton(WarehouseDocumentReception* reception) {
+void WarehouseDocumentRepository::addRecepiton(std::shared_ptr<WarehouseDocumentReception> reception) {
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
 
@@ -18,7 +18,7 @@ void WarehouseDocumentRepository::addRecepiton(WarehouseDocumentReception* recep
 
 	auto receptionProduct = reception->getAllReceptionProduct();
 	for (auto product : receptionProduct) {
-		addDocumentProduct(product, db); 
+		addDocumentProduct(product, db);
 	}
 	sqlite3_close(db);
 }
@@ -173,7 +173,7 @@ WarehouseDocumentRelease* WarehouseDocumentRepository::getReleaseById(std::strin
 
 
 
-void WarehouseDocumentRepository::addDocumentProduct(DocumentProduct* product, sqlite3* db)
+void WarehouseDocumentRepository::addDocumentProduct(std::shared_ptr<DocumentProduct> product, sqlite3* db)
 {
 	std::string sqlQuery = "CREATE TABLE IF NOT EXISTS DocumentProduct ("
 		"DocumentProductId TEXT PRIMARY KEY, "
@@ -192,13 +192,13 @@ void WarehouseDocumentRepository::addDocumentProduct(DocumentProduct* product, s
 
 }
 
-std::vector<DocumentProduct*> WarehouseDocumentRepository::getAllDocumentProducts(std::string documentId, sqlite3* db)
+std::vector<std::shared_ptr<DocumentProduct >> WarehouseDocumentRepository::getAllDocumentProducts(std::string documentId, sqlite3* db)
 {
 	std::string selectQuery = "SELECT * FROM DocumentProduct;";
 	sqlite3_stmt* stmt;
 	auto rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
-	std::vector<DocumentProduct*> documentProducts;
+	std::vector<std::shared_ptr<DocumentProduct >> documentProducts;
 
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		//moze nie dzialac
@@ -211,8 +211,9 @@ std::vector<DocumentProduct*> WarehouseDocumentRepository::getAllDocumentProduct
 		std::string documentId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)));
 		
 
-		auto product = new DocumentProduct(productId, productName, price, volume, storageMethod, documentId, documentProductId);
-		documentProducts.push_back(product);
+		auto product = DocumentProduct(productId, productName, price, volume, storageMethod, documentId, documentProductId);
+		auto productPtr = std::make_shared<DocumentProduct>(product);
+		documentProducts.push_back(productPtr);
 	}
 
 	sqlite3_finalize(stmt);

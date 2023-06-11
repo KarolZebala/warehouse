@@ -94,7 +94,7 @@ std::vector<WarehouseDto> WarehouseRepository::GetAllDto()
     return warehouseDtos;
 }
 
-Warehouse WarehouseRepository::GetById(std::string id)
+std::shared_ptr<Warehouse> WarehouseRepository::GetById(std::string id)
 {
     sqlite3* db;
     int rc = sqlite3_open("test.db", &db);
@@ -119,13 +119,15 @@ Warehouse WarehouseRepository::GetById(std::string id)
         sqlite3_finalize(stmt);
         sqlite3_close(db);
         Warehouse warehouse = Warehouse(name, id);
-        return warehouse;
+        auto res = std::make_shared<Warehouse>(warehouse);
+        return res;
     }
 
     sqlite3_finalize(stmt);
     sqlite3_close(db);
     Warehouse warehouse = Warehouse("");
-    return warehouse;
+    auto res = std::make_shared<Warehouse>(warehouse);
+    return res;
 }
 
 WarehouseDto WarehouseRepository::GetByIddDto(std::string id)

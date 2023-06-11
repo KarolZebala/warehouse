@@ -27,8 +27,8 @@ public:
     bool CheckIfLocationHasStorageCondition();
     bool CheckIfLocationHasSpace(int volume);
     
-    virtual void AddProductFromDocument(DocumentProduct* product);
-    virtual void RemoveProduct(DocumentProduct* product);
+    virtual void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
+    virtual void RemoveProduct(std::shared_ptr<DocumentProduct> product);
 
 
     std::string GetId();

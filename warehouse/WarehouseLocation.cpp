@@ -61,11 +61,11 @@ bool WarehouseLocation::CheckIfLocationHasSpace(int volume)
     return true;
 }
 
-void WarehouseLocation::AddProductFromDocument(DocumentProduct* product)
+void WarehouseLocation::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
 {
     
 }
 
-void WarehouseLocation::RemoveProduct(DocumentProduct* product)
+void WarehouseLocation::RemoveProduct(std::shared_ptr<DocumentProduct>  product)
 {
 }

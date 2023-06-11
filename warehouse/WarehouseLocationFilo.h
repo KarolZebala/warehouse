@@ -12,8 +12,8 @@ public: WarehouseLocationFilo(
     std::string locationId
 ) : WarehouseLocation(name, width, depth, height, warehouseId, locationId) {};
 
-      void AddProductFromDocument(DocumentProduct* product);
-      void RemoveProduct(DocumentProduct* product);
+      void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
+      void RemoveProduct(std::shared_ptr<DocumentProduct>  product);
       int getOccupiedVolume();
       void addRangeProduct(std::vector<WarehouseLocationProduct*> products) {
           std::stack<WarehouseLocationProduct*> stack;
