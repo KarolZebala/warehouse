@@ -66,7 +66,7 @@ public:
         throw new std::exception("Not found realse");
     }*/
 
-    std::string AddProdcut(Product* product);
+    std::string AddProdcut(std::shared_ptr<Product> product);
     /*Product* GetProductById(std::string productId);
     std::vector<Product*> GetAllProducts() {
         return _warehouseProducts;
@@ -80,7 +80,7 @@ private:
     std::time_t LastUpdateDate;
     std::vector<std::shared_ptr<WarehouseLocation>> _warehouseLocations;
     std::vector<std::shared_ptr<WarehouseDocument>> _warehouseDocuments;
-    std::vector<Product*> _warehouseProducts;
+    std::vector<std::shared_ptr<Product>> _warehouseProducts;
     
     
 };

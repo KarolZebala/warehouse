@@ -4,9 +4,9 @@
 class ProuductRepository
 {
 public:
-	void addProduct(Product* product);
+	void addProduct(std::shared_ptr<Product> product);
 
-	std::vector<Product*> getAllProducts(std::string warehouseId);
-	Product* getProductById(std::string warehouseId, std::string productId);
+	std::vector<std::shared_ptr<Product>> getAllProducts(std::string warehouseId);
+	std::shared_ptr<Product> getProductById(std::string warehouseId, std::string productId);
 };
 

@@ -2,33 +2,34 @@
 #include "ProductDto.h"
 #include "WarehouseDbContext.h"
 #include "ProuductRepository.h"
+#include "WarehouseRepository.h"
 /// <summary>
 /// 
 /// </summary>
 class IWarehouseProductService {
 public:
 	virtual std::string CreateProduct(ProductDto dto) { return ""; };
-	virtual ProductDto* GetProductById(std::string warehouseId, std::string productId) { return new ProductDto(); };
-	virtual std::vector<ProductDto*> GetAllProducts(std::string warehouseId) { return std::vector<ProductDto*>(); };
+	virtual std::shared_ptr<ProductDto> GetProductById(std::string warehouseId, std::string productId) { return std::make_shared<ProductDto>(ProductDto()); };
+	virtual std::vector<std::shared_ptr<ProductDto>> GetAllProducts(std::string warehouseId) { return std::vector<std::shared_ptr<ProductDto>>(); };
 };
 class WarehouseProductService : IWarehouseProductService
 {
 public:
 	WarehouseProductService() {
-		_context = new WarehouseDbContext;
-		_productRepository = new ProuductRepository;
+		_productRepository = std::make_shared<ProuductRepository>(ProuductRepository());
+		_warehosueRepository = std::make_shared<WarehouseRepository>(WarehouseRepository());
 	}
 
 	std::string CreateProduct(ProductDto dto);
 
-	ProductDto* GetProductById(std::string warehouseId, std::string productId);
+	std::shared_ptr<ProductDto> GetProductById(std::string warehouseId, std::string productId);
 
-	std::vector<ProductDto*> GetAllProducts(std::string warehouseId);
+	std::vector<std::shared_ptr<ProductDto>> GetAllProducts(std::string warehouseId);
 private:
-	WarehouseDbContext* _context{nullptr};
-	ProuductRepository* _productRepository;
-	ProductDto* MapProduct(Product* product) {
-		auto res = new ProductDto();
+	std::shared_ptr<ProuductRepository> _productRepository { nullptr };
+	std::shared_ptr<WarehouseRepository> _warehosueRepository { nullptr };
+	std::shared_ptr<ProductDto> MapProduct(std::shared_ptr<Product> product) {
+		auto res = std::make_shared<ProductDto>(ProductDto());
 		res->Name = product->getName();
 		res->ProductId = product->getProductId();
 		res->Condition = product->getConditon();

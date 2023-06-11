@@ -14,12 +14,14 @@ public:
     std::string CreateWarehouse(WarehouseDto* dto);
     void UpdateWarehouse(WarehouseDto* dto);
 
-    std::vector<WarehouseDto> GetAllWarehouses();
-    WarehouseDto GetWarehosueById(std::string id);
+    std::vector<std::shared_ptr<WarehouseDto>> GetAllWarehouses();
+    std::shared_ptr<WarehouseDto> GetWarehosueById(std::string id);
 
 private:
-    WarehouseDbContext* dbContext;
-    WarehouseRepository* _warehouseRepository;
+    std::shared_ptr<WarehouseRepository> _warehouseRepository;
+
+    std::shared_ptr<WarehouseDto> MapWarehouse(std::shared_ptr<Warehouse> warehouse);
+
 };
 
 #endif // WAREHOUSESERVICE_H

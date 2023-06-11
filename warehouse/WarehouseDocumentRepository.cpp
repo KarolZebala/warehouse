@@ -23,7 +23,7 @@ void WarehouseDocumentRepository::addRecepiton(std::shared_ptr<WarehouseDocument
 	sqlite3_close(db);
 }
 
-std::vector<WarehouseDocumentReception*> WarehouseDocumentRepository::getAllReceptions()
+std::vector<std::shared_ptr<WarehouseDocumentReception>> WarehouseDocumentRepository::getAllReceptions()
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
@@ -31,7 +31,7 @@ std::vector<WarehouseDocumentReception*> WarehouseDocumentRepository::getAllRece
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
-	std::vector<WarehouseDocumentReception*> receptions;
+	std::vector<std::shared_ptr<WarehouseDocumentReception>> receptions;
 
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		//moze nie dzialac
@@ -42,8 +42,9 @@ std::vector<WarehouseDocumentReception*> WarehouseDocumentRepository::getAllRece
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt,4)));
 
 		//do dodania parametry
-		auto reception = new WarehouseDocumentReception(name, warehosueId, documentId);
-		receptions.push_back(reception);
+		auto reception = WarehouseDocumentReception(name, warehosueId, documentId);
+		auto receptionPtr = std::make_shared<WarehouseDocumentReception>(reception);
+		receptions.push_back(receptionPtr);
 	}
 
 	sqlite3_finalize(stmt);
@@ -51,7 +52,7 @@ std::vector<WarehouseDocumentReception*> WarehouseDocumentRepository::getAllRece
 	return receptions;
 }
 
-WarehouseDocumentReception* WarehouseDocumentRepository::getRecepitonById(std::string receptionId)
+std::shared_ptr<WarehouseDocumentReception> WarehouseDocumentRepository::getRecepitonById(std::string receptionId)
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
@@ -69,23 +70,22 @@ WarehouseDocumentReception* WarehouseDocumentRepository::getRecepitonById(std::s
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
 
 		//do dodania parametry
-		auto reception = new WarehouseDocumentReception(name, warehosueId, documentId);
+		auto reception = WarehouseDocumentReception(name, warehosueId, documentId);
+		auto recepitonPtr = std::make_shared<WarehouseDocumentReception>(reception);
 		sqlite3_finalize(stmt);
 		sqlite3_close(db);
-		return reception;
+		return recepitonPtr;
 	}
 
 	sqlite3_finalize(stmt);
 	sqlite3_close(db);
 	return nullptr;
 
-
-	return nullptr;
 }
 
 //==================================================================================================================
 
-void WarehouseDocumentRepository::addRelease(WarehouseDocumentRelease* release) {
+void WarehouseDocumentRepository::addRelease(std::shared_ptr<WarehouseDocumentRelease> release) {
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
 
@@ -110,7 +110,7 @@ void WarehouseDocumentRepository::addRelease(WarehouseDocumentRelease* release) 
 	sqlite3_close(db);
 }
 
-std::vector<WarehouseDocumentRelease*> WarehouseDocumentRepository::getAllReleases()
+std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentRepository::getAllReleases()
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
@@ -118,7 +118,7 @@ std::vector<WarehouseDocumentRelease*> WarehouseDocumentRepository::getAllReleas
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
-	std::vector<WarehouseDocumentRelease*> releases;
+	std::vector<std::shared_ptr<WarehouseDocumentRelease>> releases;
 
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		//moze nie dzialac
@@ -130,8 +130,9 @@ std::vector<WarehouseDocumentRelease*> WarehouseDocumentRepository::getAllReleas
 		std::string clientName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)));
 
 		//do dodania parametry
-		auto release = new WarehouseDocumentRelease(name, warehosueId, documentId);
-		releases.push_back(release);
+		auto release = WarehouseDocumentRelease(name, warehosueId, documentId);
+		auto releasePtr = std::make_shared<WarehouseDocumentRelease>(release);
+		releases.push_back(releasePtr);
 	}
 
 	sqlite3_finalize(stmt);
@@ -139,7 +140,7 @@ std::vector<WarehouseDocumentRelease*> WarehouseDocumentRepository::getAllReleas
 	return releases;
 }
 
-WarehouseDocumentRelease* WarehouseDocumentRepository::getReleaseById(std::string receptionId)
+std::shared_ptr<WarehouseDocumentRelease> WarehouseDocumentRepository::getReleaseById(std::string receptionId)
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
@@ -157,10 +158,11 @@ WarehouseDocumentRelease* WarehouseDocumentRepository::getReleaseById(std::strin
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
 
 		//do dodania parametry
-		auto release = new WarehouseDocumentRelease(name, warehosueId, documentId);
+		auto release = WarehouseDocumentRelease(name, warehosueId, documentId);
+		auto releasePtr = std::make_shared<WarehouseDocumentRelease>(release);
 		sqlite3_finalize(stmt);
 		sqlite3_close(db);
-		return release;
+		return releasePtr;
 	}
 
 	sqlite3_finalize(stmt);

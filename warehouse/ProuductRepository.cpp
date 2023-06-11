@@ -1,6 +1,6 @@
 #include "ProuductRepository.h"
 
-void ProuductRepository::addProduct(Product* product)
+void ProuductRepository::addProduct(std::shared_ptr<Product> product)
 {
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
@@ -36,9 +36,9 @@ void ProuductRepository::addProduct(Product* product)
 	sqlite3_close(db);
 }
 
-std::vector<Product*> ProuductRepository::getAllProducts(std::string warehouseId)
+std::vector<std::shared_ptr<Product>> ProuductRepository::getAllProducts(std::string warehouseId)
 {
-    std::vector<Product*> products;
+    std::vector<std::shared_ptr<Product>> products;
 
     sqlite3* db;
     int rc = sqlite3_open("test.db", &db);
@@ -63,7 +63,7 @@ std::vector<Product*> ProuductRepository::getAllProducts(std::string warehouseId
         auto warehouseLocationIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
         auto warehouseIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
 
-        auto product = new Product(
+        auto product = Product(
             name,
             condition,
             comments,
@@ -77,7 +77,8 @@ std::vector<Product*> ProuductRepository::getAllProducts(std::string warehouseId
             warehouseIdGuid,
             productIdGuid
         );
-        products.push_back(product);
+        auto productPtr = std::make_shared<Product>(product);
+        products.push_back(productPtr);
     }
 
     sqlite3_finalize(stmt);
@@ -86,7 +87,7 @@ std::vector<Product*> ProuductRepository::getAllProducts(std::string warehouseId
     return products;
 }
 
-Product* ProuductRepository::getProductById(std::string warehouseId, std::string productId)
+std::shared_ptr<Product> ProuductRepository::getProductById(std::string warehouseId, std::string productId)
 {
     sqlite3* db;
     int rc = sqlite3_open("test.db", &db);
@@ -111,26 +112,27 @@ Product* ProuductRepository::getProductById(std::string warehouseId, std::string
     auto warehouseLocationIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
     auto warehouseIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
 
-    auto product = new Product(
-        name,
-        condition,
-        comments,
-        storageMethod,
-        price,
-        quantity,
-        xDimension,
-        yDimension,
-        zDimension,
-        warehouseLocationIdGuid,
-        warehouseIdGuid,
-        productIdGuid
-    );
-    sqlite3_finalize(stmt);
-    sqlite3_close(db);
-    return product;
+    
 
     if (sqlite3_step(stmt) == SQLITE_ROW) {
-        
+        auto product = Product(
+            name,
+            condition,
+            comments,
+            storageMethod,
+            price,
+            quantity,
+            xDimension,
+            yDimension,
+            zDimension,
+            warehouseLocationIdGuid,
+            warehouseIdGuid,
+            productIdGuid
+        );
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        auto productPtr = std::make_shared<Product>(product);
+        return productPtr;
     }
 
     sqlite3_finalize(stmt);

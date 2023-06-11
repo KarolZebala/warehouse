@@ -12,10 +12,7 @@ std::string WarehouseApp::CreateWarehouse(WarehouseDto* dto)
 	return id;
 }
 
-std::vector<WarehouseDto> WarehouseApp::GetAll()
-{
-	return service->GetAllWarehouses();
-}
+
 
 WarehouseDto WarehouseApp::GetById(std::string id)
 {

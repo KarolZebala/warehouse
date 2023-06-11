@@ -59,7 +59,7 @@ std::string Warehouse::getId()
 //    return nullptr;
 //}
 
-std::string Warehouse::AddProdcut(Product* product)
+std::string Warehouse::AddProdcut(std::shared_ptr<Product> product)
 {
     _warehouseProducts.push_back(product);
     return product->getProductId();

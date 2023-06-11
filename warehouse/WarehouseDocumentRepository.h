@@ -6,12 +6,12 @@ class WarehouseDocumentRepository
 {
 public:
 	void addRecepiton(std::shared_ptr<WarehouseDocumentReception>  reception);
-	std::vector<WarehouseDocumentReception*> getAllReceptions();
-	WarehouseDocumentReception* getRecepitonById(std::string receptionId);
+	std::vector<std::shared_ptr<WarehouseDocumentReception>> getAllReceptions();
+	std::shared_ptr<WarehouseDocumentReception> getRecepitonById(std::string receptionId);
 
-	void addRelease(WarehouseDocumentRelease* release);
-	std::vector<WarehouseDocumentRelease*> getAllReleases();
-	WarehouseDocumentRelease* getReleaseById(std::string releaseId);
+	void addRelease(std::shared_ptr<WarehouseDocumentRelease> release);
+	std::vector<std::shared_ptr<WarehouseDocumentRelease>> getAllReleases();
+	std::shared_ptr<WarehouseDocumentRelease> getReleaseById(std::string releaseId);
 
 private:
 	void addDocumentProduct(std::shared_ptr<DocumentProduct> product, sqlite3* db);

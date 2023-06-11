@@ -2,8 +2,8 @@
 
 std::string WarehouseProductService::CreateProduct(ProductDto product)
 {
-	auto warehouse = _context->GetById(product.WarehouseIdGuid);
-	auto productToAdd = new Product(
+	auto warehouse = _warehosueRepository->GetById(product.WarehouseIdGuid);
+	auto productToAdd = Product(
 		product.Name,
 		product.Condition,
 		product.Coments,
@@ -16,33 +16,32 @@ std::string WarehouseProductService::CreateProduct(ProductDto product)
 		product.WarehouseLocationIdGuid,
 		product.WarehouseIdGuid
 	);
+	auto productToAddPtr = std::make_shared<Product>(productToAdd);
 	//if (product.StorageConditions != nullptr) {
 		for (auto& storageConditon : product.StorageConditions) {
-			productToAdd->AddStorageConditon(
+			productToAddPtr->AddStorageConditon(
 				storageConditon.Type,
 				storageConditon.MinValue,
 				storageConditon.MaxValue
 			);
 		}
 	//}
-	//auto productId = warehouse->AddProdcut(productToAdd);
-	_productRepository->addProduct(productToAdd);
-    return productToAdd->getProductId();
+	warehouse->AddProdcut(productToAddPtr);
+	_productRepository->addProduct(productToAddPtr);
+    return productToAddPtr->getProductId();
 }
 
-ProductDto* WarehouseProductService::GetProductById(std::string warehouseId, std::string productId)
+std::shared_ptr<ProductDto> WarehouseProductService::GetProductById(std::string warehouseId, std::string productId)
 {
 	auto product = _productRepository->getProductById(warehouseId, productId);
 	auto productDto = MapProduct(product);
-	return new ProductDto;
+	return productDto;
 }
 
-std::vector<ProductDto*> WarehouseProductService::GetAllProducts(std::string warehouseId)
+std::vector<std::shared_ptr<ProductDto>> WarehouseProductService::GetAllProducts(std::string warehouseId)
 {
-	/*auto warehosue = _context->GetById(warehouseId);
-	auto products = warehosue->GetAllProducts();*/
 	auto products = _productRepository->getAllProducts(warehouseId);
-	auto productDtoList = std::vector<ProductDto*>();
+	auto productDtoList = std::vector<std::shared_ptr<ProductDto>>();
 	for (auto product : products) {
 		auto productDto = MapProduct(product);
 		productDtoList.push_back(productDto);

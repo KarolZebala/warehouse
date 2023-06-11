@@ -5,10 +5,10 @@
 class WarehouseRepository
 {
 public:
-	void addWarehouse(Warehouse* warehouse);
-	std::vector<Warehouse> GetAll();
-	std::vector<WarehouseDto> GetAllDto();
+	void addWarehouse(std::shared_ptr<Warehouse> warehouse);
+	std::vector<std::shared_ptr<Warehouse>> GetAll();
+	//std::vector<WarehouseDto> GetAllDto();
 	std::shared_ptr<Warehouse> GetById(std::string id);
-	WarehouseDto GetByIddDto(std::string id);
+	//WarehouseDto GetByIddDto(std::string id);
 };
 
