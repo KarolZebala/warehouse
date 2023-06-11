@@ -11,16 +11,17 @@ void WarehouseLocationFifo::AddProductFromDocument(std::shared_ptr<DocumentProdu
 	if (!isEnoughSpaceInLocation) {
 		throw new std::exception("not enough space in location");
 	}
-	auto locationProduct = new WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
-	_products.push(locationProduct);
+	auto locationProduct = WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
+	auto locationProductPtr = std::make_shared<WarehouseLocationProduct>(locationProduct);
+	_products.push(locationProductPtr);
 }
 
 void WarehouseLocationFifo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
 {
 	auto targetId = product->getProductId();
-	auto newProductQueue = std::queue<WarehouseLocationProduct*>();
+	auto newProductQueue = std::queue<std::shared_ptr<WarehouseLocationProduct>>();
 	while (!_products.empty()) {
-		WarehouseLocationProduct* item = _products.front();
+		auto item = _products.front();
 
 		if (item->getProductId() != targetId) {
 			newProductQueue.push(item);
@@ -35,7 +36,7 @@ void WarehouseLocationFifo::RemoveProduct(std::shared_ptr<DocumentProduct> produ
 int WarehouseLocationFifo::getOccupiedVolume()
 {
 	int res = 0;
-	std::queue<WarehouseLocationProduct*> temporaryProductQueue = _products;
+	std::queue<std::shared_ptr<WarehouseLocationProduct>> temporaryProductQueue = _products;
 
 	while (!temporaryProductQueue.empty()) {
 		auto frontProduct = temporaryProductQueue.front();

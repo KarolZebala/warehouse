@@ -5,6 +5,7 @@ WarehouseLocation::WarehouseLocation(
     int width,
     int depth,
     int height,
+    std::string storageMethod,
     std::string warhouseId,
     std::string locationId
 )
@@ -30,13 +31,20 @@ WarehouseLocation::WarehouseLocation(
     Width = width;
     Depth = depth;
     Height = height;
+    StorageMethod = storageMethod;
+}
+
+void WarehouseLocation::AddRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products) {
+    _products = products;
 }
 
 std::string WarehouseLocation::getName()
 {
     return this->Name;
 }
-
+std::string WarehouseLocation::getStorageMethod() {
+    return this->StorageMethod;
+}
 
 std::string WarehouseLocation::GetId()
 {

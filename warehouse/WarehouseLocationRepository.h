@@ -9,13 +9,13 @@
 class WarehouseLocationRepository
 {
 public:
-	void addLocatation(WarehouseLocation* location);
-	WarehouseLocationFifo* getFifoById(std::string id);
-	WarehouseLocationFilo* getFiloById(std::string id);
-	std::vector<WarehouseLocation*> getAll();
+	void addLocatation(std::shared_ptr<WarehouseLocation> location);
+	std::shared_ptr<WarehouseLocation> getById(std::string id);
+	/*std::shared_ptr<WarehouseLocationFilo> getFiloById(std::string id);*/
+	std::vector<std::shared_ptr<WarehouseLocation>> getAll();
 private:
-	void addLocationProduct(WarehouseLocationProduct* product, sqlite3* db);
+	void addLocationProduct(std::shared_ptr<WarehouseLocationProduct> product, sqlite3* db);
 	WarehouseLocationProduct* getLocationProductById(std::string id);
-	std::vector<WarehouseLocationProduct*> getAllLocationProdut(std::string locationId, sqlite3* db);
+	std::vector<std::shared_ptr<WarehouseLocationProduct>> getAllLocationProdut(std::string locationId, sqlite3* db);
 };
 

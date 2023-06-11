@@ -16,6 +16,7 @@ public:
         int width,
         int depth,
         int height,
+        std::string storageMethod,
         std::string warhouseId,
         std::string locationId = ""
     );
@@ -30,9 +31,11 @@ public:
     virtual void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
     virtual void RemoveProduct(std::shared_ptr<DocumentProduct> product);
 
+    void AddRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products);
 
     std::string GetId();
     std::string getName();
+    std::string getStorageMethod();
     int getWidth() {
         return this->Width;
     }
@@ -52,13 +55,14 @@ private:
     std::string WarehouseLocationIdGuid;
     std::string WarehouseIdGuid;
     std::string Name;
+    std::string StorageMethod;
     int Width;
     int Depth;
     int Height;
 
 
-    std::vector<WarehouseLocationProduct*> _products;
-    std::vector<StorageConditions*> _storageConditions;
+    std::vector<std::shared_ptr<WarehouseLocationProduct>> _products;
+    std::vector<std::string> _storageConditions;
     
 };
 

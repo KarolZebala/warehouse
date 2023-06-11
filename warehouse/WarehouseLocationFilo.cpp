@@ -11,15 +11,16 @@ void WarehouseLocationFilo::AddProductFromDocument(std::shared_ptr<DocumentProdu
 	if (!isEnoughSpaceInLocation) {
 		throw new std::exception("not enough space in location");
 	}
-    auto productToAdd = new WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
-	_products.push(productToAdd);
+    auto productToAdd =  WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
+    auto prdocutToAddPtr = std::make_shared<WarehouseLocationProduct>(productToAdd);
+	_products.push(prdocutToAddPtr);
 }
 
 void WarehouseLocationFilo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
 {
     auto productIdToRemove = product->getProductId();
 
-    std::stack<WarehouseLocationProduct*> temporaryProducts;
+    std::stack<std::shared_ptr<WarehouseLocationProduct>> temporaryProducts;
     while (!_products.empty()) {
         auto productOnTop = _products.top();
         _products.pop();
@@ -29,7 +30,7 @@ void WarehouseLocationFilo::RemoveProduct(std::shared_ptr<DocumentProduct> produ
         }
     }
 
-    std::stack<WarehouseLocationProduct*> finalProducts;
+    std::stack<std::shared_ptr<WarehouseLocationProduct>> finalProducts;
     while (!temporaryProducts.empty()) {
         auto item = temporaryProducts.top();
         temporaryProducts.pop();
@@ -42,7 +43,7 @@ void WarehouseLocationFilo::RemoveProduct(std::shared_ptr<DocumentProduct> produ
 int WarehouseLocationFilo::getOccupiedVolume()
 {
     int res = 0;
-    std::stack<WarehouseLocationProduct*> tempStack = _products;
+    std::stack<std::shared_ptr<WarehouseLocationProduct>> tempStack = _products;
 
     while (!tempStack.empty()) {
         auto productOnTop = tempStack.top();

@@ -5,24 +5,20 @@
 class WarehouseLocationService
 {
 public:
-	WarehouseLocationService() {
-		_context = new WarehouseDbContext;
-		_locationRepository = new WarehouseLocationRepository();
-	}
+	WarehouseLocationService();
 
 	std::string CreateWarehouseLocation(WarehouseLocationDto location);
 
-	WarehouseLocationDto* GetWarahouseLocationById(std::string warehouseId, std::string locationId);
-	std::vector<WarehouseLocationDto*> GetAllWarehouseLocation(std::string warehouseId);
+	std::shared_ptr<WarehouseLocationDto> GetWarahouseLocationById(std::string warehouseId, std::string locationId);
+	std::vector<std::shared_ptr<WarehouseLocationDto>> GetAllWarehouseLocation(std::string warehouseId);
 private:
-	WarehouseDbContext* _context;
-	WarehouseLocationRepository* _locationRepository;
-	WarehouseLocationDto* MapLocation(WarehouseLocation* location) {
-		auto res = new WarehouseLocationDto();
-		res->Depth = location->getDepth();
-		res->Height = location->getHeight();
-		res->Width = location->getWidth();
-		res->WarehouseLocationName = location->getName();
+	std::shared_ptr<WarehouseLocationRepository> _locationRepository { nullptr };
+	WarehouseLocationDto MapLocation(std::shared_ptr<WarehouseLocation> location) {
+		auto res = WarehouseLocationDto();
+		res.Depth = location->getDepth();
+		res.Height = location->getHeight();
+		res.Width = location->getWidth();
+		res.WarehouseLocationName = location->getName();
 		return res;
 	}
 };

@@ -35,21 +35,11 @@ void WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumen
 		//}
 		//add product to warehouse location
 		
-		
-		if (product.StorageMethod == "FIFO") {
-			auto location = _locationRepository->getFifoById(product.WarehouseLocationIdGuid);
-			if (location == nullptr) {
-				throw new std::exception("Not found location");
-			}
-			location->AddProductFromDocument(productToAddPtr);
+		auto location = _locationRepository->getById(product.WarehouseLocationIdGuid);
+		if (location == nullptr) {
+			throw new std::exception("Not found location");
 		}
-		else {
-			auto location = _locationRepository->getFiloById(product.WarehouseLocationIdGuid);
-			if (location == nullptr) {
-				throw new std::exception("Not found location");
-			}
-			location->AddProductFromDocument(productToAddPtr);
-		}
+		location->AddProductFromDocument(productToAddPtr);
 		
 
 		documentPtr->addProductToDocument(productToAddPtr);
@@ -75,20 +65,13 @@ void WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentD
 			product.WarehouseIdGuid
 		);
 		auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
-		if (product.StorageMethod == "FIFO") {
-			auto location = _locationRepository->getFifoById(product.WarehouseLocationIdGuid);
-			if (location == nullptr) {
-				throw new std::exception("Not found location");
-			}
-			location->RemoveProduct(productToAddPtr);
+
+		auto location = _locationRepository->getById(product.WarehouseLocationIdGuid);
+		if (location == nullptr) {
+			throw new std::exception("Not found location");
 		}
-		else {
-			auto location = _locationRepository->getFiloById(product.WarehouseLocationIdGuid);
-			if (location == nullptr) {
-				throw new std::exception("Not found location");
-			}
-			location->RemoveProduct(productToAddPtr);
-		}
+		location->RemoveProduct(productToAddPtr);
+		
 		documentPtr->addProductToDocument(productToAddPtr);
 	}
 	warehouse->AddWarehouseDocument(documentPtr);

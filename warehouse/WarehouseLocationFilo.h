@@ -1,22 +1,23 @@
 #pragma once
 #include "WarehouseLocation.h"
 #include <stack>
-class WarehouseLocationFilo : private WarehouseLocation
+class WarehouseLocationFilo : public WarehouseLocation
 {
 public: WarehouseLocationFilo(
     std::string name,
     int width,
     int depth,
     int height,
-    std::string warehouseId,
-    std::string locationId
-) : WarehouseLocation(name, width, depth, height, warehouseId, locationId) {};
+    std::string warhouseId,
+    std::string locationId = "",
+    std::string storageMethod = "FILO"
+) : WarehouseLocation(name, width, depth, height, storageMethod, warhouseId, locationId) {};
 
       void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
       void RemoveProduct(std::shared_ptr<DocumentProduct>  product);
       int getOccupiedVolume();
-      void addRangeProduct(std::vector<WarehouseLocationProduct*> products) {
-          std::stack<WarehouseLocationProduct*> stack;
+      void addRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products) {
+          std::stack<std::shared_ptr<WarehouseLocationProduct>> stack;
           for (const auto& element : products) {
               stack.push(element);
           }
@@ -24,7 +25,7 @@ public: WarehouseLocationFilo(
 
       }
 private:
-    std::stack<WarehouseLocationProduct*> _products;
+    std::stack<std::shared_ptr<WarehouseLocationProduct>> _products;
 
 
 };
