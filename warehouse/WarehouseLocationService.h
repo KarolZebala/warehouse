@@ -2,6 +2,12 @@
 #include "WarehouseDbContext.h"
 #include "WarehouseLocationDto.h"
 #include "WarehouseLocationRepository.h"
+class IWarehouseLocationService {
+public:
+	virtual std::string CreateWarehouseLocation(WarehouseLocationDto location) { return std::string(); };
+	virtual WarehouseLocationDto* GetWarahouseLocationById(std::string warehouseId, std::string locationId) { return new WarehouseLocationDto(); };
+	virtual std::vector<WarehouseLocationDto*> GetAllWarehouseLocation(std::string warehouseId) { return std::vector<WarehouseLocationDto*>(); };
+};
 class WarehouseLocationService
 {
 public:

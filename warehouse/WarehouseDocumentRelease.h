@@ -8,19 +8,23 @@ class WarehouseDocumentRelease : public WarehouseDocument {
 public:
     WarehouseDocumentRelease(const std::string documentName, std::string warehouseId, std::string docuemntId = "");
     void addProductToDocunent(DocumentProduct* product);
-	std::time_t getCreateDate() {
+	std::time_t getCreateDate();
+	/*{
 		return this->CreateDate;
-	}
+	}*/
 
-	std::time_t getIssueDate() {
+	std::time_t getIssueDate();
+	/*{
 		return this->IssueDate;
-	}
-	std::string getClientName() {
+	}*/
+	std::string getClientName();
+	/*{
 		return this->ClientName;
-	}
-	std::vector<DocumentProduct*> getAllReleaseProduct() {
+	}*/
+	std::vector<DocumentProduct*> getAllReleaseProduct();
+	/*{
 		return this -> _products;
-	}
+	}*/
 
 private:
 	std::time_t CreateDate;

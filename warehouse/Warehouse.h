@@ -25,30 +25,34 @@ public:
 
     void AddWarehouseDocument(WarehouseDocumentReception* document);
     void AddWarehouseDocument(WarehouseDocumentRelease* document);
-    void UpdateWarehosueDocument();
 
 
     std::string getName();
     std::string getId();
 
-    void setId(std::string id) {
+    void setId(std::string id);
+  /*  {
         IdGuid = id;
-    }
+    }*/
 
     WarehouseLocation* GetLocationById(std::string id);
-    std::vector<WarehouseLocation*> getAllLocations() {
+    std::vector<WarehouseLocation*> getAllLocations();
+   /* {
         return this->_warehouseLocations;
-    }
+    }*/
 
 
-    std::vector<WarehouseDocumentReception*> GetAllWarehouseDocumentReceptions() {
+    std::vector<WarehouseDocumentReception*> GetAllWarehouseDocumentReceptions();
+    /*{
         return _warehouseDocumentReceptions;
-    }
-    std::vector<WarehouseDocumentRelease*> GetAllWarehouseDocumentReleases() {
+    }*/
+    std::vector<WarehouseDocumentRelease*> GetAllWarehouseDocumentReleases();
+    /*{
         return _warehouseDocumentReleases;
-    }
+    }*/
 
-    WarehouseDocumentReception* GetWarehouseDocumentReceptionById(std::string docuementId ) {
+    WarehouseDocumentReception* GetWarehouseDocumentReceptionById(std::string docuementId);
+    /*{
 
         for (auto it = _warehouseDocumentReceptions.begin(); it != _warehouseDocumentReceptions.end(); ++it) {
             if ((*it)->getDocuemntId() == docuementId) {
@@ -56,8 +60,9 @@ public:
             }
         }
         throw new std::exception("Not found reception");
-    }
-    WarehouseDocumentRelease* GetWarehouseDocumentReleaseById(std::string docuementId) {
+    }*/
+    WarehouseDocumentRelease* GetWarehouseDocumentReleaseById(std::string docuementId);
+    /*{
 
         for (auto it = _warehouseDocumentReleases.begin(); it != _warehouseDocumentReleases.end(); ++it) {
             if ((*it)->getDocuemntId() == docuementId) {
@@ -65,13 +70,14 @@ public:
             }
         }
         throw new std::exception("Not found realse");
-    }
+    }*/
 
     std::string AddProdcut(Product* product);
     Product* GetProductById(std::string productId);
-    std::vector<Product*> GetAllProducts() {
+    std::vector<Product*> GetAllProducts();
+    /*{
         return _warehouseProducts;
-    }
+    }*/
 
 
 private:

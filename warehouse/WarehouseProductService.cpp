@@ -29,7 +29,18 @@ std::string WarehouseProductService::CreateProduct(ProductDto product)
 	_productRepository->addProduct(productToAdd);
     return productToAdd->getProductId();
 }
+ProductDto* MapProduct(Product* product) {
+	auto res = new ProductDto();
+	res->Name = product->getName();
+	res->ProductId = product->getProductId();
+	res->Condition = product->getConditon();
+	res->Coments = product->getComents();
+	res->Volume = product->getVolume();
+	res->Price = product->getPrice();
+	res->Quantity = product->getQuantity();
 
+	return res;
+}
 ProductDto* WarehouseProductService::GetProductById(std::string warehouseId, std::string productId)
 {
 	auto product = _productRepository->getProductById(warehouseId, productId);
@@ -49,3 +60,18 @@ std::vector<ProductDto*> WarehouseProductService::GetAllProducts(std::string war
 	}
 	return productDtoList;
 }
+StorageConditionsDto* MapStorageCondition(StorageConditions conditon) {
+	auto res = new StorageConditionsDto();
+	res->MaxValue = conditon.getMaxValue();
+	res->MinValue = conditon.getMinValue();
+	return res;
+}
+std::vector<StorageConditionsDto*> MapStorageConditions(std::vector<StorageConditions> conditons) {
+	auto res = std::vector<StorageConditionsDto*>();
+	for (auto condition : conditons) {
+		auto conditonDto = MapStorageCondition(condition);
+		res.push_back(conditonDto);
+	}
+	return res;
+}
+

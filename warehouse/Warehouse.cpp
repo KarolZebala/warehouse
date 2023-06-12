@@ -52,6 +52,9 @@ std::string Warehouse::getId()
 { 
     return IdGuid;
 }
+void Warehouse::setId(std::string id) {
+    IdGuid = id;
+}
 
 WarehouseLocation* Warehouse::GetLocationById(std::string id)
 {
@@ -61,6 +64,36 @@ WarehouseLocation* Warehouse::GetLocationById(std::string id)
         }
     }
     return nullptr;
+}
+std::vector<WarehouseLocation*> Warehouse::getAllLocations() {
+    return this->_warehouseLocations;
+}
+
+
+std::vector<WarehouseDocumentReception*> Warehouse::GetAllWarehouseDocumentReceptions() {
+    return _warehouseDocumentReceptions;
+}
+std::vector<WarehouseDocumentRelease*> Warehouse::GetAllWarehouseDocumentReleases() {
+    return _warehouseDocumentReleases;
+}
+
+WarehouseDocumentReception* Warehouse::GetWarehouseDocumentReceptionById(std::string docuementId) {
+
+    for (auto it = _warehouseDocumentReceptions.begin(); it != _warehouseDocumentReceptions.end(); ++it) {
+        if ((*it)->getDocuemntId() == docuementId) {
+            return (*it);
+        }
+    }
+    throw new std::exception("Not found reception");
+}
+WarehouseDocumentRelease* Warehouse::GetWarehouseDocumentReleaseById(std::string docuementId) {
+
+    for (auto it = _warehouseDocumentReleases.begin(); it != _warehouseDocumentReleases.end(); ++it) {
+        if ((*it)->getDocuemntId() == docuementId) {
+            return (*it);
+        }
+    }
+    throw new std::exception("Not found realse");
 }
 
 std::string Warehouse::AddProdcut(Product* product)
@@ -77,4 +110,7 @@ Product* Warehouse::GetProductById(std::string productId)
         }
     }
     return nullptr;
+}
+std::vector<Product*> Warehouse::GetAllProducts() {
+    return _warehouseProducts;
 }

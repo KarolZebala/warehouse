@@ -6,6 +6,13 @@
 #include <iomanip>
 #include <sstream>
 #include "WarehouseLocationFifo.h"
+class IWarehouseLocationRepository {
+public:
+	virtual void addLocatation(WarehouseLocation* location) { return; };
+	/*virtual WarehouseLocationFifo* getFifoById(std::string id) { return new WarehouseLocationFifo(); };
+	virtual WarehouseLocationFilo* getFiloById(std::string id) { return new WarehouseLocationFifo(); };*/
+	virtual std::vector<WarehouseLocation*> getAll() { return std::vector<WarehouseLocation*>(); };
+};
 class WarehouseLocationRepository
 {
 public:

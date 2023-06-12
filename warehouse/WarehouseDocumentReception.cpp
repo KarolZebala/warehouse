@@ -8,3 +8,16 @@ void WarehouseDocumentReception::addProductToDocunent(DocumentProduct* product)
 {
 	_products.push_back(product);
 }
+
+std::vector<DocumentProduct*> WarehouseDocumentReception::getAllReceptionProduct() {
+	return _products;
+};
+void UpdateProduct();
+
+std::time_t WarehouseDocumentReception::getCreateDate() {
+	return CreateDate;
+}
+
+std::time_t WarehouseDocumentReception::getIssueDate() {
+	return IssueDate;
+}

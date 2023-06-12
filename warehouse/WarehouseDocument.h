@@ -12,15 +12,18 @@ public:
     explicit WarehouseDocument(std::string documentName, std::string warehosueId, std::string documentId = "");
     virtual void addProductToDocunent(DocumentProduct* product) {};
 
-    std::string getName() {
-        return this->DocumentName;
-    }
-    std::string getDocuemntId() {
-        return this->DocumentIdGuid;
-    }
-    std::string getWarehouseId() {
+    std::string getName();
+        /*{
+            return this->DocumentName;
+        }*/
+        std::string getDocuemntId();
+        /*{
+            return this->DocumentIdGuid;
+        }*/
+        std::string getWarehouseId();
+    /*{
         return this->WarehouseId;
-    }
+    }*/
 
 protected:
     std::string DocumentIdGuid;

@@ -6,7 +6,14 @@
 #include "WarehouseDbContext.h"
 #include "WarehouseDto.h"
 #include "WarehouseRepository.h"
+class IWarehouseService {
+public:
+    virtual std::string CreateWarehouse(WarehouseDto* dto) { return std::string(); };
+    //virtual void UpdateWarehouse(WarehouseDto* dto) { return ; };
 
+    virtual std::vector<WarehouseDto> GetAllWarehouses() { return std::vector<WarehouseDto>(); };
+    virtual WarehouseDto GetWarehosueById(std::string id) { return WarehouseDto(); };
+};
 class WarehouseService {
 public:
     explicit WarehouseService();
