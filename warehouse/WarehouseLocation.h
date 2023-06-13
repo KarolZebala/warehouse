@@ -51,7 +51,7 @@ public:
     virtual int getOccupiedVolume() { return 0; };
     std::string getWarehouseId() { return this->WarehouseIdGuid; };
 
-private:
+//private:
     std::string WarehouseLocationIdGuid;
     std::string WarehouseIdGuid;
     std::string Name;

@@ -7,7 +7,7 @@ class WarehouseLocationService
 public:
 	WarehouseLocationService();
 
-	std::string CreateWarehouseLocation(WarehouseLocationDto location);
+	void CreateWarehouseLocation(WarehouseLocationDto location);
 
 	std::shared_ptr<WarehouseLocationDto> GetWarahouseLocationById(std::string warehouseId, std::string locationId);
 	std::vector<std::shared_ptr<WarehouseLocationDto>> GetAllWarehouseLocation(std::string warehouseId);
@@ -19,6 +19,7 @@ private:
 		res.Height = location->getHeight();
 		res.Width = location->getWidth();
 		res.WarehouseLocationName = location->getName();
+		res.StorageMethod = location->getStorageMethod();  
 		return res;
 	}
 };

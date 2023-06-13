@@ -4,17 +4,16 @@ void WarehouseLocationRepository::addLocatation(std::shared_ptr<WarehouseLocatio
 {
     sqlite3* db;
     auto rc = sqlite3_open("test.db", &db);
-
+    char* errMsg;
     std::string createTableQuery = "CREATE TABLE IF NOT EXISTS WarehouseLocation (WarehouseLocationIdGuid TEXT, WarehouseIdGuid TEXT, Name TEXT, Width INTEGER, Depth INTEGER, Height INTEGER, StorageMethod TEXT);";
-    rc = sqlite3_exec(db, createTableQuery.c_str(), 0, 0, 0);
+    rc = sqlite3_exec(db, createTableQuery.c_str(), 0, 0, &errMsg);
 
     std::string sqlQuery = "INSERT INTO WarehouseLocation (WarehouseLocationIdGuid, WarehouseIdGuid, Name, Width, Depth, Height, StorageMethod) \n"
         "VALUES ('" + location->GetId() + "', '" + location->getWarehouseId() + "', '" + location->getName() + "', '" + std::to_string(location->getWidth()) + "', '" + std::to_string(location->getDepth()) + "', '" + std::to_string(location->getDepth()) + "', '" + location->getStorageMethod() + "');";
     sqlite3_stmt* stmt;
 
-    rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
+    rc = sqlite3_exec(db, sqlQuery.c_str(), 0, 0, &errMsg);
 
-    sqlite3_finalize(stmt);
     sqlite3_close(db);
 
 }
@@ -118,9 +117,8 @@ std::vector<std::shared_ptr<WarehouseLocation>> WarehouseLocationRepository::get
 
     rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
 
-
-    rc = sqlite3_step(stmt);
     auto locations = std::vector<std::shared_ptr<WarehouseLocation>>();
+
     while (sqlite3_step(stmt) == SQLITE_ROW) {
         std::string locationId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
         std::string warehouseId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
@@ -128,14 +126,12 @@ std::vector<std::shared_ptr<WarehouseLocation>> WarehouseLocationRepository::get
         int width = sqlite3_column_int(stmt, 3);
         int depth = sqlite3_column_int(stmt, 4);
         int height = sqlite3_column_int(stmt, 5);
-        std::string storageMethod = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-
-        sqlite3_finalize(stmt);
-
-        auto location =  WarehouseLocation(name, width, depth, height, warehouseId, locationId, storageMethod);
+        std::string storageMethod = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
+        auto location = WarehouseLocation(name, width, depth, height, warehouseId, locationId, storageMethod);
         auto locationPtr = std::make_shared<WarehouseLocation>(location);
         locations.push_back(locationPtr);
     }
+
     sqlite3_finalize(stmt);
     sqlite3_close(db);
     return locations;

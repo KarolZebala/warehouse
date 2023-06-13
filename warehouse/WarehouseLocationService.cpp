@@ -5,18 +5,18 @@ WarehouseLocationService::WarehouseLocationService() {
     _locationRepository = std::make_shared<WarehouseLocationRepository>(locationRepository);
 }
 
-std::string WarehouseLocationService::CreateWarehouseLocation(WarehouseLocationDto location)
+void WarehouseLocationService::CreateWarehouseLocation(WarehouseLocationDto location)
 {
-    auto locationToAdd = WarehouseLocationFifo(
+    auto locationToAdd = WarehouseLocation(
         location.WarehouseLocationName,
         location.Width,
         location.Depth,
         location.Height,
+        location.StorageMethod,
         location.WarehouseId
     );
-    auto locationPtr = std::make_shared<WarehouseLocationFifo>(locationToAdd);
+    auto locationPtr = std::make_shared<WarehouseLocation>(locationToAdd);
     _locationRepository->addLocatation(locationPtr);
-    return std::string();
 }
 
 std::shared_ptr<WarehouseLocationDto> WarehouseLocationService::GetWarahouseLocationById(std::string warehouseId, std::string locationId)
