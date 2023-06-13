@@ -11,6 +11,8 @@ public:
 
 	std::shared_ptr<WarehouseLocationDto> GetWarahouseLocationById(std::string warehouseId, std::string locationId);
 	std::vector<std::shared_ptr<WarehouseLocationDto>> GetAllWarehouseLocation(std::string warehouseId);
+
+	double GetOccupiedVolumeForLocation(std::string warehouseId, std::string locationId);
 private:
 	std::shared_ptr<WarehouseLocationRepository> _locationRepository { nullptr };
 	WarehouseLocationDto MapLocation(std::shared_ptr<WarehouseLocation> location) {

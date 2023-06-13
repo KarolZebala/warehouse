@@ -38,3 +38,12 @@ std::vector<std::shared_ptr<WarehouseLocationDto>> WarehouseLocationService::Get
     }
     return locationDtoList;
 }
+
+double WarehouseLocationService::GetOccupiedVolumeForLocation(std::string warehouseId, std::string locationId)
+{
+    auto location = _locationRepository->getById(locationId);
+    auto locationOccupied = (double)location->getOccupiedVolume();
+    auto locationMaxVolume = (double)location->getMaxVolume();
+    auto occupiedPercentage = (locationMaxVolume - locationOccupied) / locationMaxVolume;
+    return occupiedPercentage;
+}
