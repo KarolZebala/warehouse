@@ -11,7 +11,7 @@ WarehouseDocumentService::WarehouseDocumentService()
 
 }
 
-void WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumentDto dto)
+void WarehouseDocumentService::CreateWarehouseDocument(WarehouseReceptionDocumentDto dto)
 {
 	auto document = WarehouseDocumentReception(dto.DocumentName, dto.WarehouseIdGuid);
 	auto documentPtr = std::make_shared<WarehouseDocumentReception>(document);
@@ -26,14 +26,7 @@ void WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumen
 			product.WarehouseIdGuid
 		);
 		auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
-		//for (auto& storageConditon : product.StorageConditions) {
-		//	productToAdd->AddStorageConditon(
-		//		storageConditon.Type,
-		//		storageConditon.MinValue,
-		//		storageConditon.MaxValue
-		//	);
-		//}
-		//add product to warehouse location
+		
 		
 		auto location = _locationRepository->getById(product.WarehouseLocationIdGuid);
 		if (location == nullptr) {
@@ -49,7 +42,7 @@ void WarehouseDocumentService::CreateWarehouseReceptionDocument(WarehouseDocumen
 	
 }
 
-void WarehouseDocumentService::CreateWarehouseReleaseDocument(WarehouseDocumentDto dto)
+void WarehouseDocumentService::CreateWarehouseDocument(WarehouseReleseDocumentDto dto)
 {
 	auto warehouse = _warehouseRepository->GetById(dto.WarehouseIdGuid);
 	auto document =  WarehouseDocumentRelease(dto.DocumentName, dto.WarehouseIdGuid);

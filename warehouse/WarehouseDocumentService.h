@@ -6,13 +6,14 @@
 #include "WarehouseDocumentRepository.h"
 #include "WarehouseLocationRepository.h"
 #include "WarehouseRepository.h"
+#include "WarehouseReceptionDocumentDto.h"
 class WarehouseDocumentService
 {
 public:
     explicit WarehouseDocumentService();
 
-    void CreateWarehouseReceptionDocument(WarehouseDocumentDto dto);
-    void CreateWarehouseReleaseDocument(WarehouseDocumentDto dto);
+    void CreateWarehouseDocument(WarehouseReleseDocumentDto dto);
+    void CreateWarehouseDocument(WarehouseReceptionDocumentDto dto);
    
 
     std::vector<std::shared_ptr<WarehouseDocumentDto>> GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId);

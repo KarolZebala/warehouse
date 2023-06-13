@@ -135,6 +135,9 @@
     <ClCompile Include="WarehouseDocumentService.cpp">
       <Filter>Source Files\Services</Filter>
     </ClCompile>
+    <ClCompile Include="WarehouseReceptionDocumentDto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="WarehouseLocationFilo.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WarehouseReceptionDocumentDto.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

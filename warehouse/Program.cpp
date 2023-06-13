@@ -72,7 +72,7 @@ int main() {
 
 		if (userInput == "1") {
 			
-			auto warehouserecDto = WarehouseDocumentDto("reception");
+			auto warehouserecDto = WarehouseReceptionDocumentDto("reception");
 			auto product = ProductDto();
 			product.Name = "test1";
 			product.XDimension = 1;
@@ -81,7 +81,7 @@ int main() {
 			product.StorageMethod = "FIFO";
 
 			WarehouseDocumentService service;
-			service.CreateWarehouseReceptionDocument(warehouserecDto);
+			service.CreateWarehouseDocument(warehouserecDto);
 			std::cout << "dzia³\n";
 		}
 		if (userInput == "2") {
