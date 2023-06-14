@@ -19,6 +19,6 @@ std::time_t WarehouseDocumentRelease::getIssueDate() {
 std::string WarehouseDocumentRelease::getClientName() {
 	return ClientName;
 }
-std::vector<DocumentProduct*> WarehouseDocumentRelease::getAllReleaseProduct() {
+std::vector<std::shared_ptr<DocumentProduct>> WarehouseDocumentRelease::getAllReleaseProduct() {
 	return _products;
 }

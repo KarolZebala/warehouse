@@ -21,8 +21,6 @@ public:
         std::string locationId = ""
     );
 
-    
-
     void AddStorageConditon();
     void UpdateStorageConditon();
     bool CheckIfLocationHasStorageCondition();
@@ -36,26 +34,14 @@ public:
     std::string GetId();
     std::string getName();
     std::string getStorageMethod();
-    int getWidth() {
-        return this->Width;
-    }*/
+    int getWidth();
     int getDepth();
-    /*{
-        return this->Depth;
-    }*/
     int getHeight();
-   /* {
-        return this->Height;
-    }*/
     int getMaxVolume();
-  /*  {
-        return this->Width * this->Depth * this->Height;
-    }*/
     virtual int getOccupiedVolume() { return 0; };
     std::string getWarehouseId();
-    //{ return this->WarehouseIdGuid; };
 
-//private:
+private:
     std::string WarehouseLocationIdGuid;
     std::string WarehouseIdGuid;
     std::string Name;

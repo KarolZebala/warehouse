@@ -46,8 +46,8 @@ int WarehouseLocationFifo::getOccupiedVolume()
 	}
 	return res;
 }
-void WarehouseLocationFifo::AddRangeProduct(std::vector<WarehouseLocationProduct*> products) {
-	std::queue<WarehouseLocationProduct*> queue;
+void WarehouseLocationFifo::AddRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products) {
+	std::queue<std::shared_ptr<WarehouseLocationProduct>> queue;
 	for (const auto& element : products) {
 		queue.push(element);
 	}

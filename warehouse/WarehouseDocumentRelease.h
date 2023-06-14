@@ -8,21 +8,11 @@ class WarehouseDocumentRelease : public WarehouseDocument {
 public:
     WarehouseDocumentRelease(const std::string documentName, std::string warehouseId, std::string docuemntId = "");
     void addProductToDocument(std::shared_ptr<DocumentProduct> product);
-	std::time_t getCreateDate() {
-		return this->CreateDate;
-	}*/
+	std::time_t getCreateDate();
 
 	std::time_t getIssueDate();
-	/*{
-		return this->IssueDate;
-	}*/
 	std::string getClientName();
-	/*{
-		return this->ClientName;
-	}
-	std::vector<std::shared_ptr<DocumentProduct>> getAllReleaseProduct() {
-		return this -> _products;
-	}*/
+	std::vector<std::shared_ptr<DocumentProduct>> getAllReleaseProduct();
 
 private:
 	std::time_t CreateDate;

@@ -30,16 +30,18 @@ std::string WarehouseProductService::CreateProduct(ProductDto product)
 	_productRepository->addProduct(productToAddPtr);
     return productToAddPtr->getProductId();
 }
-ProductDto* MapProduct(Product* product) {
-	auto res = new ProductDto();
-	res->Name = product->getName();
-	res->ProductId = product->getProductId();
-	res->Condition = product->getConditon();
-	res->Coments = product->getComents();
-	res->Volume = product->getVolume();
-	res->Price = product->getPrice();
-	res->Quantity = product->getQuantity();
-
+std::shared_ptr<ProductDto> WarehouseProductService::MapProduct(std::shared_ptr<Product> product) {
+	auto productDto = ProductDto();
+	productDto.Name = product->getName();
+	productDto.ProductId = product->getProductId();
+	productDto.Condition = product->getConditon();
+	productDto.Coments = product->getComents();
+	productDto.Volume = product->getVolume();
+	productDto.Price = product->getPrice();
+	productDto.Quantity = product->getQuantity();
+	auto productPtr = std::make_shared< ProductDto>(productDto);
+	return productPtr;
+}
 std::shared_ptr<ProductDto> WarehouseProductService::GetProductById(std::string warehouseId, std::string productId)
 {
 	auto product = _productRepository->getProductById(warehouseId, productId);
@@ -51,24 +53,24 @@ std::vector<std::shared_ptr<ProductDto>> WarehouseProductService::GetAllProducts
 {
 	auto products = _productRepository->getAllProducts(warehouseId);
 	auto productDtoList = std::vector<std::shared_ptr<ProductDto>>();
-	for (auto product : products) {
+	for (auto &product : products) {
 		auto productDto = MapProduct(product);
 		productDtoList.push_back(productDto);
 	}
 	return productDtoList;
 }
-StorageConditionsDto* MapStorageCondition(StorageConditions conditon) {
-	auto res = new StorageConditionsDto();
-	res->MaxValue = conditon.getMaxValue();
-	res->MinValue = conditon.getMinValue();
-	return res;
-}
-std::vector<StorageConditionsDto*> MapStorageConditions(std::vector<StorageConditions> conditons) {
-	auto res = std::vector<StorageConditionsDto*>();
-	for (auto condition : conditons) {
-		auto conditonDto = MapStorageCondition(condition);
-		res.push_back(conditonDto);
-	}
-	return res;
-}
+//StorageConditionsDto* MapStorageCondition(StorageConditions conditon) {
+//	auto res = new StorageConditionsDto();
+//	res->MaxValue = conditon.getMaxValue();
+//	res->MinValue = conditon.getMinValue();
+//	return res;
+//}
+//std::vector<StorageConditionsDto*> MapStorageConditions(std::vector<StorageConditions> conditons) {
+//	auto res = std::vector<StorageConditionsDto*>();
+//	for (auto condition : conditons) {
+//		auto conditonDto = MapStorageCondition(condition);
+//		res.push_back(conditonDto);
+//	}
+//	return res;
+//}
 

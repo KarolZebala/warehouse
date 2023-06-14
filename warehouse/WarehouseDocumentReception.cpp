@@ -9,10 +9,9 @@ void WarehouseDocumentReception::addProductToDocument(std::shared_ptr<DocumentPr
 	_products.push_back(product);
 }
 
-std::vector<DocumentProduct*> WarehouseDocumentReception::getAllReceptionProduct() {
+std::vector<std::shared_ptr<DocumentProduct>> WarehouseDocumentReception::getAllReceptionProduct() {
 	return _products;
 };
-void UpdateProduct();
 
 std::time_t WarehouseDocumentReception::getCreateDate() {
 	return CreateDate;

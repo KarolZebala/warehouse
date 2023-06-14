@@ -9,12 +9,13 @@
 #include "WarehouseReceptionDocumentDto.h"
 class IWarehouseDocumentService {
 public:
-    virtual std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId) { return std::vector<WarehouseDocumentDto*>(); };
-    virtual std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReceptionsDocuements(std::string warehosueId) { return std::vector<WarehouseDocumentDto*>(); };
-    //virtual WarehouseDocumentDto* GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId) { return new WarehouseDocumentDto; };
-    //virtual WarehouseDocumentDto* GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId) { return new WarehouseDocumentDto; };
+    virtual void CreateWarehouseDocument(WarehouseReleseDocumentDto dto) {};
+    virtual void CreateWarehouseDocument(WarehouseReceptionDocumentDto dto) {};
+    virtual std::vector<std::shared_ptr<WarehouseDocumentDto>> GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId) { return std::vector<std::shared_ptr<WarehouseDocumentDto>>(); };
+    virtual std::vector<std::shared_ptr<WarehouseDocumentDto>> GetAllWarehouseDocumentReceptionsDocuements(std::string warehosueId) { return std::vector<std::shared_ptr<WarehouseDocumentDto>>(); };
+    
 };
-class WarehouseDocumentService
+class WarehouseDocumentService : public IWarehouseDocumentService
 {
 public:
     explicit WarehouseDocumentService();

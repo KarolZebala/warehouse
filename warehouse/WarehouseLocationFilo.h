@@ -16,14 +16,7 @@ public: WarehouseLocationFilo(
       void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
       void RemoveProduct(std::shared_ptr<DocumentProduct>  product);
       int getOccupiedVolume();
-      void addRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products) {
-          std::stack<std::shared_ptr<WarehouseLocationProduct>> stack;
-          for (const auto& element : products) {
-              stack.push(element);
-          }
-          _products = stack;
-
-      }*/
+      void addRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products);
 private:
     std::stack<std::shared_ptr<WarehouseLocationProduct>> _products;
 

@@ -80,8 +80,20 @@ int main() {
 			product.ZDimension = 1;
 			product.StorageMethod = "FIFO";
 
-			WarehouseDocumentService service;
+			
+			std::cout << "dzia³\n";
+
+			auto warehouserreleaseDto = WarehouseReleseDocumentDto("release");
+			/*auto product = ProductDto();
+			product.Name = "test1";
+			product.XDimension = 1;
+			product.YDimension = 1;
+			product.ZDimension = 1;
+			product.StorageMethod = "FIFO";*/
+
+			IWarehouseDocumentService service = WarehouseDocumentService();
 			service.CreateWarehouseDocument(warehouserecDto);
+			service.CreateWarehouseDocument(warehouserreleaseDto);
 			std::cout << "dzia³\n";
 		}
 		if (userInput == "2") {
@@ -125,6 +137,9 @@ int main() {
 		if (userInput == "5") {
 			auto service = new WarehouseProductService();
 			service->GetProductById("42e3fb-8b50-4792-a101-3e0d45ce3667","6fdc7026-0830-4da3-9356-4999561d6f33");
+		}
+		if (userInput == "6") {
+			auto service = new WarehouseDocumentService();
 		}
 	}
 	return 1;

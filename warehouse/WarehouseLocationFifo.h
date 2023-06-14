@@ -15,14 +15,7 @@ public: WarehouseLocationFifo(
       void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
       void RemoveProduct(std::shared_ptr<DocumentProduct>  product);
       int getOccupiedVolume();
-      void AddRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products) {
-          std::queue<std::shared_ptr<WarehouseLocationProduct>> queue;
-          for (const auto& element : products) {
-              queue.push(element);
-          }
-
-          _products = queue;
-      }*/
+      void AddRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products);
 private: 
     std::queue<std::shared_ptr<WarehouseLocationProduct>> _products;
 };

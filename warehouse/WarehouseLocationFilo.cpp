@@ -53,8 +53,8 @@ int WarehouseLocationFilo::getOccupiedVolume()
     }
     return res;
 }
-void WarehouseLocationFilo::addRangeProduct(std::vector<WarehouseLocationProduct*> products) {
-    std::stack<WarehouseLocationProduct*> stack;
+void WarehouseLocationFilo::addRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products) {
+    std::stack<std::shared_ptr<WarehouseLocationProduct>> stack;
     for (const auto& element : products) {
         stack.push(element);
     }
