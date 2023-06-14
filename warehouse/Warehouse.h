@@ -23,31 +23,36 @@ public:
     void UpdateStorageArea();
 
 
-    void AddWarehouseDocument(std::shared_ptr<WarehouseDocument> document);
-    void UpdateWarehosueDocument();
+    void AddWarehouseDocument(WarehouseDocumentReception* document);
+    void AddWarehouseDocument(WarehouseDocumentRelease* document);
 
 
     std::string getName();
     std::string getId();
 
-    void setId(std::string id) {
+    void setId(std::string id);
+  /*  {
         IdGuid = id;
-    }
+    }*/
 
-    std::shared_ptr<WarehouseLocation>  GetLocationById(std::string id);
-    std::vector<std::shared_ptr<WarehouseLocation> > getAllLocations() {
+    WarehouseLocation* GetLocationById(std::string id);
+    std::vector<WarehouseLocation*> getAllLocations();
+   /* {
         return this->_warehouseLocations;
-    }
+    }*/
 
 
-   /* std::vector<WarehouseDocumentReception*> GetAllWarehouseDocumentReceptions() {
+    std::vector<WarehouseDocumentReception*> GetAllWarehouseDocumentReceptions();
+    /*{
         return _warehouseDocumentReceptions;
-    }
-    std::vector<WarehouseDocumentRelease*> GetAllWarehouseDocumentReleases() {
+    }*/
+    std::vector<WarehouseDocumentRelease*> GetAllWarehouseDocumentReleases();
+    /*{
         return _warehouseDocumentReleases;
     }*/
 
-   /* WarehouseDocumentReception* GetWarehouseDocumentReceptionById(std::string docuementId ) {
+    WarehouseDocumentReception* GetWarehouseDocumentReceptionById(std::string docuementId);
+    /*{
 
         for (auto it = _warehouseDocumentReceptions.begin(); it != _warehouseDocumentReceptions.end(); ++it) {
             if ((*it)->getDocuemntId() == docuementId) {
@@ -56,7 +61,8 @@ public:
         }
         throw new std::exception("Not found reception");
     }*/
-    /*WarehouseDocumentRelease* GetWarehouseDocumentReleaseById(std::string docuementId) {
+    WarehouseDocumentRelease* GetWarehouseDocumentReleaseById(std::string docuementId);
+    /*{
 
         for (auto it = _warehouseDocumentReleases.begin(); it != _warehouseDocumentReleases.end(); ++it) {
             if ((*it)->getDocuemntId() == docuementId) {
@@ -66,9 +72,10 @@ public:
         throw new std::exception("Not found realse");
     }*/
 
-    std::string AddProdcut(std::shared_ptr<Product> product);
-    /*Product* GetProductById(std::string productId);
-    std::vector<Product*> GetAllProducts() {
+    std::string AddProdcut(Product* product);
+    Product* GetProductById(std::string productId);
+    std::vector<Product*> GetAllProducts();
+    /*{
         return _warehouseProducts;
     }*/
 

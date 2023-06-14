@@ -48,16 +48,49 @@ std::string Warehouse::getId()
 { 
     return IdGuid;
 }
+void Warehouse::setId(std::string id) {
+    IdGuid = id;
+}
 
-//std::shared_ptr<WarehouseLocation> Warehouse::GetLocationById(std::string id)
-//{
-//    for (const auto& obj : _warehouseLocations) {
-//        if (obj->GetId() == id) {
-//            return obj;
-//        }
-//    }
-//    return nullptr;
-//}
+WarehouseLocation* Warehouse::GetLocationById(std::string id)
+{
+    for (const auto& obj : _warehouseLocations) {
+        if (obj->GetId() == id) {
+            return obj;
+        }
+    }
+    return nullptr;
+}
+std::vector<WarehouseLocation*> Warehouse::getAllLocations() {
+    return this->_warehouseLocations;
+}
+
+
+std::vector<WarehouseDocumentReception*> Warehouse::GetAllWarehouseDocumentReceptions() {
+    return _warehouseDocumentReceptions;
+}
+std::vector<WarehouseDocumentRelease*> Warehouse::GetAllWarehouseDocumentReleases() {
+    return _warehouseDocumentReleases;
+}
+
+WarehouseDocumentReception* Warehouse::GetWarehouseDocumentReceptionById(std::string docuementId) {
+
+    for (auto it = _warehouseDocumentReceptions.begin(); it != _warehouseDocumentReceptions.end(); ++it) {
+        if ((*it)->getDocuemntId() == docuementId) {
+            return (*it);
+        }
+    }
+    throw new std::exception("Not found reception");
+}
+WarehouseDocumentRelease* Warehouse::GetWarehouseDocumentReleaseById(std::string docuementId) {
+
+    for (auto it = _warehouseDocumentReleases.begin(); it != _warehouseDocumentReleases.end(); ++it) {
+        if ((*it)->getDocuemntId() == docuementId) {
+            return (*it);
+        }
+    }
+    throw new std::exception("Not found realse");
+}
 
 std::string Warehouse::AddProdcut(std::shared_ptr<Product> product)
 {

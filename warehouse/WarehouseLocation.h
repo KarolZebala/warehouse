@@ -38,18 +38,22 @@ public:
     std::string getStorageMethod();
     int getWidth() {
         return this->Width;
-    }
-    int getDepth() {
+    }*/
+    int getDepth();
+    /*{
         return this->Depth;
-    }
-    int getHeight() {
+    }*/
+    int getHeight();
+   /* {
         return this->Height;
-    }
-    int getMaxVolume() {
+    }*/
+    int getMaxVolume();
+  /*  {
         return this->Width * this->Depth * this->Height;
-    }
+    }*/
     virtual int getOccupiedVolume() { return 0; };
-    std::string getWarehouseId() { return this->WarehouseIdGuid; };
+    std::string getWarehouseId();
+    //{ return this->WarehouseIdGuid; };
 
 //private:
     std::string WarehouseLocationIdGuid;

@@ -27,27 +27,34 @@ public:
 		Volume = volume;
 		DocumentId = documentId;
 	}
-	std::string getDocumentProductId() {
+	std::string getDocumentProductId();
+	/*{
 		return this->DocumentProductId;
-	}
-	std::string getProductId() {
+	}*/
+	std::string getProductId();
+	/*{
 		return this->ProductId;
-	}
-	std::string getProductName() {
+	}*/
+	std::string getProductName();
+	/*{
 		return this->ProductName;
-	}
-	int getPrice() {
+	}*/
+	int getPrice();
+	/*{
 		return this->Price;
-	}
-	int getVolume() {
-		return this->Volume;
-	}
-	std::string getDocumentId() {
+	}*/
+	int getVolume();
+	/*{
+		return this-;>Volume;
+	}*/
+	std::string getDocumentId();
+	/*{
 		return this->DocumentId;
-	}
-	std::string getStorageMethod() {
+	}*/
+	std::string getStorageMethod();
+	/*{
 		return this->StorageMethod;
-	}
+	}*/
 private:
 	std::string DocumentProductId;
 	std::string ProductId;

@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="C:\sqlite\sqlite-amalgamation-3420000\sqlite3.c" />
+    <ClCompile Include="DocumentProduct.cpp" />
     <ClCompile Include="GuidProvider.cpp" />
     <ClCompile Include="HumidityStorageConditions.cpp" />
     <ClCompile Include="Product.cpp" />
@@ -203,7 +204,7 @@
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+      <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets'))" />
   </Target>

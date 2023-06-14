@@ -10,17 +10,19 @@ public:
     void addProductToDocument(std::shared_ptr<DocumentProduct> product);
 	std::time_t getCreateDate() {
 		return this->CreateDate;
-	}
+	}*/
 
-	std::time_t getIssueDate() {
+	std::time_t getIssueDate();
+	/*{
 		return this->IssueDate;
-	}
-	std::string getClientName() {
+	}*/
+	std::string getClientName();
+	/*{
 		return this->ClientName;
 	}
 	std::vector<std::shared_ptr<DocumentProduct>> getAllReleaseProduct() {
 		return this -> _products;
-	}
+	}*/
 
 private:
 	std::time_t CreateDate;

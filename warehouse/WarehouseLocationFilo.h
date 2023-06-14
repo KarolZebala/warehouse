@@ -23,7 +23,7 @@ public: WarehouseLocationFilo(
           }
           _products = stack;
 
-      }
+      }*/
 private:
     std::stack<std::shared_ptr<WarehouseLocationProduct>> _products;
 

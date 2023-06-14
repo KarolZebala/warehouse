@@ -77,3 +77,19 @@ void WarehouseLocation::AddProductFromDocument(std::shared_ptr<DocumentProduct> 
 void WarehouseLocation::RemoveProduct(std::shared_ptr<DocumentProduct>  product)
 {
 }
+int WarehouseLocation::getWidth() {
+    return Width;
+}
+int WarehouseLocation::getDepth() {
+    return Depth;
+}
+int WarehouseLocation::getHeight() {
+    return Height;
+}
+int WarehouseLocation::getMaxVolume() {
+    return Width * Depth * Height;
+}
+std::string WarehouseLocation::getWarehouseId()
+{
+    return WarehouseIdGuid;
+};

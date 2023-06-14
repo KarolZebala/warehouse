@@ -14,18 +14,22 @@ public:
 			this->AddDate = std::time(0);
 		}
 	}
-	std::string getProductId() {
+	std::string getProductId();
+	/*{
 		return this->ProductId;
-	}
-	int getVolume() {
+	}*/
+	int getVolume();
+	/*{
 		return this->Volume;
-	}
-	std::time_t getAddDate() {
+	}*/
+	std::time_t getAddDate();
+	/*{
 		return this->AddDate;
-	}
-	std::string getLocationId() {
+	}*/
+	std::string getLocationId();
+	/*{
 		return this->LocationId;
-	}
+	}*/
 private:
 	std::string ProductId;
 	std::time_t AddDate;

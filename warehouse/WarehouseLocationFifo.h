@@ -22,7 +22,7 @@ public: WarehouseLocationFifo(
           }
 
           _products = queue;
-      }
+      }*/
 private: 
     std::queue<std::shared_ptr<WarehouseLocationProduct>> _products;
 };

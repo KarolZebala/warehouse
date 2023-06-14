@@ -7,6 +7,13 @@
 #include "WarehouseLocationRepository.h"
 #include "WarehouseRepository.h"
 #include "WarehouseReceptionDocumentDto.h"
+class IWarehouseDocumentService {
+public:
+    virtual std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId) { return std::vector<WarehouseDocumentDto*>(); };
+    virtual std::vector<WarehouseDocumentDto*> GetAllWarehouseDocumentReceptionsDocuements(std::string warehosueId) { return std::vector<WarehouseDocumentDto*>(); };
+    //virtual WarehouseDocumentDto* GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId) { return new WarehouseDocumentDto; };
+    //virtual WarehouseDocumentDto* GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId) { return new WarehouseDocumentDto; };
+};
 class WarehouseDocumentService
 {
 public:

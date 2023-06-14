@@ -11,6 +11,15 @@ WarehouseDocument::WarehouseDocument(std::string documentName, std::string wareh
 	}
 	DocumentName = documentName;
 	WarehouseId = warehouseId;
+	
 }
 
-
+std :: string WarehouseDocument::getName() {
+		return DocumentName;
+	}
+	std::string WarehouseDocument::getDocuemntId() {
+		return DocumentIdGuid;
+	}
+	std::string WarehouseDocument::getWarehouseId() {
+		return WarehouseId;
+	}
