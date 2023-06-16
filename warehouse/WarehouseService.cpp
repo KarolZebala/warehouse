@@ -5,7 +5,7 @@ WarehouseService::WarehouseService()
     _warehouseRepository = std::make_shared<WarehouseRepository>(WarehouseRepository());
 }
 
-std::string WarehouseService::CreateWarehouse(WarehouseDto* dto)
+std::string WarehouseService::CreateWarehouse(std::shared_ptr<WarehouseDto> dto)
 {
     auto warehouse = Warehouse(dto->Name);
     auto warehousePtr = std::make_shared<Warehouse>(warehouse);

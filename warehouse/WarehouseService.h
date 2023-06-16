@@ -8,18 +8,17 @@
 #include "WarehouseRepository.h"
 class IWarehouseService {
 public:
-    virtual std::string CreateWarehouse(WarehouseDto* dto) { return std::string(); };
-    //virtual void UpdateWarehouse(WarehouseDto* dto) { return ; };
+    virtual std::string CreateWarehouse(std::shared_ptr<WarehouseDto> dto) { return std::string(); };
 
-    virtual std::vector<WarehouseDto> GetAllWarehouses() { return std::vector<WarehouseDto>(); };
-    virtual WarehouseDto GetWarehosueById(std::string id) { return WarehouseDto(); };
+    virtual std::vector<std::shared_ptr<WarehouseDto>>  GetAllWarehouses() { return std::vector<std::shared_ptr<WarehouseDto>>(); };
+    virtual std::shared_ptr<WarehouseDto> GetWarehosueById(std::string id) { return std::shared_ptr<WarehouseDto>(); };
 };
-class WarehouseService {
+class WarehouseService : public IWarehouseService
+{
 public:
     explicit WarehouseService();
 
-    std::string CreateWarehouse(WarehouseDto* dto);
-    void UpdateWarehouse(WarehouseDto* dto);
+    std::string CreateWarehouse(std::shared_ptr<WarehouseDto> dto);
 
     std::vector<std::shared_ptr<WarehouseDto>> GetAllWarehouses();
     std::shared_ptr<WarehouseDto> GetWarehosueById(std::string id);

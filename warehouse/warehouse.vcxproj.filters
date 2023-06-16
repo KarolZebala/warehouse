@@ -45,9 +45,6 @@
     <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WarehouseApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GuidProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -138,12 +135,12 @@
     <ClCompile Include="WarehouseReceptionDocumentDto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DocumentProduct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarehouseDbContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WarehouseDto.h">

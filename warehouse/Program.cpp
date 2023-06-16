@@ -1,5 +1,4 @@
 #include <iostream>
-#include "WarehouseApp.h"
 #include "WarehouseDto.h"
 #include "WarehouseDocumentDto.h"
 #include "WarehouseProductService.h"
@@ -11,10 +10,7 @@ int main() {
 
 	//Create warehosuse app 
 
-	auto warehosueApp = new WarehouseApp();
 	auto isProgramRunning = true;
-	
-	std::cout << std::time(0);
 
 	while (true) {
 		std::cout<< "Podaj co chcesz zrobiæ: \n";
@@ -84,13 +80,7 @@ int main() {
 			std::cout << "dzia³\n";
 
 			auto warehouserreleaseDto = WarehouseReleseDocumentDto("release");
-			/*auto product = ProductDto();
-			product.Name = "test1";
-			product.XDimension = 1;
-			product.YDimension = 1;
-			product.ZDimension = 1;
-			product.StorageMethod = "FIFO";*/
-
+			
 			IWarehouseDocumentService service = WarehouseDocumentService();
 			service.CreateWarehouseDocument(warehouserecDto);
 			service.CreateWarehouseDocument(warehouserreleaseDto);
