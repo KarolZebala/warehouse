@@ -78,12 +78,28 @@ private:
 //class UIDocumentManager :public UIManager
 //{
 //public:
+//	void ShowAll() {
+//	
+//	};
+//	void ShowById() {};
+//	void AddNew() {};
+//
+//private:
+//	IWarehouseDocumentService _DocumentService;
+//	void printDocumentRowTitle() {
+//		std::cout << "Id	" << "Nazwa	" << std::endl;
+//	}
+//};
+//
+//class UILocationManager :public UIManager
+//{
+//public:
 //	void ShowAll() {};
 //	void ShowById() {};
 //	void AddNew() {};
 //
 //private:
-//	void printDocumentRowTitle() {
+//	void printLocationRowTitle() {
 //		std::cout << "Id	" << "Nazwa	" << std::endl;
 //	}
-//}
+//};
