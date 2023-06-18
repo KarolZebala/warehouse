@@ -4,11 +4,11 @@
 #include "WarehouseLocationRepository.h"
 class IWarehouseLocationService {
 public:
-	virtual std::string CreateWarehouseLocation(WarehouseLocationDto location) { return std::string(); };
-	virtual WarehouseLocationDto* GetWarahouseLocationById(std::string warehouseId, std::string locationId) { return new WarehouseLocationDto(); };
-	virtual std::vector<WarehouseLocationDto*> GetAllWarehouseLocation(std::string warehouseId) { return std::vector<WarehouseLocationDto*>(); };
+	virtual void CreateWarehouseLocation(WarehouseLocationDto location) {};
+	virtual std::shared_ptr<WarehouseLocationDto> GetWarahouseLocationById(std::string warehouseId, std::string locationId) { return std::make_shared<WarehouseLocationDto>(WarehouseLocationDto()); };
+	virtual std::vector<std::shared_ptr<WarehouseLocationDto>> GetAllWarehouseLocation(std::string warehouseId) { return std::vector<std::shared_ptr<WarehouseLocationDto>>(); };
 };
-class WarehouseLocationService
+class WarehouseLocationService : IWarehouseLocationService
 {
 public:
 	WarehouseLocationService();

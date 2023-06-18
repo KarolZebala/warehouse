@@ -13,7 +13,8 @@ public:
     virtual void CreateWarehouseDocument(WarehouseReceptionDocumentDto dto) {};
     virtual std::vector<std::shared_ptr<WarehouseDocumentDto>> GetAllWarehouseDocumentReleasesDocuements(std::string warehouseId) { return std::vector<std::shared_ptr<WarehouseDocumentDto>>(); };
     virtual std::vector<std::shared_ptr<WarehouseDocumentDto>> GetAllWarehouseDocumentReceptionsDocuements(std::string warehosueId) { return std::vector<std::shared_ptr<WarehouseDocumentDto>>(); };
-    
+    virtual std::shared_ptr<WarehouseDocumentDto> GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId) { return std::shared_ptr<WarehouseDocumentDto>(); };
+    virtual std::shared_ptr<WarehouseDocumentDto> GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId) { return std::shared_ptr<WarehouseDocumentDto>(); };
 };
 class WarehouseDocumentService : public IWarehouseDocumentService
 {
