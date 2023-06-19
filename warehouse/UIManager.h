@@ -3,6 +3,7 @@
 #include <string>
 #include "WarehouseProductService.h"
 #include "WarehouseDocumentService.h"
+#include "WarehouseLocationService.h"
 
 class UIManager
 {
@@ -167,58 +168,58 @@ private:
 	}
 };
 
-//class UILocationManager :public UIManager
-//{
-//public:
-//	/*void ShowAll() {
-//		std::string IdWarehouse = "";
-//		std::cout << "podaj id magazynu " << std::endl;
-//		std::cin >> IdWarehouse;
-//		auto locations = _LocationService.GetAllWarehouseLocation(IdWarehouse)
-//		PrintLocationRowTitle();
-//		for (auto loc : locations) {
-//			PrintProduct(loc);
-//		}
-//	};*/
-//	/*void ShowById() {
-//		std::string IdWarehouse = "";
-//		std::cout << "podaj id magazynu " << std::endl;
-//		std::cin >> IdWarehouse;
-//		std::string IDlocation = "";
-//		std::cout << "podaj id lokazlizacji " << std::endl;
-//		std::cin >> IDlocation;
-//
-//		auto location = _LocationService.GetWarahouseLocationById(IdWarehouse, IDlocation);
-//		PrintLocationRowTitle();
-//		PrintLocation(location);
-//	};*/
-//
-//	void AddNew() {
-//		auto location = WarehouseLocationDto();
-//
-//		std::cout << "podaj id magazynu " << std::endl;
-//		std::cin >> location.WarehouseId;
-//		std::cout << "podaj nazwe lokalizacji " << std::endl;
-//		std::cin >> location.WarehouseLocationName;
-//		std::cout << "podaj sposob magazynowania " << std::endl;
-//		std::cin >> location.StorageMethod;
-//		std::cout << "podaj wysokosc " << std::endl;
-//		std::cin >> location.Height;
-//		std::cout << "podaj glebokosc " << std::endl;
-//		std::cin >> location.Depth;
-//		std::cout << "podaj dlugosc " << std::endl;
-//		std::cin >> location.Width;
-//
-//		std::string warehouseId = location.WarehouseId;
-//		_LocationService.CreateWarehouseLocation(warehouseId)
-//	};
-//
-//private:
-//	IWarehouseLocationService _LocationService;
-//	void PrintLocation(std::shared_ptr<WarehouseLocationDto> location) {
-//		std::cout << location->WarehouseLocationName << "	" << location->StorageMethod << std::endl;
-//	};
-//	void PrintLocationRowTitle() {
-//		std::cout << "nazwa lokalizacji		" << "Metoda skladowania	" << std::endl;
-//	};
-//};
+class UILocationManager :public UIManager
+{
+public:
+	void ShowAll() {
+		std::string IdWarehouse = "";
+		std::cout << "podaj id magazynu " << std::endl;
+		std::cin >> IdWarehouse;
+		auto locations = _LocationService.GetAllWarehouseLocation(IdWarehouse);
+		PrintLocationRowTitle();
+		for (auto loc : locations) {
+			PrintLocation(loc);
+		}
+	};
+	void ShowById() {
+		std::string IdWarehouse = "";
+		std::cout << "podaj id magazynu " << std::endl;
+		std::cin >> IdWarehouse;
+		std::string IDlocation = "";
+		std::cout << "podaj id lokazlizacji " << std::endl;
+		std::cin >> IDlocation;
+
+		auto location = _LocationService.GetWarahouseLocationById(IdWarehouse, IDlocation);
+		PrintLocationRowTitle();
+		PrintLocation(location);
+	};
+
+	void AddNew() {
+		auto location = WarehouseLocationDto();
+
+		std::cout << "podaj id magazynu " << std::endl;
+		std::cin >> location.WarehouseId;
+		std::cout << "podaj nazwe lokalizacji " << std::endl;
+		std::cin >> location.WarehouseLocationName;
+		std::cout << "podaj sposob magazynowania " << std::endl;
+		std::cin >> location.StorageMethod;
+		std::cout << "podaj wysokosc " << std::endl;
+		std::cin >> location.Height;
+		std::cout << "podaj glebokosc " << std::endl;
+		std::cin >> location.Depth;
+		std::cout << "podaj dlugosc " << std::endl;
+		std::cin >> location.Width;
+
+		std::string warehouseId = location.WarehouseId;
+		_LocationService.CreateWarehouseLocation(location);
+	};
+
+private:
+	IWarehouseLocationService _LocationService;
+	void PrintLocation(std::shared_ptr<WarehouseLocationDto> location) {
+		std::cout << location->WarehouseLocationName << "	" << location->StorageMethod << std::endl;
+	};
+	void PrintLocationRowTitle() {
+		std::cout << "nazwa lokalizacji		" << "Metoda skladowania	" << std::endl;
+	};
+};
