@@ -1,6 +1,6 @@
 #include "WarehouseLocationFilo.h"
 
-void WarehouseLocationFilo::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
+std::shared_ptr< WarehouseLocationProduct> WarehouseLocationFilo::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
 {
 	auto canProductBeAdded = CheckIfLocationHasStorageCondition();
 	if (!canProductBeAdded) {
@@ -14,19 +14,24 @@ void WarehouseLocationFilo::AddProductFromDocument(std::shared_ptr<DocumentProdu
     auto productToAdd =  WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
     auto prdocutToAddPtr = std::make_shared<WarehouseLocationProduct>(productToAdd);
 	_products.push(prdocutToAddPtr);
+    return prdocutToAddPtr;
 }
 
-void WarehouseLocationFilo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
+std::shared_ptr< WarehouseLocationProduct> WarehouseLocationFilo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
 {
     auto productIdToRemove = product->getProductId();
 
     std::stack<std::shared_ptr<WarehouseLocationProduct>> temporaryProducts;
+    std::shared_ptr< WarehouseLocationProduct> productToReturn;
     while (!_products.empty()) {
         auto productOnTop = _products.top();
         _products.pop();
 
         if (productOnTop->getProductId() != productIdToRemove) {
             temporaryProducts.push(productOnTop);
+        }
+        else {
+            productToReturn = productOnTop;
         }
     }
 
@@ -37,6 +42,7 @@ void WarehouseLocationFilo::RemoveProduct(std::shared_ptr<DocumentProduct> produ
         finalProducts.push(item);
     }
     _products = finalProducts;
+    return productToReturn;
 
 }
 

@@ -8,7 +8,7 @@ void WarehouseRepository::addWarehouse(std::shared_ptr<Warehouse> warehouse)
 	const char* sqlQuery = "CREATE TABLE IF NOT EXISTS Warehouse (IdGuid TEXT PRIMARY KEY, Name TEXT, CreateDate TEXT);";
 	char* errMsg;
 	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
-	std::string sqlQuery1 = "INSERT INTO Warehouse (IdGuid, Name) VALUES ('" + warehouse->getId() + "', '" + warehouse->getName() + "');";
+	std::string sqlQuery1 = "INSERT INTO Warehouse (IdGuid, Name, CreateDate) VALUES ('" + warehouse->getId() + "', '" + warehouse->getName() + "', '" + warehouse->getCreateDate() + "');";
 	//std::string sqlquewy2 = "INSERT INTO Warehouse (IdGuid, Name) VALUES ('test1', 'test2')";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
@@ -90,18 +90,17 @@ std::shared_ptr<Warehouse> WarehouseRepository::GetById(std::string id)
     if (sqlite3_step(stmt) == SQLITE_ROW) {
         auto id = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
         auto name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-        sqlite3_finalize(stmt);
-        sqlite3_close(db);
+        
         Warehouse warehouse = Warehouse(name, id);
         auto res = std::make_shared<Warehouse>(warehouse);
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return res;
     }
 
     sqlite3_finalize(stmt);
     sqlite3_close(db);
-    Warehouse warehouse = Warehouse("");
-    auto res = std::make_shared<Warehouse>(warehouse);
-    return res;
+    return nullptr;
 }
 
 //WarehouseDto WarehouseRepository::GetByIddDto(std::string id)

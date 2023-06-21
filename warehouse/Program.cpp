@@ -6,6 +6,7 @@
 #include "WarehouseDocumentService.h"
 #include "WarehouseLocationService.h"
 #include "UIManager.h"
+#include "WarehouseService.h"
 
 
 class AppWarehouse 
@@ -117,8 +118,10 @@ private:
 };
 
 int main() {
-	/*auto ProductManager = UIProductManager();
-	ProductManager.ShowAll();*/
+	/*auto ser = WarehouseService();
+	auto dto = WarehouseDto();
+	dto.Name = "Magazyn";
+	ser.CreateWarehouse(std::make_shared<WarehouseDto>(dto));*/
 	auto app = AppWarehouse();
 	app.Start();
 

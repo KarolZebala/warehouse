@@ -14,12 +14,6 @@ class Warehouse {
 public:
     explicit Warehouse(const std::string name, const std::string warehouseId = "");
 
-    /*void AddWarehouseLocations(
-        std::string name,
-        int width,
-        int depth,
-        int height
-    );*/
     void UpdateStorageArea();
 
 
@@ -28,6 +22,9 @@ public:
 
     std::string getName();
     std::string getId();
+    std::string getCreateDate() {
+        return std::to_string(this->CreateDate);
+    }
 
     void setId(std::string id);
     std::shared_ptr<WarehouseLocation> GetLocationById(std::string id);

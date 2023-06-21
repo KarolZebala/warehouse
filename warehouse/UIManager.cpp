@@ -146,42 +146,85 @@ void UIDocumentManager::ShowById() {
 
 };
 void UIDocumentManager::AddNew() {
-	/*auto document = WarehouseDocumentDto();*/
-	auto warehouseReleaseDto = WarehouseReleseDocumentDto();
-	warehouseReleaseDto.DocumentName = "release";
-	std::string productId = "";
-	std::string warehouseId = "";
-	auto documentService = IWarehouseDocumentService();
-	auto productService = IWarehouseProductService();
-
-
-	//std::cout << "podaj nazwe dokumentu " << std::endl;
-	//std::cin >> warehouseReleaseDto.DocumentName;
-	std::cout << "podaj id dokumentu " << std::endl;
-	std::cin >> warehouseReleaseDto.DocumentIdGuid;
-	std::cout << "podaj id magazynu " << std::endl;
-	std::cin >> warehouseReleaseDto.WarehouseIdGuid;
-	std::cout << "podaj imie klienta " << std::endl;
-	std::cin >> warehouseReleaseDto.ClientName;
-	std::cout << "podaj id produktu " << std::endl;
-	std::cin >> productId;
-	warehouseId = warehouseReleaseDto.WarehouseIdGuid;
-
 	try
 	{
-		auto productDto = productService.GetProductById(warehouseId, productId);
-		auto receptionDto = WarehouseReceptionDocumentDto();
-		receptionDto.Products.push_back(*productDto);
+		std::string userInput = "";
+
+		std::cout << "Wybierz jaki dokument chcesz stworzyæ: " << std::endl;
+		std::cout << "1 Wydanie " << std::endl;
+		std::cout << "2 Przyjecie " << std::endl;
+		std::cin >> userInput;
+
+		std::string productId = "";
+		std::string warehouseId = "";
+
+		if (userInput == "1") {
+			auto warehouseReleaseDto = WarehouseReleseDocumentDto();
+
+			std::cout << "podaj nazwe dokumentu " << std::endl;
+			std::cin >> warehouseReleaseDto.DocumentName;
+			std::cout << "podaj id magazynu " << std::endl;
+			std::cin >> warehouseReleaseDto.WarehouseIdGuid;
+			std::cout << "podaj imie klienta " << std::endl;
+			std::cin >> warehouseReleaseDto.ClientName;
+			std::cout << "podaj imie pracownika " << std::endl;
+			std::cin >> warehouseReleaseDto.AssignedEmployeeName;
+			
+			std::cout << "Podaj id produktów aby skoñczyæ wciœnij 0 " << std::endl;
+			while (true) {
+
+				std::cout << "podaj id produktu " << std::endl;
+				std::cin >> productId;
+				if (productId == "0") {
+					break;
+				}
+				warehouseId = warehouseReleaseDto.WarehouseIdGuid;
+				auto productDto = _ProductService->GetProductById(warehouseId, productId);
+				std::cout << "podaj id lokalizacji magazynowej" << std::endl;
+				std::cin >> productDto->WarehouseLocationIdGuid;
+				warehouseReleaseDto.Products.push_back(*productDto);
+			}
+
+			_DocumentService->CreateWarehouseDocument(warehouseReleaseDto);
+		}
+		else if (userInput == "2") {
+			auto warehouseReceptionDto = WarehouseReceptionDocumentDto();
+
+			std::cout << "podaj nazwe dokumentu " << std::endl;
+			std::cin >> warehouseReceptionDto.DocumentName;
+			std::cout << "podaj id magazynu " << std::endl;
+			std::cin >> warehouseReceptionDto.WarehouseIdGuid;
+			std::cout << "podaj imie klienta " << std::endl;
+			std::cin >> warehouseReceptionDto.ClientName;
+			std::cout << "podaj imie pracownika " << std::endl;
+			std::cin >> warehouseReceptionDto.AssignedEmployeeName;
+			std::cout << "Podaj id produktów aby skoñczyæ wciœnij 0 " << std::endl;
+			while (true) {
+
+				std::cout << "podaj id produktu " << std::endl;
+				std::cin >> productId;
+				if (productId == "0") {
+					break;
+				}
+				warehouseId = warehouseReceptionDto.WarehouseIdGuid;
+				auto productDto = _ProductService->GetProductById(warehouseId, productId);
+				std::cout << "podaj id lokalizacji magazynowej" << std::endl;
+				std::cin >> productDto->WarehouseLocationIdGuid;
+				warehouseReceptionDto.Products.push_back(*productDto);
+			}
+
+			_DocumentService->CreateWarehouseDocument(warehouseReceptionDto);
+		}
+		else {
+			std::cout<<"Nie ma takiej opcji" << std::endl;
+		}
 	}
 	catch (const std::exception&)
 	{
 		std::cout << "Operacja siê nie powiod³a " << std::endl;
 	}
 
-	std::cout << "podaj imie pracownika " << std::endl;
-	std::cin >> warehouseReleaseDto.AssignedEmployeeName;
-
-	_DocumentService->CreateWarehouseDocument(warehouseReleaseDto);
+	
 };
 
 void UIDocumentManager::printDocumentReception(std::shared_ptr <WarehouseDocumentDto> Document) {

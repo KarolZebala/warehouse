@@ -1,6 +1,6 @@
 #include "WarehouseLocationFifo.h"
 
-void WarehouseLocationFifo::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
+std::shared_ptr< WarehouseLocationProduct> WarehouseLocationFifo::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
 {
 	auto canProductBeAdded = CheckIfLocationHasStorageCondition();
 	if (!canProductBeAdded) {
@@ -14,23 +14,29 @@ void WarehouseLocationFifo::AddProductFromDocument(std::shared_ptr<DocumentProdu
 	auto locationProduct = WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
 	auto locationProductPtr = std::make_shared<WarehouseLocationProduct>(locationProduct);
 	_products.push(locationProductPtr);
+	return locationProductPtr;
 }
 
-void WarehouseLocationFifo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
+std::shared_ptr< WarehouseLocationProduct> WarehouseLocationFifo::RemoveProduct(std::shared_ptr<DocumentProduct> product)
 {
 	auto targetId = product->getProductId();
 	auto newProductQueue = std::queue<std::shared_ptr<WarehouseLocationProduct>>();
+	std::shared_ptr< WarehouseLocationProduct> productToReturn;
 	while (!_products.empty()) {
 		auto item = _products.front();
 
 		if (item->getProductId() != targetId) {
 			newProductQueue.push(item);
 		}
+		else {
+			productToReturn = item;
+		}
 
 		_products.pop();
 		
 	}
 	_products = newProductQueue;
+	return productToReturn;
 }
 
 int WarehouseLocationFifo::getOccupiedVolume()

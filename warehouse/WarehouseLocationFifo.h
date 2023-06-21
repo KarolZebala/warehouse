@@ -12,8 +12,8 @@ public: WarehouseLocationFifo(
     std::string locationId = "",
     std::string storageMethod = "FIFO"
 ) : WarehouseLocation(name, width, depth, height, storageMethod, warhouseId, locationId) {};
-      void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
-      void RemoveProduct(std::shared_ptr<DocumentProduct>  product);
+      std::shared_ptr< WarehouseLocationProduct> AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
+      std::shared_ptr< WarehouseLocationProduct> RemoveProduct(std::shared_ptr<DocumentProduct>  product);
       int getOccupiedVolume();
       void AddRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products);
 private: 

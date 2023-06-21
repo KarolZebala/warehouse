@@ -112,31 +112,24 @@ std::shared_ptr<Product> ProuductRepository::getProductById(std::string warehous
     auto warehouseLocationIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
     auto warehouseIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
 
-    
-
-    if (sqlite3_step(stmt) == SQLITE_ROW) {
-        auto product = Product(
-            name,
-            condition,
-            comments,
-            storageMethod,
-            price,
-            quantity,
-            xDimension,
-            yDimension,
-            zDimension,
-            warehouseLocationIdGuid,
-            warehouseIdGuid,
-            productIdGuid
-        );
-        sqlite3_finalize(stmt);
-        sqlite3_close(db);
-        auto productPtr = std::make_shared<Product>(product);
-        return productPtr;
-    }
-
+    auto product = Product(
+        name,
+        condition,
+        comments,
+        storageMethod,
+        price,
+        quantity,
+        xDimension,
+        yDimension,
+        zDimension,
+        warehouseLocationIdGuid,
+        warehouseIdGuid,
+        productIdGuid
+    );
     sqlite3_finalize(stmt);
     sqlite3_close(db);
-    return nullptr;
+    auto productPtr = std::make_shared<Product>(product);
+    return productPtr;
+    
     
 }

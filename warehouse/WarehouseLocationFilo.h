@@ -13,8 +13,8 @@ public: WarehouseLocationFilo(
     std::string storageMethod = "FILO"
 ) : WarehouseLocation(name, width, depth, height, storageMethod, warhouseId, locationId) {};
 
-      void AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
-      void RemoveProduct(std::shared_ptr<DocumentProduct>  product);
+      std::shared_ptr< WarehouseLocationProduct> AddProductFromDocument(std::shared_ptr<DocumentProduct>  product);
+      std::shared_ptr< WarehouseLocationProduct> RemoveProduct(std::shared_ptr<DocumentProduct>  product);
       int getOccupiedVolume();
       void addRangeProduct(std::vector<std::shared_ptr<WarehouseLocationProduct>> products);
 private:

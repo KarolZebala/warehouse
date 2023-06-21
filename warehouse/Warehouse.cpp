@@ -13,23 +13,6 @@ Warehouse::Warehouse(const std::string name, std::string warehosueId)
 
 }
 
-//void Warehouse::AddWarehouseLocations(
-//    std::string name,
-//    int width,
-//    int depth,
-//    int height,
-//
-//)
-//{
-//    auto location =  WarehouseLocation(
-//        name,
-//        width,
-//        depth,
-//        height
-//    );
-//    auto locationPtr = std::make_shared<WarehouseLocation>(location);
-//    _warehouseLocations.push_back(locationPtr);
-//}
 
 void Warehouse::UpdateStorageArea()
 {

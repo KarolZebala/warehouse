@@ -9,15 +9,7 @@ std::string WarehouseService::CreateWarehouse(std::shared_ptr<WarehouseDto> dto)
 {
     auto warehouse = Warehouse(dto->Name);
     auto warehousePtr = std::make_shared<Warehouse>(warehouse);
-    /*for (auto& location : dto->WarehosueLocations)
-    {
-        warehousePtr->AddWarehouseLocations(
-            location.WarehouseLocationName,
-            location.Width,
-            location.Depth,
-            location.Height
-        );
-    }*/
+
     _warehouseRepository->addWarehouse(warehousePtr);
     
     return warehousePtr->getId();

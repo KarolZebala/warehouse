@@ -32,13 +32,16 @@ void WarehouseDocumentService::CreateWarehouseDocument(WarehouseReceptionDocumen
 		if (location == nullptr) {
 			throw new std::exception("Not found location");
 		}
-		location->AddProductFromDocument(productToAddPtr);
+		auto locationProduct = location->AddProductFromDocument(productToAddPtr);
 		
 
 		documentPtr->addProductToDocument(productToAddPtr);
-		_documentRepository->addRecepiton(documentPtr);
+		//_locationRepository->createLocationProduct(locationProduct);
+		
 
 	}
+
+	_documentRepository->addRecepiton(documentPtr);
 	
 }
 

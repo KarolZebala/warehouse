@@ -69,13 +69,17 @@ bool WarehouseLocation::CheckIfLocationHasSpace(int volume)
     return true;
 }
 
-void WarehouseLocation::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
+std::shared_ptr< WarehouseLocationProduct> WarehouseLocation::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
 {
-    
+    auto productToAdd = WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
+    auto prdocutToAddPtr = std::make_shared<WarehouseLocationProduct>(productToAdd);
+    _products.push_back(prdocutToAddPtr);
+    return prdocutToAddPtr;
 }
 
-void WarehouseLocation::RemoveProduct(std::shared_ptr<DocumentProduct>  product)
+std::shared_ptr< WarehouseLocationProduct> WarehouseLocation::RemoveProduct(std::shared_ptr<DocumentProduct>  product)
 {
+    return nullptr;
 }
 int WarehouseLocation::getWidth() {
     return Width;
