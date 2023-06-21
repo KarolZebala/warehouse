@@ -28,6 +28,9 @@ public:
 			if (userInput == "2") {
 				ManageDocument();
 			}
+			if (userInput == "3") {
+				ManageLocation();
+			}
 			if (userInput == "4") {
 				break;
 			}
@@ -80,6 +83,32 @@ private:
 			}
 			if (userInput == "3") {
 				documentManager.AddNew();
+			}
+			if (userInput == "4") {
+				break;
+			}
+		}
+	}
+	void ManageLocation() {
+		auto locationManager = UILocationManager();
+		while (true) {
+			std::cout << "Podaj co chcesz zrobiæ: \n";
+			std::cout << "1. pokaz lokalizacje\n";
+			std::cout << "2. pokaz wybran¹ lokalizacjê\n";
+			std::cout << "3. dodaj lokalizacjê\n";
+			std::cout << "4. wroc do menu\n";
+
+			std::string userInput;
+			std::cin >> userInput;
+
+			if (userInput == "1") {
+				locationManager.ShowAll();
+			}
+			if (userInput == "2") {
+				locationManager.ShowById();
+			}
+			if (userInput == "3") {
+				locationManager.AddNew();
 			}
 			if (userInput == "4") {
 				break;

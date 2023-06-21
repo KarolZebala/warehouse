@@ -8,7 +8,7 @@ public:
 	virtual std::shared_ptr<WarehouseLocationDto> GetWarahouseLocationById(std::string warehouseId, std::string locationId) { return std::make_shared<WarehouseLocationDto>(WarehouseLocationDto()); };
 	virtual std::vector<std::shared_ptr<WarehouseLocationDto>> GetAllWarehouseLocation(std::string warehouseId) { return std::vector<std::shared_ptr<WarehouseLocationDto>>(); };
 };
-class WarehouseLocationService : IWarehouseLocationService
+class WarehouseLocationService : public IWarehouseLocationService
 {
 public:
 	WarehouseLocationService();
