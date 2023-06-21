@@ -26,8 +26,8 @@ public:
 
 	std::vector<std::shared_ptr<ProductDto>> GetAllProducts(std::string warehouseId);
 private:
-	std::shared_ptr<ProuductRepository> _productRepository { nullptr };
-	std::shared_ptr<WarehouseRepository> _warehosueRepository { nullptr };
+	std::shared_ptr<IProuductRepository> _productRepository { nullptr };
+	std::shared_ptr<IWarehouseRepository> _warehosueRepository { nullptr };
 	std::shared_ptr<ProductDto> MapProduct(std::shared_ptr<Product> product);
 
 	

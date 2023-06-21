@@ -4,15 +4,19 @@
 #include <sqlite3.h>
 class IWarehouseDocumentRepository {
 public:
-	void addRecepiton(std::shared_ptr<WarehouseDocumentReception>  reception) {};
-	std::vector<std::shared_ptr<WarehouseDocumentReception>> getAllReceptions() { return std::vector<std::shared_ptr<WarehouseDocumentReception>>(); };
-	std::shared_ptr<WarehouseDocumentReception> getRecepitonById(std::string receptionId) { return std::shared_ptr<WarehouseDocumentReception>(); };
+	virtual void addRecepiton(std::shared_ptr<WarehouseDocumentReception>  reception) {};
+	virtual std::vector<std::shared_ptr<WarehouseDocumentReception>> getAllReceptions() { return std::vector<std::shared_ptr<WarehouseDocumentReception>>(); };
+	virtual std::shared_ptr<WarehouseDocumentReception> getRecepitonById(std::string receptionId) { return std::shared_ptr<WarehouseDocumentReception>(); };
 
-	void addRelease(std::shared_ptr<WarehouseDocumentRelease> release) {};
-	std::vector<std::shared_ptr<WarehouseDocumentRelease>> getAllReleases();
-	std::shared_ptr<WarehouseDocumentRelease> getReleaseById(std::string releaseId);
+	virtual void addRelease(std::shared_ptr<WarehouseDocumentRelease> release) {};
+	virtual std::vector<std::shared_ptr<WarehouseDocumentRelease>> getAllReleases() {
+		return std::vector< std::shared_ptr<WarehouseDocumentRelease>>();
+	};
+	virtual std::shared_ptr<WarehouseDocumentRelease> getReleaseById(std::string releaseId) {
+		return std::shared_ptr<WarehouseDocumentRelease>();
+	};
 };
-class WarehouseDocumentRepository
+class WarehouseDocumentRepository : public IWarehouseDocumentRepository
 {
 public:
 	void addRecepiton(std::shared_ptr<WarehouseDocumentReception>  reception);

@@ -21,7 +21,7 @@ public:
 
 	double GetOccupiedVolumeForLocation(std::string warehouseId, std::string locationId);
 private:
-	std::shared_ptr<WarehouseLocationRepository> _locationRepository { nullptr };
+	std::shared_ptr<IWarehouseLocationRepository> _locationRepository { nullptr };
 	WarehouseLocationDto MapLocation(std::shared_ptr<WarehouseLocation> location) {
 		auto res = WarehouseLocationDto();
 		res.Depth = location->getDepth();

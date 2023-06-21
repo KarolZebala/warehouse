@@ -24,7 +24,7 @@ public:
     std::shared_ptr<WarehouseDto> GetWarehosueById(std::string id);
 
 private:
-    std::shared_ptr<WarehouseRepository> _warehouseRepository;
+    std::shared_ptr<IWarehouseRepository> _warehouseRepository;
 
     std::shared_ptr<WarehouseDto> MapWarehouse(std::shared_ptr<Warehouse> warehouse);
 

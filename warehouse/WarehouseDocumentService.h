@@ -31,9 +31,9 @@ public:
     std::shared_ptr<WarehouseDocumentDto> GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId);
 
 private:
-    std::shared_ptr<WarehouseRepository> _warehouseRepository;
-    std::shared_ptr<WarehouseDocumentRepository> _documentRepository;
-    std::shared_ptr<WarehouseLocationRepository> _locationRepository;
+    std::shared_ptr<IWarehouseRepository> _warehouseRepository;
+    std::shared_ptr<IWarehouseDocumentRepository> _documentRepository;
+    std::shared_ptr<IWarehouseLocationRepository> _locationRepository;
 
 };
 
