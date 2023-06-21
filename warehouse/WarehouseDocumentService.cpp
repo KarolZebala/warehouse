@@ -75,9 +75,9 @@ std::vector<std::shared_ptr<WarehouseDocumentDto>> WarehouseDocumentService::Get
 	auto res = std::vector<std::shared_ptr<WarehouseDocumentDto>>();
 	auto documents = _documentRepository->getAllReceptions();
 	for (auto document : documents) {
-		auto documentDto = WarehouseDocumentDto(
-			document->getName()
-		);
+		auto documentDto = WarehouseDocumentDto();
+		documentDto.DocumentName = document->getName();
+		
 		auto doucmentDtoPtr = std::make_shared<WarehouseDocumentDto>(documentDto);
 		res.push_back(doucmentDtoPtr);
 	}
@@ -90,9 +90,9 @@ std::vector<std::shared_ptr<WarehouseDocumentDto>> WarehouseDocumentService::Get
 	auto warehosue = _warehouseRepository->GetById(warehouseId);
 	auto documents = _documentRepository->getAllReceptions();
 	for (auto document : documents) {
-		auto documentDto = WarehouseDocumentDto(
-			document->getName()
-		);
+		auto documentDto = WarehouseDocumentDto();
+		documentDto.DocumentName = document->getName();
+		
 		auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(documentDto);
 		res.push_back(doucmentPtr);
 	}
@@ -102,9 +102,8 @@ std::vector<std::shared_ptr<WarehouseDocumentDto>> WarehouseDocumentService::Get
 std::shared_ptr<WarehouseDocumentDto> WarehouseDocumentService::GetWarehosueDocumentReceptionById(std::string warehouseId, std::string documentId)
 {
 	auto document = _documentRepository->getRecepitonById(documentId);
-	auto res = WarehouseDocumentDto(
-		document->getName()
-	);
+	auto res = WarehouseDocumentDto();
+	res.DocumentName = document->getName();
 	auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(res);
 
 	return doucmentPtr;
@@ -113,9 +112,9 @@ std::shared_ptr<WarehouseDocumentDto> WarehouseDocumentService::GetWarehosueDocu
 std::shared_ptr<WarehouseDocumentDto> WarehouseDocumentService::GetWarehosueDocumentReleaseById(std::string warehouseId, std::string documentId)
 {
 	auto document = _documentRepository->getReleaseById(documentId);
-	auto res = WarehouseDocumentDto(
-		document->getName()
-	);
+	auto res = WarehouseDocumentDto();
+	res.DocumentName = document->getName();
+	
 	auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(res);
 
 	return doucmentPtr;

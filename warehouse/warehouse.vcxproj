@@ -140,6 +140,7 @@
     <ClCompile Include="StorageConditions.cpp" />
     <ClCompile Include="StorageConditionsDto.cpp" />
     <ClCompile Include="TemperaturStorageConditions.cpp" />
+    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="WarehosueDto.cpp" />
     <ClCompile Include="Warehouse.cpp" />
     <ClCompile Include="WarehouseDbContext.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="StorageConditions.h" />
     <ClInclude Include="StorageConditionsDto.h" />
     <ClInclude Include="TemperaturStorageConditions.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="WarehouseDto.h" />
     <ClInclude Include="Warehouse.h" />
     <ClInclude Include="WarehouseDbContext.h" />

@@ -5,9 +5,7 @@
 class WarehouseDocumentDto
 {
 public:
-	WarehouseDocumentDto(std::string name) {
-		DocumentName = name;
-	}
+
 	std::string DocumentName;
 	std::string ClientName;
 	std::string AssignedEmployeeName;
