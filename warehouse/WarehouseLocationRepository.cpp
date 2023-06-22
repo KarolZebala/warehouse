@@ -148,13 +148,21 @@ void WarehouseLocationRepository::createLocationProduct(std::shared_ptr<Warehous
     char* errMsg;
     rc = sqlite3_exec(db, query.c_str(), 0, 0, &errMsg);
 
-    sqlite3_stmt* stmt;
 
     std::string insertQuery = "INSERT INTO WarehouseLocationProduct (ProductId,LocationId,  Volume) VALUES ('" + product->getProductId() + "', '" + product->getLocationId() + "', "  + std::to_string(product->getVolume()) + ");";
-    rc = sqlite3_exec(db, insertQuery.c_str(), 0, &stmt, &errMsg);
-
-    sqlite3_finalize(stmt);
+    rc = sqlite3_exec(db, insertQuery.c_str(), 0, 0, &errMsg);
     sqlite3_close(db);
+}
+
+void WarehouseLocationRepository::removeLocationProduct(std::string productId, std::string locationId)
+{
+    sqlite3* db;
+    auto rc = sqlite3_open("test.db", &db);
+    std::string query = "DELETE FROM WarehouseLocationProduct WHERE LocationId  IN (SELECT LocationId FROM WarehouseLocationProduct WHERE ProductId = '" + productId + "' AND LocationId = '" + locationId + "' LIMIT 1);";
+    char* errMsg;
+    rc = sqlite3_exec(db, query.c_str(), 0, 0, &errMsg);
+    sqlite3_close(db);
+
 }
 
 void WarehouseLocationRepository::addLocationProduct(std::shared_ptr<WarehouseLocationProduct> product, sqlite3* db) {
@@ -187,17 +195,17 @@ std::vector<std::shared_ptr<WarehouseLocationProduct>> WarehouseLocationReposito
     while (sqlite3_step(stmt1) == SQLITE_ROW) {
         std::string productId = reinterpret_cast<const char*>(sqlite3_column_text(stmt1, 0));
         std::string locationId = reinterpret_cast<const char*>(sqlite3_column_text(stmt1, 1));
-        std::string addDate = reinterpret_cast<const char*>(sqlite3_column_text(stmt1, 2));
+        //std::string addDate = reinterpret_cast<const char*>(sqlite3_column_text(stmt1, 2));
         int volume = sqlite3_column_int(stmt1, 3);
         
-        struct std::tm tm;
+       /* struct std::tm tm;
         std::istringstream iss;
         iss.str(addDate);
-        iss >> std::get_time(&tm, "%Y:%m:%d %H:%M:%S");
+        iss >> std::get_time(&tm, "%Y:%m:%d %H:%M:%S");*/
 
-        std::time_t time = mktime(&tm);
+        //std::time_t time = mktime(nullptr);
 
-        auto product = WarehouseLocationProduct(productId, volume, locationId, time);
+        auto product = WarehouseLocationProduct(productId, volume, locationId);
         auto productPtr = std::make_shared<WarehouseLocationProduct>(product);
         products.push_back(productPtr);
     }

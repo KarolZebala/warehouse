@@ -6,14 +6,14 @@ void WarehouseDocumentRepository::addRecepiton(std::shared_ptr<WarehouseDocument
 	const char* sqlQuery = "CREATE TABLE IF NOT EXISTS WarehouseDocumentReception (\n"
 		"    DocumentIdGuid TEXT PRIMARY KEY,\n"
 		"    Name TEXT,\n"
-		"    CreateDate TEXT\n"
-		"    IssueDate TEXT\n"
+		"    CreateDate TEXT,\n"
+		"    IssueDate TEXT,\n"
 		"    WarehouseId TEXT\n"
 		");";
 	char* errMsg;
 	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
-	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentReception (DocumentIdGuid, Name, CreateDate, IssueDate) \n"
-		"VALUES ('" + reception->getDocuemntId() + "', '" + reception->getName() + "', '" + std::to_string(reception->getCreateDate()) + "', '" + std::to_string(reception->getIssueDate());+"');";
+	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentReception (DocumentIdGuid, Name, CreateDate, IssueDate, WarehouseId) \n"
+		"VALUES ('" + reception->getDocuemntId() + "', '" + reception->getName() + "', '" + std::to_string(reception->getCreateDate()) + "', '" + std::to_string(reception->getIssueDate()) + "', '" + reception->getWarehouseId() + "');";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
 	auto receptionProduct = reception->getAllReceptionProduct();
@@ -88,19 +88,19 @@ std::shared_ptr<WarehouseDocumentReception> WarehouseDocumentRepository::getRece
 void WarehouseDocumentRepository::addRelease(std::shared_ptr<WarehouseDocumentRelease> release) {
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
-
 	const char* sqlQuery = "CREATE TABLE IF NOT EXISTS WarehouseDocumentRelease (\n"
 		"    DocumentIdGuid TEXT PRIMARY KEY,\n"
 		"    Name TEXT,\n"
-		"    CreateDate TEXT\n"
-		"    IssueDate TEXT\n"
-		"    WarehouseId TEXT\n"
-		"    ClientName TEXT\n"
+		"    CreateDate TEX,\n"
+		"    IssueDate TEXT,\n"
+		"    WarehouseId TEXT,\n"
+		"    ClientName TEXT,\n"
+		"    EmployeeName TEXT\n"
 		");";
 	char* errMsg;
 	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
-	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentRelease (DocumentIdGuid, Name, CreateDate, IssueDate, ClientName) \n"
-		"VALUES ('" + release->getDocuemntId() + "', '" + release->getName() + "', '" + std::to_string(release->getCreateDate()) + "', '" + std::to_string(release->getIssueDate())+"', '" + release->getClientName() +"');";
+	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentRelease (DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, WarehouseId) \n"
+		"VALUES ('" + release->getDocuemntId() + "', '" + release->getName() + "', '" + std::to_string(release->getCreateDate()) + "', '" + std::to_string(release->getIssueDate())+"', '" + release->getClientName() + "', '" + release->getWarehouseId() +"');";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
 	auto receptionProduct = release->getAllReleaseProduct();
@@ -114,7 +114,7 @@ std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentReposito
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
-	std::string selectQuery = "SELECT * FROM WarehouseDocumentRelease;";
+	std::string selectQuery = "SELECT DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, WarehouseId FROM WarehouseDocumentRelease;";
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
@@ -124,10 +124,9 @@ std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentReposito
 		//moze nie dzialac
 		std::string documentId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
 		std::string name(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
-		std::string createDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
-		std::string issueDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+		std::string issueDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
+		std::string clientName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
-		std::string clientName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)));
 
 		//do dodania parametry
 		auto release = WarehouseDocumentRelease(name, warehosueId, documentId);
