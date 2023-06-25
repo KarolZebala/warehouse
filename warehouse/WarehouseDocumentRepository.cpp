@@ -3,17 +3,17 @@ void WarehouseDocumentRepository::addRecepiton(std::shared_ptr<WarehouseDocument
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
 
-	const char* sqlQuery = "CREATE TABLE IF NOT EXISTS WarehouseDocumentReception (\n"
-		"    DocumentIdGuid TEXT PRIMARY KEY,\n"
-		"    Name TEXT,\n"
-		"    CreateDate TEXT,\n"
-		"    IssueDate TEXT,\n"
-		"    WarehouseId TEXT\n"
-		");";
 	char* errMsg;
-	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
-	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentReception (DocumentIdGuid, Name, CreateDate, IssueDate, WarehouseId) \n"
-		"VALUES ('" + reception->getDocuemntId() + "', '" + reception->getName() + "', '" + std::to_string(reception->getCreateDate()) + "', '" + std::to_string(reception->getIssueDate()) + "', '" + reception->getWarehouseId() + "');";
+	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentReception (DocumentIdGuid, Name, CreateDate, IssueDate, WarehouseId, ClientName, EmployeeName  ) \n"
+		"VALUES ('" 
+		+ reception->getDocuemntId() + "', '"
+		+ reception->getName() + "', '" 
+		+ std::to_string(reception->getCreateDate()) + "', '" 
+		+ std::to_string(reception->getIssueDate()) + "', '" 
+		+ reception->getWarehouseId() + "', '" 
+		+ reception->getClientName() + "', '" 
+		+ reception->getEmployeeName() 
+		+ "');";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
 	auto receptionProduct = reception->getAllReceptionProduct();
@@ -34,15 +34,16 @@ std::vector<std::shared_ptr<WarehouseDocumentReception>> WarehouseDocumentReposi
 	std::vector<std::shared_ptr<WarehouseDocumentReception>> receptions;
 
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		//moze nie dzialac
+		
 		std::string documentId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
 		std::string name(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
 		std::string createDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
 		std::string issueDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt,4)));
+		std::string clientName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)));
+		std::string employeeName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)));
 
-		//do dodania parametry
-		auto reception = WarehouseDocumentReception(name, warehosueId, documentId);
+		auto reception = WarehouseDocumentReception(name, warehosueId, clientName, employeeName, documentId);
 		auto receptionPtr = std::make_shared<WarehouseDocumentReception>(reception);
 		receptions.push_back(receptionPtr);
 	}
@@ -62,15 +63,15 @@ std::shared_ptr<WarehouseDocumentReception> WarehouseDocumentRepository::getRece
 
 
 	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		//moze nie dzialac
 		std::string documentId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
 		std::string name(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
 		std::string createDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
 		std::string issueDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+		std::string clientName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)));
+		std::string employeeName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)));
 
-		//do dodania parametry
-		auto reception = WarehouseDocumentReception(name, warehosueId, documentId);
+		auto reception = WarehouseDocumentReception(name, warehosueId,clientName, employeeName, documentId);
 		auto recepitonPtr = std::make_shared<WarehouseDocumentReception>(reception);
 		sqlite3_finalize(stmt);
 		sqlite3_close(db);
@@ -88,19 +89,18 @@ std::shared_ptr<WarehouseDocumentReception> WarehouseDocumentRepository::getRece
 void WarehouseDocumentRepository::addRelease(std::shared_ptr<WarehouseDocumentRelease> release) {
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
-	const char* sqlQuery = "CREATE TABLE IF NOT EXISTS WarehouseDocumentRelease (\n"
-		"    DocumentIdGuid TEXT PRIMARY KEY,\n"
-		"    Name TEXT,\n"
-		"    CreateDate TEX,\n"
-		"    IssueDate TEXT,\n"
-		"    WarehouseId TEXT,\n"
-		"    ClientName TEXT,\n"
-		"    EmployeeName TEXT\n"
-		");";
 	char* errMsg;
-	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
-	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentRelease (DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, WarehouseId) \n"
-		"VALUES ('" + release->getDocuemntId() + "', '" + release->getName() + "', '" + std::to_string(release->getCreateDate()) + "', '" + std::to_string(release->getIssueDate())+"', '" + release->getClientName() + "', '" + release->getWarehouseId() +"');";
+
+	std::string sqlQuery1 = "INSERT INTO WarehouseDocumentRelease (DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, EmployeeName, WarehouseId) \n"
+		"VALUES ('" 
+		+ release->getDocuemntId() + "', '" 
+		+ release->getName() + "', '"
+		+ std::to_string(release->getCreateDate()) + "', '" 
+		+ std::to_string(release->getIssueDate())+"', '" 
+		+ release->getClientName() + "', '" 
+		+ release->getEmployeeName() + "', '" 
+		+ release->getWarehouseId()
+		+"');";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
 	auto receptionProduct = release->getAllReleaseProduct();
@@ -114,7 +114,7 @@ std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentReposito
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
-	std::string selectQuery = "SELECT DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, WarehouseId FROM WarehouseDocumentRelease;";
+	std::string selectQuery = "SELECT DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, WarehouseId,EmployeeName FROM WarehouseDocumentRelease;";
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
@@ -127,9 +127,9 @@ std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentReposito
 		std::string issueDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
 		std::string clientName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+		std::string employyeName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)));
 
-		//do dodania parametry
-		auto release = WarehouseDocumentRelease(name, warehosueId, documentId);
+		auto release = WarehouseDocumentRelease(name, warehosueId,clientName, employyeName, documentId);
 		auto releasePtr = std::make_shared<WarehouseDocumentRelease>(release);
 		releases.push_back(releasePtr);
 	}
@@ -149,15 +149,15 @@ std::shared_ptr<WarehouseDocumentRelease> WarehouseDocumentRepository::getReleas
 
 
 	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		//moze nie dzialac
 		std::string documentId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
 		std::string name(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
 		std::string createDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
 		std::string issueDate(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
 		std::string warehosueId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+		std::string clientName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)));
+		std::string employyeName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)));
 
-		//do dodania parametry
-		auto release = WarehouseDocumentRelease(name, warehosueId, documentId);
+		auto release = WarehouseDocumentRelease(name, warehosueId,clientName, employyeName, documentId);
 		auto releasePtr = std::make_shared<WarehouseDocumentRelease>(release);
 		sqlite3_finalize(stmt);
 		sqlite3_close(db);
@@ -176,20 +176,10 @@ std::shared_ptr<WarehouseDocumentRelease> WarehouseDocumentRepository::getReleas
 
 void WarehouseDocumentRepository::addDocumentProduct(std::shared_ptr<DocumentProduct> product, sqlite3* db)
 {
-	std::string sqlQuery = "CREATE TABLE IF NOT EXISTS DocumentProduct ("
-		"DocumentProductId TEXT PRIMARY KEY, "
-		"ProductId TEXT, "
-		"DocumentId TEXT, "
-		"ProductName TEXT, "
-		"StorageMethod TEXT, "
-		"Price INTEGER, "
-		"Volume INTEGER"
-		");";
 	char* errMsg;
-	auto rc = sqlite3_exec(db, sqlQuery.c_str(), 0, 0, &errMsg);
 	std::string insertQuery = "INSERT INTO DocumentProduct (DocumentProductId, ProductId, DocumentId, ProductName, StorageMethod, Price, Volume) "
 		"VALUES ('" + product->getDocumentProductId() + "', '" + product->getProductId() + "', '" + product->getDocumentId() + "', '" + product->getProductName() + "', '" + product->getStorageMethod() + "', '" + std::to_string(product->getPrice()) + "', '" + std::to_string(product->getVolume()) + "');";
-	rc = sqlite3_exec(db, insertQuery.c_str(), 0, 0, &errMsg);
+	auto rc = sqlite3_exec(db, insertQuery.c_str(), 0, 0, &errMsg);
 
 }
 
@@ -202,7 +192,6 @@ std::vector<std::shared_ptr<DocumentProduct >> WarehouseDocumentRepository::getA
 	std::vector<std::shared_ptr<DocumentProduct >> documentProducts;
 
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		//moze nie dzialac
 		std::string documentProductId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
 		std::string productId(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
 		std::string productName(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));

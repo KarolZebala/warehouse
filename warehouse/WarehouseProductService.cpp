@@ -39,6 +39,9 @@ std::shared_ptr<ProductDto> WarehouseProductService::MapProduct(std::shared_ptr<
 	productDto.Volume = product->getVolume();
 	productDto.Price = product->getPrice();
 	productDto.Quantity = product->getQuantity();
+	productDto.XDimension = product->getXDimension();
+	productDto.YDimension = product->getYDimension();
+	productDto.ZDimension = product->getZDimension();
 	auto productPtr = std::make_shared< ProductDto>(productDto);
 	return productPtr;
 }

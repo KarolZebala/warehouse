@@ -136,6 +136,7 @@
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="ProuductRepository.cpp" />
     <ClCompile Include="ReceptionProduct.cpp" />
+    <ClCompile Include="SeedingService.cpp" />
     <ClCompile Include="StorageArea.cpp" />
     <ClCompile Include="StorageConditions.cpp" />
     <ClCompile Include="StorageConditionsDto.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="ProductDto.h" />
     <ClInclude Include="ProuductRepository.h" />
     <ClInclude Include="DocumentProduct.h" />
+    <ClInclude Include="SeedingService.h" />
     <ClInclude Include="StorageArea.h" />
     <ClInclude Include="StorageConditions.h" />
     <ClInclude Include="StorageConditionsDto.h" />

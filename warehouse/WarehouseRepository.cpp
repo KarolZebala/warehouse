@@ -5,11 +5,8 @@ void WarehouseRepository::addWarehouse(std::shared_ptr<Warehouse> warehouse)
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
 
-	const char* sqlQuery = "CREATE TABLE IF NOT EXISTS Warehouse (IdGuid TEXT PRIMARY KEY, Name TEXT, CreateDate TEXT);";
 	char* errMsg;
-	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
 	std::string sqlQuery1 = "INSERT INTO Warehouse (IdGuid, Name, CreateDate) VALUES ('" + warehouse->getId() + "', '" + warehouse->getName() + "', '" + warehouse->getCreateDate() + "');";
-	//std::string sqlquewy2 = "INSERT INTO Warehouse (IdGuid, Name) VALUES ('test1', 'test2')";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
 	sqlite3_close(db);

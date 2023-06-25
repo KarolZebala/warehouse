@@ -7,12 +7,17 @@
 #include "WarehouseLocationService.h"
 #include "UIManager.h"
 #include "WarehouseService.h"
+#include "SeedingService.h"
 
 
 class AppWarehouse 
 {
 public:
+	AppWarehouse() {
+		_seedingService = std::make_shared<SeedingService>(SeedingService());
+	}
 	void Start() {
+		SetUpDateBase();
 		while (true) {
 			std::cout << "Podaj co chcesz zrobiæ: \n";
 			std::cout << "1. Zarzadzaj produktami\n";
@@ -38,6 +43,11 @@ public:
 	};
 
 private:
+	std::shared_ptr<ISeedingService> _seedingService;
+	void SetUpDateBase() {
+		_seedingService->AddTables();
+		
+	}
 	void ManageProduct() {
 		auto productManager = UIProductManager();
 		while (true) {
@@ -118,10 +128,6 @@ private:
 };
 
 int main() {
-	/*auto ser = WarehouseService();
-	auto dto = WarehouseDto();
-	dto.Name = "Magazyn";
-	ser.CreateWarehouse(std::make_shared<WarehouseDto>(dto));*/
 	auto app = AppWarehouse();
 	app.Start();
 

@@ -51,7 +51,9 @@ public:
     int getQuantity();
     std::string getStorageMethod();
     std::string getWarehouseId();
-
+    int getXDimension();
+    int getYDimension();
+    int getZDimension();
 
 private:
     int ProductId;

@@ -1,7 +1,10 @@
 #include "WarehouseDocumentReception.h"
 
-WarehouseDocumentReception::WarehouseDocumentReception(std::string name, std::string warehosueId, std::string documentId) : WarehouseDocument(name, warehosueId, documentId)
+WarehouseDocumentReception::WarehouseDocumentReception(std::string name, std::string warehosueId, std::string clientName, std::string employeeName, std::string documentId) : WarehouseDocument(name, warehosueId, documentId)
 {
+	ClientName = clientName;
+	EmployeeName = employeeName;
+	IssueDate = std::time(nullptr);
 }
 
 void WarehouseDocumentReception::addProductToDocument(std::shared_ptr<DocumentProduct> product)
@@ -19,4 +22,14 @@ std::time_t WarehouseDocumentReception::getCreateDate() {
 
 std::time_t WarehouseDocumentReception::getIssueDate() {
 	return IssueDate;
+}
+
+std::string WarehouseDocumentReception::getClientName()
+{
+	return ClientName;
+}
+
+std::string WarehouseDocumentReception::getEmployeeName()
+{
+	return EmployeeName;
 }

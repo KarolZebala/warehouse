@@ -33,6 +33,7 @@ Product::Product(
     WarehouseLocationIdGuid = locationId;
     WarehouseId = warehouseId;
     StorageMethod = storageMethod;
+    Coments = comments;
 }
 
 std::string Product::getName()
@@ -108,6 +109,21 @@ int Product::getQuantity()
 {
     return this->Quantity;
 }
+
+int Product::getXDimension()
+{
+    return this->XDimension;
+}
+int Product::getYDimension()
+{
+    return this->YDimension;
+}
+
+int Product::getZDimension()
+{
+    return this->ZDimension;
+}
+
 
 std::string Product::getStorageMethod()
 {

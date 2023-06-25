@@ -74,38 +74,6 @@ std::shared_ptr<WarehouseLocation>  WarehouseLocationRepository::getById(std::st
     return nullptr;
 }
 
-//std::shared_ptr<WarehouseLocationFilo> WarehouseLocationRepository::getFiloById(std::string id)
-//{
-//    sqlite3* db;
-//    auto rc = sqlite3_open("test.db", &db);
-//
-//    std::string sqlQuery = "SELECT WarehouseLocationIdGuid, WarehouseIdGuid, Name, Width, Depth, Height FROM WarehouseLocation WHERE WarehouseLocationIdGuid = " + id + ";";
-//    sqlite3_stmt* stmt;
-//
-//    rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
-//
-//    rc = sqlite3_step(stmt);
-//    if (rc == SQLITE_ROW) {
-//        std::string locationId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
-//        std::string warehouseId = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-//        std::string name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-//        int width = sqlite3_column_int(stmt, 3);
-//        int depth = sqlite3_column_int(stmt, 4);
-//        int height = sqlite3_column_int(stmt, 5);
-//
-//
-//        sqlite3_finalize(stmt);
-//        sqlite3_close(db);
-//        auto location = new WarehouseLocationFilo(name, width, depth, height, warehouseId, locationId);
-//        auto products = getAllLocationProdut(locationId, db);
-//        location->addRangeProduct(products);
-//        return location;
-//
-//    }
-//    sqlite3_finalize(stmt);
-//    sqlite3_close(db);
-//    return nullptr;
-//}
 
 std::vector<std::shared_ptr<WarehouseLocation>> WarehouseLocationRepository::getAll()
 {
@@ -169,9 +137,7 @@ void WarehouseLocationRepository::addLocationProduct(std::shared_ptr<WarehouseLo
     
     int rc = sqlite3_open("test.db", &db);
 
-    std::string query = "CREATE TABLE IF NOT EXISTS WarehouseLocationProduct (ProductId TEXT, LocationId TEXT, AddDate INTEGER, Volume INTEGER);";
     char* errMsg;
-    rc = sqlite3_exec(db, query.c_str(), 0, 0, &errMsg);
 
     sqlite3_stmt* stmt;
 
@@ -195,15 +161,8 @@ std::vector<std::shared_ptr<WarehouseLocationProduct>> WarehouseLocationReposito
     while (sqlite3_step(stmt1) == SQLITE_ROW) {
         std::string productId = reinterpret_cast<const char*>(sqlite3_column_text(stmt1, 0));
         std::string locationId = reinterpret_cast<const char*>(sqlite3_column_text(stmt1, 1));
-        //std::string addDate = reinterpret_cast<const char*>(sqlite3_column_text(stmt1, 2));
         int volume = sqlite3_column_int(stmt1, 3);
         
-       /* struct std::tm tm;
-        std::istringstream iss;
-        iss.str(addDate);
-        iss >> std::get_time(&tm, "%Y:%m:%d %H:%M:%S");*/
-
-        //std::time_t time = mktime(nullptr);
 
         auto product = WarehouseLocationProduct(productId, volume, locationId);
         auto productPtr = std::make_shared<WarehouseLocationProduct>(product);

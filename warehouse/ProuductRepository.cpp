@@ -4,28 +4,21 @@ void ProuductRepository::addProduct(std::shared_ptr<Product> product)
 {
 	sqlite3* db;
 	int rc = sqlite3_open("test.db", &db);
-
-	const char* sqlQuery = "CREATE TABLE IF NOT EXISTS Product (\n"
-                       "    ProductIdGuid TEXT PRIMARY KEY,\n"
-                       "    Name TEXT,\n"
-                       "    StorageMethod TEXT,\n"
-                       "    Condition TEXT,\n"
-                       "    Comments TEXT,\n"
-                       "    Price INTEGER,\n"
-                       "    Quantity INTEGER,\n"
-                       "    XDimension INTEGER,\n"
-                       "    ZDimension INTEGER,\n"
-                       "    YDimension INTEGER,\n"
-                       "    WarehouseLocationIdGuid TEXT,\n"
-                       "    WarehouseId TEXT\n"
-		");";
-
 	char* errMsg;
-    //sqlQuery = "Drop table Product";
-    rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
-	rc = sqlite3_exec(db, sqlQuery, 0, 0, &errMsg);
-	std::string sqlQuery1 = "INSERT INTO Product (ProductIdGuid, Name, WarehouseId, StorageMethod, Condition, Comments, Price) \n"
-		"VALUES ('" + product->getProductId() + "', '" + product->getName() + "', '"  + product->getWarehouseId() + "', '" + product->getStorageMethod() + "', '" + product->getConditon() + "', '" + product->getComents() + "', '" + std::to_string(product->getPrice()) +"');";
+	std::string sqlQuery1 = "INSERT INTO Product (ProductIdGuid, Name, WarehouseId, StorageMethod, Condition, Comments, Price,XDimension,YDimension, ZDimension, Quantity  ) \n"
+		"VALUES ('" 
+        + product->getProductId() + "', '"
+        + product->getName() + "', '"
+        + product->getWarehouseId() + "', '"
+        + product->getStorageMethod() + "', '" 
+        + product->getConditon() + "', '"
+        + product->getComents() + "', '"
+        + std::to_string(product->getPrice()) + "', '"
+        + std::to_string(product->getXDimension()) + "', '"
+        + std::to_string(product->getYDimension()) + "', '"
+        + std::to_string(product->getZDimension()) + "', '"
+        + std::to_string(product->getQuantity())
+        +"');";
 	rc = sqlite3_exec(db, sqlQuery1.c_str(), 0, 0, &errMsg);
 
 	if (rc != SQLITE_OK) {

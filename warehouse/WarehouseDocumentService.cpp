@@ -13,7 +13,12 @@ WarehouseDocumentService::WarehouseDocumentService()
 
 void WarehouseDocumentService::CreateWarehouseDocument(WarehouseReceptionDocumentDto dto)
 {
-	auto document = WarehouseDocumentReception(dto.DocumentName, dto.WarehouseIdGuid);
+	auto document = WarehouseDocumentReception(
+		dto.DocumentName,
+		dto.WarehouseIdGuid,
+		dto.ClientName,
+		dto.AssignedEmployeeName
+	);
 	auto documentPtr = std::make_shared<WarehouseDocumentReception>(document);
 	auto productsToAdd =  std::vector<std::shared_ptr<Product>>();
 	for (auto& product : dto.Products) {
@@ -48,7 +53,12 @@ void WarehouseDocumentService::CreateWarehouseDocument(WarehouseReceptionDocumen
 void WarehouseDocumentService::CreateWarehouseDocument(WarehouseReleseDocumentDto dto)
 {
 	auto warehouse = _warehouseRepository->GetById(dto.WarehouseIdGuid);
-	auto document =  WarehouseDocumentRelease(dto.DocumentName, dto.WarehouseIdGuid);
+	auto document =  WarehouseDocumentRelease(
+		dto.DocumentName,
+		dto.WarehouseIdGuid,
+		dto.ClientName,
+		dto.AssignedEmployeeName
+	);
 	auto documentPtr = std::make_shared<WarehouseDocumentRelease>(document);
 	auto productsToAdd = new std::vector<Product*>();
 	for (auto& product : dto.Products) {
@@ -84,7 +94,9 @@ std::vector<std::shared_ptr<WarehouseDocumentDto>> WarehouseDocumentService::Get
 		auto documentDto = WarehouseDocumentDto();
 		documentDto.DocumentName = document->getName();
 		documentDto.DocumentIdGuid = document->getDocuemntId();
-		
+		documentDto.WarehouseIdGuid = document->getWarehouseId();
+		documentDto.ClientName = document->getClientName();
+		documentDto.AssignedEmployeeName = document->getEmployeeName();
 		auto doucmentDtoPtr = std::make_shared<WarehouseDocumentDto>(documentDto);
 		res.push_back(doucmentDtoPtr);
 	}
@@ -100,7 +112,9 @@ std::vector<std::shared_ptr<WarehouseDocumentDto>> WarehouseDocumentService::Get
 		auto documentDto = WarehouseDocumentDto();
 		documentDto.DocumentName = document->getName();
 		documentDto.DocumentIdGuid = document->getDocuemntId();
-
+		documentDto.WarehouseIdGuid = document->getWarehouseId();
+		documentDto.ClientName = document->getClientName();
+		documentDto.AssignedEmployeeName = document->getEmployeeName();
 		
 		auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(documentDto);
 		res.push_back(doucmentPtr);
@@ -117,7 +131,9 @@ std::shared_ptr<WarehouseDocumentDto> WarehouseDocumentService::GetWarehosueDocu
 	auto res = WarehouseDocumentDto();
 	res.DocumentName = document->getName();
 	res.DocumentIdGuid = document->getDocuemntId();
-
+	res.WarehouseIdGuid = document->getWarehouseId();
+	res.ClientName = document->getClientName();
+	res.AssignedEmployeeName = document->getEmployeeName();
 	auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(res);
 
 	return doucmentPtr;
@@ -132,7 +148,9 @@ std::shared_ptr<WarehouseDocumentDto> WarehouseDocumentService::GetWarehosueDocu
 	auto res = WarehouseDocumentDto();
 	res.DocumentName = document->getName();
 	res.DocumentIdGuid = document->getDocuemntId();
-
+	res.WarehouseIdGuid = document->getWarehouseId();
+	res.ClientName = document->getClientName();
+	res.AssignedEmployeeName = document->getEmployeeName();
 	
 	auto doucmentPtr = std::make_shared<WarehouseDocumentDto>(res);
 

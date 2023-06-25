@@ -1,8 +1,10 @@
 #include "WarehouseDocumentRelease.h"
 
-WarehouseDocumentRelease::WarehouseDocumentRelease(const std::string documentName, std::string warehouseId, std::string docuemntId) 
+WarehouseDocumentRelease::WarehouseDocumentRelease(const std::string documentName, std::string warehouseId, std::string clientName, std::string employeeName, std::string docuemntId)
 	: WarehouseDocument(documentName, warehouseId, docuemntId)
 {
+	ClientName = clientName;
+	EmployeeName = employeeName;
 }
 
 void WarehouseDocumentRelease::addProductToDocument(std::shared_ptr<DocumentProduct> product)
@@ -18,6 +20,10 @@ std::time_t WarehouseDocumentRelease::getIssueDate() {
 }
 std::string WarehouseDocumentRelease::getClientName() {
 	return ClientName;
+}
+std::string WarehouseDocumentRelease::getEmployeeName()
+{
+	return EmployeeName;
 }
 std::vector<std::shared_ptr<DocumentProduct>> WarehouseDocumentRelease::getAllReleaseProduct() {
 	return _products;
