@@ -8,11 +8,11 @@
 #include "WarehouseLocationFifo.h"
 class IWarehouseLocationRepository {
 public:
-	virtual void addLocatation(std::shared_ptr<WarehouseLocation> location) {};
-	virtual std::shared_ptr<WarehouseLocation> getById(std::string id) { return std::shared_ptr<WarehouseLocation>(); };
-	virtual std::vector<std::shared_ptr<WarehouseLocation>> getAll() { return std::vector<std::shared_ptr<WarehouseLocation>>(); };
-	virtual void createLocationProduct(std::shared_ptr<WarehouseLocationProduct> product) {};
-	virtual void removeLocationProduct(std::string productId, std::string locationId) {};
+	virtual void addLocatation(std::shared_ptr<WarehouseLocation> location) = 0;
+	virtual std::shared_ptr<WarehouseLocation> getById(std::string id) = 0;
+	virtual std::vector<std::shared_ptr<WarehouseLocation>> getAll() = 0;
+	virtual void createLocationProduct(std::shared_ptr<WarehouseLocationProduct> product) = 0;
+	virtual void removeLocationProduct(std::string productId, std::string locationId) = 0;
 };
 class WarehouseLocationRepository : public IWarehouseLocationRepository
 {

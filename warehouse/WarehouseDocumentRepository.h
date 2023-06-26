@@ -4,17 +4,13 @@
 #include <sqlite3.h>
 class IWarehouseDocumentRepository {
 public:
-	virtual void addRecepiton(std::shared_ptr<WarehouseDocumentReception>  reception) {};
-	virtual std::vector<std::shared_ptr<WarehouseDocumentReception>> getAllReceptions() { return std::vector<std::shared_ptr<WarehouseDocumentReception>>(); };
-	virtual std::shared_ptr<WarehouseDocumentReception> getRecepitonById(std::string receptionId) { return std::shared_ptr<WarehouseDocumentReception>(); };
+	virtual void addRecepiton(std::shared_ptr<WarehouseDocumentReception>) = 0;
+	virtual std::vector<std::shared_ptr<WarehouseDocumentReception>> getAllReceptions() = 0;
+	virtual std::shared_ptr<WarehouseDocumentReception> getRecepitonById(std::string receptionId) = 0;
 
-	virtual void addRelease(std::shared_ptr<WarehouseDocumentRelease> release) {};
-	virtual std::vector<std::shared_ptr<WarehouseDocumentRelease>> getAllReleases() {
-		return std::vector< std::shared_ptr<WarehouseDocumentRelease>>();
-	};
-	virtual std::shared_ptr<WarehouseDocumentRelease> getReleaseById(std::string releaseId) {
-		return std::shared_ptr<WarehouseDocumentRelease>();
-	};
+	virtual void addRelease(std::shared_ptr<WarehouseDocumentRelease> release) = 0;
+	virtual std::vector<std::shared_ptr<WarehouseDocumentRelease>> getAllReleases() = 0;
+	virtual std::shared_ptr<WarehouseDocumentRelease> getReleaseById(std::string releaseId) = 0;
 };
 class WarehouseDocumentRepository : public IWarehouseDocumentRepository
 {
