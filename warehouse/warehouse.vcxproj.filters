@@ -13,14 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Dto">
-      <UniqueIdentifier>{babb59f9-6ccf-4975-93c4-919a72c55df3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Model">
       <UniqueIdentifier>{3ac35f0f-f008-46dd-8510-f16fb2b2c0c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Services">
-      <UniqueIdentifier>{766a01cd-c649-4c8a-84c3-0d1c5f57bc24}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Repositories">
       <UniqueIdentifier>{3ae8e26f-52e0-437c-a6f3-bf5d186c61c0}</UniqueIdentifier>
@@ -28,20 +22,11 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{a8cb501d-9fd6-493a-aff3-a236db2cd59e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Services">
-      <UniqueIdentifier>{29a73fc7-6653-4e64-81f0-e7bcaf58b21d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Repositories">
       <UniqueIdentifier>{a42283d9-6eef-446b-b9dc-a5c9ace752b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Dto">
-      <UniqueIdentifier>{a2b48c15-7adc-4160-9ff8-80209efc9e84}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WarehouseDbContext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,9 +45,6 @@
     <ClCompile Include="Product.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="ProductDto.cpp">
-      <Filter>Source Files\Dto</Filter>
-    </ClCompile>
     <ClCompile Include="ReceptionProduct.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -71,9 +53,6 @@
     </ClCompile>
     <ClCompile Include="Warehouse.cpp">
       <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="WarehosueDto.cpp">
-      <Filter>Source Files\Dto</Filter>
     </ClCompile>
     <ClCompile Include="StorageConditions.cpp">
       <Filter>Source Files\Model</Filter>
@@ -84,20 +63,11 @@
     <ClCompile Include="WarehouseDocumentReception.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="WarehouseDocumentDto.cpp">
-      <Filter>Source Files\Dto</Filter>
-    </ClCompile>
     <ClCompile Include="WarehouseDocumentRelease.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="StorageConditionsDto.cpp">
-      <Filter>Source Files\Dto</Filter>
-    </ClCompile>
     <ClCompile Include="TemperaturStorageConditions.cpp">
       <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="WarehouseLocationDto.cpp">
-      <Filter>Source Files\Dto</Filter>
     </ClCompile>
     <ClCompile Include="WarehouseLocationFifo.cpp">
       <Filter>Source Files\Model</Filter>
@@ -111,17 +81,8 @@
     <ClCompile Include="WarehouseLocationRepository.cpp">
       <Filter>Source Files\Repositories</Filter>
     </ClCompile>
-    <ClCompile Include="WarehouseLocationService.cpp">
-      <Filter>Source Files\Services</Filter>
-    </ClCompile>
-    <ClCompile Include="WarehouseProductService.cpp">
-      <Filter>Source Files\Services</Filter>
-    </ClCompile>
     <ClCompile Include="WarehouseRepository.cpp">
       <Filter>Source Files\Repositories</Filter>
-    </ClCompile>
-    <ClCompile Include="WarehouseService.cpp">
-      <Filter>Source Files\Services</Filter>
     </ClCompile>
     <ClCompile Include="WarehouseLocationProduct.cpp">
       <Filter>Source Files\Model</Filter>
@@ -129,29 +90,17 @@
     <ClCompile Include="WarehouseDocumentRepository.cpp">
       <Filter>Source Files\Repositories</Filter>
     </ClCompile>
-    <ClCompile Include="WarehouseDocumentService.cpp">
-      <Filter>Source Files\Services</Filter>
-    </ClCompile>
-    <ClCompile Include="WarehouseReceptionDocumentDto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DocumentProduct.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SeedingService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DocumentProduct.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WarehouseDbContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseDto.h">
-      <Filter>Header Files\Dto</Filter>
-    </ClInclude>
     <ClInclude Include="Product.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
@@ -182,23 +131,8 @@
     <ClInclude Include="WarehouseLocation.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="WarehouseService.h">
-      <Filter>Header Files\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseDocumentService.h">
-      <Filter>Header Files\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="ProductDto.h">
-      <Filter>Header Files\Dto</Filter>
-    </ClInclude>
     <ClInclude Include="GuidProvider.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseLocationService.h">
-      <Filter>Header Files\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseProductService.h">
-      <Filter>Header Files\Services</Filter>
     </ClInclude>
     <ClInclude Include="WarehouseLocationProduct.h">
       <Filter>Header Files\Model</Filter>
@@ -211,9 +145,6 @@
     </ClInclude>
     <ClInclude Include="WarehouseDocumentRepository.h">
       <Filter>Header Files\Repositories</Filter>
-    </ClInclude>
-    <ClInclude Include="StorageConditionsDto.h">
-      <Filter>Header Files\Dto</Filter>
     </ClInclude>
     <ClInclude Include="ProuductRepository.h">
       <Filter>Header Files\Repositories</Filter>

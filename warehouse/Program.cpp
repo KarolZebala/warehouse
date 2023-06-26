@@ -1,12 +1,6 @@
 #include <iostream>
-#include "WarehouseDto.h"
-#include "WarehouseDocumentDto.h"
-#include "WarehouseProductService.h"
 #include <sqlite3.h>
-#include "WarehouseDocumentService.h"
-#include "WarehouseLocationService.h"
 #include "UIManager.h"
-#include "WarehouseService.h"
 #include "SeedingService.h"
 
 

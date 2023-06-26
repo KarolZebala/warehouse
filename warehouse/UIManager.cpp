@@ -2,9 +2,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "WarehouseProductService.h"
-#include "WarehouseDocumentService.h"
-#include "WarehouseLocationService.h"
 
 
 void UIProductManager::ShowAll() {
