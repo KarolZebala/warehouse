@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppWarehouse.cpp" />
     <ClCompile Include="C:\sqlite\sqlite-amalgamation-3420000\sqlite3.c" />
     <ClCompile Include="DocumentProduct.cpp" />
     <ClCompile Include="GuidProvider.cpp" />
@@ -137,7 +138,10 @@
     <ClCompile Include="SeedingService.cpp" />
     <ClCompile Include="StorageConditions.cpp" />
     <ClCompile Include="TemperaturStorageConditions.cpp" />
+    <ClCompile Include="UIDocumentManager.cpp" />
+    <ClCompile Include="UILocationManager.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIProductManager.cpp" />
     <ClCompile Include="Warehouse.cpp" />
     <ClCompile Include="WarehouseDocument.cpp" />
     <ClCompile Include="WarehouseDocumentReception.cpp" />
@@ -151,6 +155,7 @@
     <ClCompile Include="WarehouseRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppWarehouse.h" />
     <ClInclude Include="GuidProvider.h" />
     <ClInclude Include="HumidityStorageConditions.h" />
     <ClInclude Include="Product.h" />
@@ -159,7 +164,10 @@
     <ClInclude Include="SeedingService.h" />
     <ClInclude Include="StorageConditions.h" />
     <ClInclude Include="TemperaturStorageConditions.h" />
+    <ClInclude Include="UIDocumentManager.h" />
+    <ClInclude Include="UILocationManager.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UIProductManager.h" />
     <ClInclude Include="Warehouse.h" />
     <ClInclude Include="WarehouseDocument.h" />
     <ClInclude Include="WarehouseDocumentReception.h" />
