@@ -17,15 +17,6 @@ std::string WarehouseProductService::CreateProduct(ProductDto product)
 		product.WarehouseIdGuid
 	);
 	auto productToAddPtr = std::make_shared<Product>(productToAdd);
-	//if (product.StorageConditions != nullptr) {
-		for (auto& storageConditon : product.StorageConditions) {
-			productToAddPtr->AddStorageConditon(
-				storageConditon.Type,
-				storageConditon.MinValue,
-				storageConditon.MaxValue
-			);
-		}
-	//}
 	warehouse->AddProdcut(productToAddPtr);
 	_productRepository->addProduct(productToAddPtr);
     return productToAddPtr->getProductId();

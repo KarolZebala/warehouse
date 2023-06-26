@@ -191,9 +191,6 @@
     <ClInclude Include="ProductDto.h">
       <Filter>Header Files\Dto</Filter>
     </ClInclude>
-    <ClInclude Include="WarehouseLocationDto.h">
-      <Filter>Header Files\Dto</Filter>
-    </ClInclude>
     <ClInclude Include="GuidProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -215,9 +212,6 @@
     <ClInclude Include="WarehouseDocumentRepository.h">
       <Filter>Header Files\Repositories</Filter>
     </ClInclude>
-    <ClInclude Include="WarehouseDocumentDto.h">
-      <Filter>Header Files\Dto</Filter>
-    </ClInclude>
     <ClInclude Include="StorageConditionsDto.h">
       <Filter>Header Files\Dto</Filter>
     </ClInclude>
@@ -232,9 +226,6 @@
     </ClInclude>
     <ClInclude Include="WarehouseLocationFilo.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="WarehouseReceptionDocumentDto.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>Header Files</Filter>

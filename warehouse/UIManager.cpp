@@ -13,7 +13,7 @@ void UIProductManager::ShowAll() {
 	std::cin >> IdWarehouse;
 	try
 	{
-		auto Products = _ProductService->GetAllProducts(IdWarehouse);
+		auto Products = _productRepository->getAllProducts(IdWarehouse);
 		PrintProductRowTitle();
 		for (auto prod : Products) {
 			PrintProduct(prod);
@@ -35,7 +35,7 @@ void UIProductManager::ShowById() {
 
 	try
 	{
-		auto Product = _ProductService->GetProductById(IdWarehouse, IdProduct);
+		auto Product = _productRepository->getProductById(IdWarehouse, IdProduct);
 		PrintProductRowTitle();
 		PrintProduct(Product);
 	}
@@ -52,7 +52,7 @@ void UIProductManager::ShowByName() {
 		std::string name = "";
 		std::cout << "podaj nazwe " << std::endl;
 		std::cin >> name;
-		auto product = _ProductService->GetProductByName(name);
+		auto product = _productRepository->GetProductByName(name);
 		PrintProductRowTitle();
 		PrintProduct(product);
 	}
@@ -63,33 +63,53 @@ void UIProductManager::ShowByName() {
 }
 
 void UIProductManager::AddNew() {
-	auto product = ProductDto();
+	std::string name;
 	std::cout << "podaj nazwe produktu " << std::endl;
-	std::cin >> product.Name;
+	std::cin >> name;
+	std::string storageMethod;
 	std::cout << "podaj metode skladowania " << std::endl;
-	std::cin >> product.StorageMethod;
+	std::cin >> storageMethod;
+	std::string condition;
 	std::cout << "podaj warunki skladowania " << std::endl;
-	std::cin >> product.Condition;
+	std::cin >> condition;
+	std::string coments;
 	std::cout << "komentarze " << std::endl;
-	std::cin >> product.Coments;
+	std::cin >> coments;
+	int price = 0;
 	std::cout << "podaj cene produktu " << std::endl;
-	std::cin >> product.Price;
+	std::cin >> price;
+	int quantity = 0;
 	std::cout << "podaj ilosc produktu " << std::endl;
-	std::cin >> product.Quantity;
-	std::cout << "podaj ojetosc produktu " << std::endl;
-	std::cin >> product.Volume;
+	std::cin >> quantity;
+	int xDimension = 0;
 	std::cout << "podaj wymiar X " << std::endl;
-	std::cin >> product.XDimension;
+	std::cin >> xDimension;
+	int zDimension = 0;
 	std::cout << "podaj wymiar Z " << std::endl;
-	std::cin >> product.ZDimension;
+	std::cin >> zDimension;
+	int yDimension = 0;
 	std::cout << "podaj wymiar Y " << std::endl;
-	std::cin >> product.YDimension;
+	std::cin >> yDimension;
+	std::string warehouseId;
 	std::cout << "podaj id magzynu " << std::endl;
-	std::cin >> product.WarehouseIdGuid;
+	std::cin >> warehouseId;
 
 	try
 	{
-		_ProductService->CreateProduct(product);
+		auto productToAdd = Product(
+			name,
+			condition,
+			coments,
+			storageMethod,
+			price,
+			quantity,
+			xDimension,
+			yDimension,
+			zDimension,
+			warehouseId
+		);
+		auto productToAddPtr = std::make_shared<Product>(productToAdd);
+		_productRepository->addProduct(productToAddPtr);
 	}
 	catch (const std::exception&)
 	{
@@ -97,8 +117,8 @@ void UIProductManager::AddNew() {
 	}
 };
 
-void UIProductManager::PrintProduct(std::shared_ptr<ProductDto> Product) {
-	std::cout << Product->ProductId << "	" << Product->Name << "	" << std::endl;
+void UIProductManager::PrintProduct(std::shared_ptr<Product> Product) {
+	std::cout << Product->getProductId() << "	" << Product->getName() << "	" << std::endl;
 };
 
 void UIProductManager::PrintProductRowTitle() {
@@ -111,15 +131,15 @@ void UIDocumentManager::ShowAll() {
 	std::cin >> IdWarehouse;
 	try
 	{
-		auto documentReception = _DocumentService->GetAllWarehouseDocumentReceptionsDocuements(IdWarehouse);
-		auto documentRelease = _DocumentService->GetAllWarehouseDocumentReleasesDocuements(IdWarehouse);
+		auto documentReception = _documentRepository->getAllReceptions();
+		auto documentRelease = _documentRepository->getAllReleases();
 		printDocumentRowTitle();
 		for (auto doc : documentReception) {
-			printDocumentReception(doc);
+			printDocument(doc);
 		};
 
 		for (auto doc : documentRelease) {
-			printDocumentRelease(doc);
+			printDocument(doc);
 		};
 	}
 	catch (const std::exception&)
@@ -146,14 +166,14 @@ void UIDocumentManager::ShowById() {
 	try
 	{
 		if (typ == "1") {
-			auto documentReleaseId = _DocumentService->GetWarehosueDocumentReleaseById(IdWarehouse, idDoc);
+			auto documentRelease = _documentRepository->getReleaseById(idDoc);
 			printDocumentRowTitle();
-			printDocumentRelease(documentReleaseId);
+			printDocument(documentRelease);
 		}
 		if (typ == "2") {
-			auto documentReceptionId = _DocumentService->GetWarehosueDocumentReceptionById(IdWarehouse, idDoc);
+			auto documentReception = _documentRepository->getRecepitonById(idDoc);
 			printDocumentRowTitle();
-			printDocumentReception(documentReceptionId);
+			printDocument(documentReception);
 		}
 	}
 	catch (const std::exception&)
@@ -168,25 +188,34 @@ void UIDocumentManager::AddNew() {
 		std::string userInput = "";
 
 		std::cout << "Wybierz jaki dokument chcesz stworzyæ: " << std::endl;
-		std::cout << "1 Wydanie " << std::endl;
-		std::cout << "2 Przyjecie " << std::endl;
+		std::cout << "1 Przyjecie " << std::endl;
+		std::cout << "2 Wydanie " << std::endl;
 		std::cin >> userInput;
 
 		std::string productId = "";
 		std::string warehouseId = "";
 
 		if (userInput == "1") {
-			auto warehouseReleaseDto = WarehouseReleseDocumentDto();
-
+			std::string documentName = "";
 			std::cout << "podaj nazwe dokumentu " << std::endl;
-			std::cin >> warehouseReleaseDto.DocumentName;
+			std::cin >> documentName;
+			std::string warehouseId = "";
 			std::cout << "podaj id magazynu " << std::endl;
-			std::cin >> warehouseReleaseDto.WarehouseIdGuid;
+			std::cin >> warehouseId;
+			std::string clientName = "";
 			std::cout << "podaj imie klienta " << std::endl;
-			std::cin >> warehouseReleaseDto.ClientName;
+			std::cin >> clientName;
+			std::string employeeName;
 			std::cout << "podaj imie pracownika " << std::endl;
-			std::cin >> warehouseReleaseDto.AssignedEmployeeName;
+			std::cin >> employeeName;
 			
+			auto document = WarehouseDocumentReception(
+				documentName,
+				warehouseId,
+				clientName,
+				employeeName
+			);
+			auto documentPtr = std::make_shared<WarehouseDocumentReception>(document);
 			std::cout << "Podaj id produktów aby skoñczyæ wciœnij 0 " << std::endl;
 			while (true) {
 
@@ -195,26 +224,49 @@ void UIDocumentManager::AddNew() {
 				if (productId == "0") {
 					break;
 				}
-				warehouseId = warehouseReleaseDto.WarehouseIdGuid;
-				auto productDto = _ProductService->GetProductById(warehouseId, productId);
+				auto product = _productRepository->getProductById(warehouseId, productId);
+				std::string locationIdGuid = "";
 				std::cout << "podaj id lokalizacji magazynowej" << std::endl;
-				std::cin >> productDto->WarehouseLocationIdGuid;
-				warehouseReleaseDto.Products.push_back(*productDto);
+				std::cin >> locationIdGuid;
+				auto productToAdd = DocumentProduct(
+					product->getProductId(),
+					product->getName(),
+					product->getPrice(),
+					product->getVolume(),
+					product->getStorageMethod(),
+					documentPtr->getDocuemntId()
+				);
+				auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
+				documentPtr->addProductToDocument(productToAddPtr);
+				auto location = _locationRepository->getById(locationIdGuid);
+				auto locationProduct = location->AddProductFromDocument(productToAddPtr);
+				_locationRepository->createLocationProduct(locationProduct);
 			}
-
-			_DocumentService->CreateWarehouseDocument(warehouseReleaseDto);
+			_documentRepository->addRecepiton(documentPtr);
 		}
 		else if (userInput == "2") {
-			auto warehouseReceptionDto = WarehouseReceptionDocumentDto();
 
+			std::string documentName = "";
 			std::cout << "podaj nazwe dokumentu " << std::endl;
-			std::cin >> warehouseReceptionDto.DocumentName;
+			std::cin >> documentName;
+			std::string warehouseId = "";
 			std::cout << "podaj id magazynu " << std::endl;
-			std::cin >> warehouseReceptionDto.WarehouseIdGuid;
+			std::cin >> warehouseId;
+			std::string clientName = "";
 			std::cout << "podaj imie klienta " << std::endl;
-			std::cin >> warehouseReceptionDto.ClientName;
+			std::cin >> clientName;
+			std::string employeeName;
 			std::cout << "podaj imie pracownika " << std::endl;
-			std::cin >> warehouseReceptionDto.AssignedEmployeeName;
+			std::cin >> employeeName;
+
+			auto document = WarehouseDocumentRelease(
+				documentName,
+				warehouseId,
+				clientName,
+				employeeName
+			);
+			auto documentPtr = std::make_shared<WarehouseDocumentRelease>(document);
+
 			std::cout << "Podaj id produktów aby skoñczyæ wciœnij 0 " << std::endl;
 			while (true) {
 
@@ -223,14 +275,26 @@ void UIDocumentManager::AddNew() {
 				if (productId == "0") {
 					break;
 				}
-				warehouseId = warehouseReceptionDto.WarehouseIdGuid;
-				auto productDto = _ProductService->GetProductById(warehouseId, productId);
+				auto product = _productRepository->getProductById(warehouseId, productId);
+				std::string locationIdGuid = "";
 				std::cout << "podaj id lokalizacji magazynowej" << std::endl;
-				std::cin >> productDto->WarehouseLocationIdGuid;
-				warehouseReceptionDto.Products.push_back(*productDto);
+				std::cin >> locationIdGuid;
+				auto productToAdd = DocumentProduct(
+					product->getProductId(),
+					product->getName(),
+					product->getPrice(),
+					product->getVolume(),
+					product->getStorageMethod(),
+					documentPtr->getDocuemntId()
+				);
+				auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
+				documentPtr->addProductToDocument(productToAddPtr);
+				auto location = _locationRepository->getById(locationIdGuid);
+				auto locationProduct = location->RemoveProduct(productToAddPtr);
+				_locationRepository->removeLocationProduct(locationProduct->getProductId(), locationProduct->getLocationId());
 			}
 
-			_DocumentService->CreateWarehouseDocument(warehouseReceptionDto);
+			_documentRepository->addRelease(documentPtr);
 		}
 		else {
 			std::cout<<"Nie ma takiej opcji" << std::endl;
@@ -244,12 +308,10 @@ void UIDocumentManager::AddNew() {
 	
 };
 
-void UIDocumentManager::printDocumentReception(std::shared_ptr <WarehouseDocumentDto> Document) {
-	std::cout << Document->DocumentIdGuid << "	" << Document->DocumentName << std::endl;
+void UIDocumentManager::printDocument(std::shared_ptr <WarehouseDocument> Document) {
+	std::cout << Document->getDocuemntId() << "	" << Document->getName() << std::endl;
 }
-void UIDocumentManager::printDocumentRelease(std::shared_ptr <WarehouseDocumentDto> Document) {
-	std::cout << Document->DocumentIdGuid << "	" << Document->DocumentName << std::endl;
-}
+
 void UIDocumentManager::printDocumentRowTitle() {
 	std::cout << "Id	" << "Nazwa	" << std::endl;
 }
@@ -261,7 +323,7 @@ void UILocationManager::ShowAll() {
 
 	try
 	{
-		auto locations = _LocationService->GetAllWarehouseLocation(IdWarehouse);
+		auto locations = _locationRepository->getAll();
 		PrintLocationRowTitle();
 		for (auto loc : locations) {
 			PrintLocation(loc);
@@ -282,7 +344,7 @@ void UILocationManager::ShowById() {
 
 	try
 	{
-		auto location = _LocationService->GetWarahouseLocationById(IdWarehouse, IDlocation);
+		auto location = _locationRepository->getById(IDlocation);
 		PrintLocationRowTitle();
 		PrintLocation(location);
 	}
@@ -293,25 +355,37 @@ void UILocationManager::ShowById() {
 };
 
 void UILocationManager::AddNew() {
-	auto location = WarehouseLocationDto();
-
+	std::string warehouseId = "";
 	std::cout << "podaj id magazynu " << std::endl;
-	std::cin >> location.WarehouseId;
+	std::cin >> warehouseId;
+	std::string locationName = "";
 	std::cout << "podaj nazwe lokalizacji " << std::endl;
-	std::cin >> location.WarehouseLocationName;
+	std::cin >> locationName;
+	std::string storageMethod = "";
 	std::cout << "podaj sposob magazynowania " << std::endl;
-	std::cin >> location.StorageMethod;
+	std::cin >> storageMethod;
+	int height = 0;
 	std::cout << "podaj wysokosc " << std::endl;
-	std::cin >> location.Height;
+	std::cin >> height;
+	int depth = 0;
 	std::cout << "podaj glebokosc " << std::endl;
-	std::cin >> location.Depth;
+	std::cin >> depth;
+	int width = 0;
 	std::cout << "podaj dlugosc " << std::endl;
-	std::cin >> location.Width;
+	std::cin >> width;
 
 	try
 	{
-		std::string warehouseId = location.WarehouseId;
-		_LocationService->CreateWarehouseLocation(location);
+		auto locationToAdd = WarehouseLocation(
+			locationName,
+			width,
+			depth,
+			height,
+			storageMethod,
+			warehouseId
+		);
+		auto locationPtr = std::make_shared<WarehouseLocation>(locationToAdd);
+		_locationRepository->addLocatation(locationPtr);
 	}
 	catch (const std::exception&)
 	{
@@ -319,9 +393,9 @@ void UILocationManager::AddNew() {
 	}
 };
 
-void UILocationManager::PrintLocation(std::shared_ptr<WarehouseLocationDto> location) {
-	std::cout << location->WarehouseLocationName << "	" << location->StorageMethod << std::endl;
+void UILocationManager::PrintLocation(std::shared_ptr<WarehouseLocation> location) {
+	std::cout << location->getName() << "	" << location->getStorageMethod() << "	" << location->GetId() << std::endl;
 };
 void UILocationManager::PrintLocationRowTitle() {
-	std::cout << "nazwa lokalizacji		" << "Metoda skladowania	" << std::endl;
+	std::cout << "nazwa lokalizacji		" << "Metoda skladowania	" << "Id	" << std::endl;
 };

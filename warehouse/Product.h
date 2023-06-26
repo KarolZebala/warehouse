@@ -21,13 +21,9 @@ public:
         int xDimension,
         int yDimension,
         int zDimension,
-        std::string locationId,
         std::string warehouseId,
         std::string productId = ""
     );
-    explicit Product(std::string name) {
-        Name = name;
-    };
     
     
     void ChangeMainAttributes(

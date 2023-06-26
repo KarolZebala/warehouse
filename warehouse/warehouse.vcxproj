@@ -180,20 +180,17 @@
     <ClInclude Include="Warehouse.h" />
     <ClInclude Include="WarehouseDbContext.h" />
     <ClInclude Include="WarehouseDocument.h" />
-    <ClInclude Include="WarehouseDocumentDto.h" />
     <ClInclude Include="WarehouseDocumentReception.h" />
     <ClInclude Include="WarehouseDocumentRelease.h" />
     <ClInclude Include="WarehouseDocumentRepository.h" />
     <ClInclude Include="WarehouseDocumentService.h" />
     <ClInclude Include="WarehouseLocation.h" />
-    <ClInclude Include="WarehouseLocationDto.h" />
     <ClInclude Include="WarehouseLocationFifo.h" />
     <ClInclude Include="WarehouseLocationFilo.h" />
     <ClInclude Include="WarehouseLocationProduct.h" />
     <ClInclude Include="WarehouseLocationRepository.h" />
     <ClInclude Include="WarehouseLocationService.h" />
     <ClInclude Include="WarehouseProductService.h" />
-    <ClInclude Include="WarehouseReceptionDocumentDto.h" />
     <ClInclude Include="WarehouseRepository.h" />
     <ClInclude Include="WarehouseService.h" />
   </ItemGroup>

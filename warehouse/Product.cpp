@@ -10,7 +10,6 @@ Product::Product(
     int xDimension,
     int yDimension,
     int zDimension,
-    std::string locationId,
     std::string warehouseId,
     std::string productId
 )
@@ -30,7 +29,6 @@ Product::Product(
     XDimension = xDimension;
     YDimension = yDimension;
     ZDimension = zDimension;
-    WarehouseLocationIdGuid = locationId;
     WarehouseId = warehouseId;
     StorageMethod = storageMethod;
     Coments = comments;

@@ -66,7 +66,6 @@ std::vector<std::shared_ptr<Product>> ProuductRepository::getAllProducts(std::st
             xDimension,
             yDimension,
             zDimension,
-            warehouseLocationIdGuid,
             warehouseIdGuid,
             productIdGuid
         );
@@ -113,7 +112,6 @@ std::shared_ptr<Product> ProuductRepository::GetProductByName(std::string nameOf
         xDimension,
         yDimension,
         zDimension,
-        warehouseLocationIdGuid,
         warehouseIdGuid,
         productIdGuid
     );
@@ -159,7 +157,6 @@ std::shared_ptr<Product> ProuductRepository::getProductById(std::string warehous
         xDimension,
         yDimension,
         zDimension,
-        warehouseLocationIdGuid,
         warehouseIdGuid,
         productIdGuid
     );
