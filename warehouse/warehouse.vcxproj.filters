@@ -48,9 +48,6 @@
     <ClCompile Include="ReceptionProduct.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="StorageArea.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="Warehouse.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="HumidityStorageConditions.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="StorageArea.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="StorageConditions.h">

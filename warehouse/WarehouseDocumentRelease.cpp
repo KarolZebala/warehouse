@@ -3,8 +3,13 @@
 WarehouseDocumentRelease::WarehouseDocumentRelease(const std::string documentName, std::string warehouseId, std::string clientName, std::string employeeName, std::string docuemntId)
 	: WarehouseDocument(documentName, warehouseId, docuemntId)
 {
+	if (clientName.empty()) {
+		throw new std::exception("Nazwa klienta jest wymagana");
+	}
 	ClientName = clientName;
-	EmployeeName = employeeName;
+	if (employeeName.empty()) {
+		throw new std::exception("Nazwa pracownika jest wymagana");
+	}
 }
 
 void WarehouseDocumentRelease::addProductToDocument(std::shared_ptr<DocumentProduct> product)

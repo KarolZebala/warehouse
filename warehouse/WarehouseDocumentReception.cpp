@@ -2,7 +2,13 @@
 
 WarehouseDocumentReception::WarehouseDocumentReception(std::string name, std::string warehosueId, std::string clientName, std::string employeeName, std::string documentId) : WarehouseDocument(name, warehosueId, documentId)
 {
+	if (clientName.empty()) {
+		throw new std::exception("Nazwa klienta jest wymagana");
+	}
 	ClientName = clientName;
+	if (employeeName.empty()) {
+		throw new std::exception("Nazwa pracownika jest wymagana");
+	}
 	EmployeeName = employeeName;
 	IssueDate = std::time(nullptr);
 }

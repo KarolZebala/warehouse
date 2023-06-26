@@ -16,9 +16,10 @@ void UIProductManager::ShowAll() {
 			PrintProduct(prod);
 		}
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
 		std::cout << "Operacja siê nie powiod³a " << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 };
 
@@ -108,9 +109,10 @@ void UIProductManager::AddNew() {
 		auto productToAddPtr = std::make_shared<Product>(productToAdd);
 		_productRepository->addProduct(productToAddPtr);
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
 		std::cout << "Operacja siê nie powiod³a " << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 };
 

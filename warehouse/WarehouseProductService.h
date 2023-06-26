@@ -1,6 +1,5 @@
 #pragma once
 #include "ProductDto.h"
-#include "WarehouseDbContext.h"
 #include "ProuductRepository.h"
 #include "WarehouseRepository.h"
 /// <summary>

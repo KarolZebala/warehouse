@@ -14,21 +14,41 @@ Product::Product(
     std::string productId
 )
 {
-    //for prevent problem during read from database
+    
     if (productId == "") {
         ProductIdGuid = GuidProvider::GetGuidString();
     }
     else {
         ProductIdGuid = productId;
     }
-    
+    if (name.empty()) {
+        throw new std::exception("Nazwa produktu jest wymagana");
+    }
     Name = name;
     Condition = condition;
+    if (price <= 0) {
+        throw new std::exception("Cena nie moze byc mniejsz od 0");
+    }
     Price = price;
+    if (price <= 0) {
+        throw new std::exception("Cena nie moze byc mniejsz od 0");
+    }
     Quantity = quantity;
+    if (xDimension <= 0) {
+        throw new std::exception("Szerokosc nie moze byc mniejsz od 0");
+    }
     XDimension = xDimension;
+    if (yDimension <= 0) {
+        throw new std::exception("Dlugosc nie moze byc mniejsz od 0");
+    }
     YDimension = yDimension;
+    if (zDimension <= 0) {
+        throw new std::exception("wyskosc nie moze byc mniejsz od 0");
+    }
     ZDimension = zDimension;
+    if (name.empty()) {
+        throw new std::exception("Id magazynu jest wymagane");
+    }
     WarehouseId = warehouseId;
     StorageMethod = storageMethod;
     Coments = comments;

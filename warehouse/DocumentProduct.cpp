@@ -1,4 +1,34 @@
 #include "DocumentProduct.h"
+DocumentProduct::DocumentProduct(std::string productId, std::string productName, int price, int volume, std::string storageMethod, std::string documentId, std::string documentProductId)
+{
+	if (documentProductId.empty()) {
+		DocumentProductId = GuidProvider::GetGuidString();
+	}
+	else {
+		DocumentProductId = documentProductId;
+	}
+	if (productId.empty()) {
+		throw new std::exception("Brak wartosci product id");
+	}
+	ProductId = productId;
+	if (productName.empty()) {
+		throw new std::exception("Nazwa produktu jest wymagana");
+	}
+	ProductName = productName;
+	StorageMethod = storageMethod;
+	if (price <= 0) {
+		throw new std::exception("Cena musi byc wieksza od 0");
+	}
+	Price = price;
+	if (volume <= 0) {
+		throw new std::exception("Objetosc produktu musi byc wieksza od 0");
+	}
+	Volume = volume;
+	if (documentId.empty()) {
+		throw new std::exception("Id dokumentu jest wymagane");
+	}
+	DocumentId = documentId;
+}
 std::string DocumentProduct::getDocumentProductId() {
 	return DocumentProductId;
 }

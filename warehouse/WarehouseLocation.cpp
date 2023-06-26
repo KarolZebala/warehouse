@@ -17,6 +17,9 @@ WarehouseLocation::WarehouseLocation(
     else {
         WarehouseLocationIdGuid = locationId;
     }
+    if (warhouseId.empty()) {
+        throw std::exception("Invalid value of warhouseId");
+    }
     WarehouseIdGuid = warhouseId;
     Name = name;
     if (width <= 0) {
@@ -92,6 +95,10 @@ int WarehouseLocation::getHeight() {
 }
 int WarehouseLocation::getMaxVolume() {
     return Width * Depth * Height;
+}
+int WarehouseLocation::getOccupiedVolume()
+{
+    return 0;
 }
 std::string WarehouseLocation::getWarehouseId()
 {

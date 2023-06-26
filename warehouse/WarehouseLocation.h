@@ -20,9 +20,6 @@ public:
         std::string warhouseId,
         std::string locationId = ""
     );
-
-    void AddStorageConditon();
-    void UpdateStorageConditon();
     bool CheckIfLocationHasStorageCondition();
     bool CheckIfLocationHasSpace(int volume);
     
@@ -38,7 +35,7 @@ public:
     int getDepth();
     int getHeight();
     int getMaxVolume();
-    virtual int getOccupiedVolume() { return 0; };
+    virtual int getOccupiedVolume();
     std::string getWarehouseId();
 
 private:

@@ -10,20 +10,11 @@
 class WarehouseDocument {
 public:
     explicit WarehouseDocument(std::string documentName, std::string warehosueId, std::string documentId = "");
-    virtual void addProductToDocument(std::shared_ptr<DocumentProduct> product) {};
+    virtual void addProductToDocument(std::shared_ptr<DocumentProduct> product);
 
     std::string getName();
-        /*{
-            return this->DocumentName;
-        }*/
-        std::string getDocuemntId();
-        /*{
-            return this->DocumentIdGuid;
-        }*/
-        std::string getWarehouseId();
-    /*{
-        return this->WarehouseId;
-    }*/
+    std::string getDocuemntId();
+    std::string getWarehouseId();
 
 protected:
     std::string DocumentIdGuid;
