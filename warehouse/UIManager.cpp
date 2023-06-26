@@ -45,6 +45,23 @@ void UIProductManager::ShowById() {
 	}
 };
 
+void UIProductManager::ShowByName() {
+	
+	try
+	{
+		std::string name = "";
+		std::cout << "podaj nazwe " << std::endl;
+		std::cin >> name;
+		auto product = _ProductService->GetProductByName(name);
+		PrintProductRowTitle();
+		PrintProduct(product);
+	}
+	catch (const std::exception&)
+	{
+		std::cout << "Operacja siê nie powiod³a " << std::endl;
+	}
+}
+
 void UIProductManager::AddNew() {
 	auto product = ProductDto();
 	std::cout << "podaj nazwe produktu " << std::endl;

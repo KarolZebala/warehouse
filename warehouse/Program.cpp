@@ -25,6 +25,7 @@ public:
 			std::cout << "3. Zarzadzaj lokalizacjami\n";
 			std::cout << "4. zakoncz dzialanie aplikacji\n";
 
+
 			std::string userInput;
 			std::cin >> userInput;
 			if (userInput == "1") {
@@ -56,6 +57,7 @@ private:
 			std::cout << "2. pokaz wybrany produkt\n";
 			std::cout << "3. dodaj produkt\n";
 			std::cout << "4. wroc do menu\n";
+			std::cout << "5. pobierz produkt po nazwie\n";
 
 			std::string userInput;
 			std::cin >> userInput;
@@ -70,6 +72,9 @@ private:
 			}
 			if (userInput == "4") {
 				break;
+			}
+			if (userInput == "5") {
+				productManager.ShowByName();
 			}
 		}
 	};

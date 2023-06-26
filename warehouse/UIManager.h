@@ -23,6 +23,7 @@ public:
 	void ShowAll();
 	void ShowById();
 	void AddNew();
+	void ShowByName();
 
 private:
 	std::shared_ptr<IWarehouseProductService> _ProductService;

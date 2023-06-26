@@ -25,7 +25,9 @@ public:
         std::string warehouseId,
         std::string productId = ""
     );
-
+    explicit Product(std::string name) {
+        Name = name;
+    };
     
     
     void ChangeMainAttributes(

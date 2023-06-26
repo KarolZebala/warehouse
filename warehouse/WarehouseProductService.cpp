@@ -30,6 +30,12 @@ std::string WarehouseProductService::CreateProduct(ProductDto product)
 	_productRepository->addProduct(productToAddPtr);
     return productToAddPtr->getProductId();
 }
+
+std::shared_ptr<ProductDto> WarehouseProductService::GetProductByName(std::string name) {
+	auto product = _productRepository->GetProductByName(name);
+	auto productDto = MapProduct(product);
+	return productDto;
+}
 std::shared_ptr<ProductDto> WarehouseProductService::MapProduct(std::shared_ptr<Product> product) {
 	auto productDto = ProductDto();
 	productDto.Name = product->getName();

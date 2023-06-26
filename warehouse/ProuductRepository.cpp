@@ -80,6 +80,50 @@ std::vector<std::shared_ptr<Product>> ProuductRepository::getAllProducts(std::st
     return products;
 }
 
+std::shared_ptr<Product> ProuductRepository::GetProductByName(std::string nameOfProduct) {
+    sqlite3* db;
+    int rc = sqlite3_open("test.db", &db);
+
+    std::string sqlQuery = "SELECT * FROM Product WHERE Name = '" + nameOfProduct + "';";
+    sqlite3_stmt* stmt;
+    rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
+
+    auto s = sqlite3_step(stmt);
+
+    auto productIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+    auto name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+    auto storageMethod = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+    auto condition = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+    auto comments = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+    auto price = sqlite3_column_int(stmt, 5);
+    auto quantity = sqlite3_column_int(stmt, 6);
+    auto xDimension = sqlite3_column_int(stmt, 7);
+    auto zDimension = sqlite3_column_int(stmt, 8);
+    auto yDimension = sqlite3_column_int(stmt, 9);
+    auto warehouseLocationIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
+    auto warehouseIdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 11));
+
+    auto product = Product(
+        name,
+        condition,
+        comments,
+        storageMethod,
+        price,
+        quantity,
+        xDimension,
+        yDimension,
+        zDimension,
+        warehouseLocationIdGuid,
+        warehouseIdGuid,
+        productIdGuid
+    );
+    auto productPtr = std::make_shared<Product>(product);
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    return productPtr;
+}
+
+
 std::shared_ptr<Product> ProuductRepository::getProductById(std::string warehouseId, std::string productId)
 {
     sqlite3* db;
