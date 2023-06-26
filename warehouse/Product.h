@@ -9,6 +9,9 @@
 #include <vector>
 #include <memory>
 
+/**
+ * .
+ */
 class Product {
 public:
     explicit Product(
@@ -24,21 +27,6 @@ public:
         std::string warehouseId,
         std::string productId = ""
     );
-    
-    
-    void ChangeMainAttributes(
-        std::string name,
-        std::string condition,
-        std::string comments,
-        int price,
-        int quantity,
-        int XDimension,
-        int YDimension,
-        int ZDimension
-    );
-
-    void AddStorageConditon(std::string type, int minValue, int maxValue);
-    void UpdateStorageConditon(std::string type, int minValue, int maxValue);
 
     std::string getName();
     std::string getProductId();

@@ -4,12 +4,12 @@ std::shared_ptr< WarehouseLocationProduct> WarehouseLocationFilo::AddProductFrom
 {
 	auto canProductBeAdded = CheckIfLocationHasStorageCondition();
 	if (!canProductBeAdded) {
-		throw new std::exception("Wrong location selected");
+		throw std::exception("Wrong location selected");
 	}
 	auto isEnoughSpaceInLocation = CheckIfLocationHasSpace(product->getVolume());
 
 	if (!isEnoughSpaceInLocation) {
-		throw new std::exception("not enough space in location");
+		throw std::exception("not enough space in location");
 	}
     auto productToAdd =  WarehouseLocationProduct(product->getProductId(), product->getVolume(), this->GetId());
     auto prdocutToAddPtr = std::make_shared<WarehouseLocationProduct>(productToAdd);

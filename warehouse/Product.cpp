@@ -22,32 +22,32 @@ Product::Product(
         ProductIdGuid = productId;
     }
     if (name.empty()) {
-        throw new std::exception("Nazwa produktu jest wymagana");
+        throw std::exception("Nazwa produktu jest wymagana");
     }
     Name = name;
     Condition = condition;
     if (price <= 0) {
-        throw new std::exception("Cena nie moze byc mniejsz od 0");
+        throw std::exception("Cena nie moze byc mniejsz od 0");
     }
     Price = price;
     if (price <= 0) {
-        throw new std::exception("Cena nie moze byc mniejsz od 0");
+        throw std::exception("Cena nie moze byc mniejsz od 0");
     }
     Quantity = quantity;
     if (xDimension <= 0) {
-        throw new std::exception("Szerokosc nie moze byc mniejsz od 0");
+        throw std::exception("Szerokosc nie moze byc mniejsz od 0");
     }
     XDimension = xDimension;
     if (yDimension <= 0) {
-        throw new std::exception("Dlugosc nie moze byc mniejsz od 0");
+        throw std::exception("Dlugosc nie moze byc mniejsz od 0");
     }
     YDimension = yDimension;
     if (zDimension <= 0) {
-        throw new std::exception("wyskosc nie moze byc mniejsz od 0");
+        throw std::exception("wyskosc nie moze byc mniejsz od 0");
     }
     ZDimension = zDimension;
     if (name.empty()) {
-        throw new std::exception("Id magazynu jest wymagane");
+        throw std::exception("Id magazynu jest wymagane");
     }
     WarehouseId = warehouseId;
     StorageMethod = storageMethod;
@@ -59,43 +59,6 @@ std::string Product::getName()
     return Name;
 }
 
-void Product::ChangeMainAttributes(
-    std::string name,
-    std::string condition,
-    std::string comments,
-    int price,
-    int quantity,
-    int xDimension,
-    int yDimension,
-    int zDimension
-)
-{
-    Name = name;
-    Condition = condition;
-    Price = price;
-    Quantity = quantity;
-    XDimension = xDimension;
-    YDimension = yDimension;
-    ZDimension = zDimension;
-
-}
-
-void Product::AddStorageConditon(std::string type, int minValue, int maxValue)
-{
-    if (type == "TEMPERATURE" || type == "temperature") {
-        auto storageConditon = new TemperatureStorageConditions();
-        _storageConditions.push_back(storageConditon);
-    }else if (type == "HUMIDITY" || type == "humidity") {
-        auto storageConditon = new TemperatureStorageConditions();
-        _storageConditions.push_back(storageConditon);
-    }
-    else {
-        throw new std::exception("Invalid storage condition type passed");
-    }
-
-    auto storageConditon = new StorageConditions();
-    _storageConditions.push_back(storageConditon);
-}
 
 std::string Product::getProductId()
 {

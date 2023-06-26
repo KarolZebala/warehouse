@@ -4,11 +4,11 @@ WarehouseDocumentRelease::WarehouseDocumentRelease(const std::string documentNam
 	: WarehouseDocument(documentName, warehouseId, docuemntId)
 {
 	if (clientName.empty()) {
-		throw new std::exception("Nazwa klienta jest wymagana");
+		throw  std::exception("Nazwa klienta jest wymagana");
 	}
 	ClientName = clientName;
 	if (employeeName.empty()) {
-		throw new std::exception("Nazwa pracownika jest wymagana");
+		throw std::exception("Nazwa pracownika jest wymagana");
 	}
 }
 

@@ -10,11 +10,11 @@ WarehouseDocument::WarehouseDocument(std::string documentName, std::string wareh
 
 	}
 	if (documentName.empty()) {
-		throw new std::exception("Nazwa dokumentu jest wymagana");
+		throw std::exception("Nazwa dokumentu jest wymagana");
 	}
 	DocumentName = documentName;
 	if (warehouseId.empty()) {
-		throw new std::exception("Id magazynu jest wymagane");
+		throw std::exception("Id magazynu jest wymagane");
 	}
 	WarehouseId = warehouseId;
 	

@@ -45,9 +45,6 @@
     <ClCompile Include="Product.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="ReceptionProduct.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="Warehouse.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
