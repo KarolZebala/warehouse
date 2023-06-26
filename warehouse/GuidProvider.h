@@ -1,6 +1,9 @@
 #pragma once
 #include<combaseapi.h>
 #include<string>
+/**!
+ * \brief Klasa GuidProvider która jest odpowiedzialna za tworzenie id dla encji
+ */
 static class GuidProvider
 {
 public:
