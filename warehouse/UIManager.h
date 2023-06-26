@@ -6,7 +6,9 @@
 #include "WarehouseLocationService.h"
 #include "WarehouseLocationRepository.h"
 #include "WarehouseDocumentRepository.h"
-
+/**!
+ * \brief Klasa IUIManager jest klasa abstrakcyjn¹, odpowiadaj¹c¹ za wyœwietlanie treœci w UI
+ */
 class IUIManager
 {
 public:

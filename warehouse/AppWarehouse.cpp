@@ -1,5 +1,10 @@
 #include "AppWarehouse.h"
 
+AppWarehouse::AppWarehouse()
+{
+	_seedingService = std::make_shared<SeedingService>(SeedingService());
+}
+
 void AppWarehouse::Start()
 {
 	SetUpDateBase();

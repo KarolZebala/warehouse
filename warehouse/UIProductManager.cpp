@@ -1,5 +1,10 @@
 #include "UIProductManager.h"
 
+UIProductManager::UIProductManager()
+{
+	_productRepository = std::make_shared<ProuductRepository>(ProuductRepository());
+}
+
 void UIProductManager::ShowAll() {
 	std::string IdWarehouse = "";
 	std::cout << "podaj id magazynu " << std::endl;

@@ -1,6 +1,11 @@
 #include "UILocationManager.h"
 
 
+UILocationManager::UILocationManager()
+{
+	_locationRepository = std::make_shared<WarehouseLocationRepository>(WarehouseLocationRepository());
+}
+
 void UILocationManager::ShowAll() {
 	std::string IdWarehouse = "";
 	std::cout << "podaj id magazynu " << std::endl;
