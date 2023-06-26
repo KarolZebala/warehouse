@@ -36,9 +36,6 @@
     <ClCompile Include="C:\sqlite\sqlite-amalgamation-3420000\sqlite3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HumidityStorageConditions.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="ProuductRepository.cpp">
       <Filter>Source Files\Repositories</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
     <ClCompile Include="Warehouse.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="StorageConditions.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="WarehouseDocument.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -58,9 +52,6 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="WarehouseDocumentRelease.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="TemperaturStorageConditions.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="WarehouseLocationFifo.cpp">
@@ -84,9 +75,6 @@
     <ClCompile Include="WarehouseDocumentRepository.cpp">
       <Filter>Source Files\Repositories</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SeedingService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -108,15 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Product.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="HumidityStorageConditions.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="StorageConditions.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="TemperaturStorageConditions.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="Warehouse.h">

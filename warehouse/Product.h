@@ -2,8 +2,7 @@
 #define PRODUCT_H
 
 #include"StorageConditions.h"
-#include"TemperaturStorageConditions.h"
-#include"HumidityStorageConditions.h"
+
 #include "GuidProvider.h"
 #include <string>
 #include <vector>
