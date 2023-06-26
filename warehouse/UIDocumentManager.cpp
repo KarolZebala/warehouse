@@ -14,8 +14,8 @@ void UIDocumentManager::ShowAll() {
 	std::cin >> IdWarehouse;
 	try
 	{
-		auto documentReception = _documentRepository->getAllReceptions();
-		auto documentRelease = _documentRepository->getAllReleases();
+		auto documentReception = _documentRepository->getAllReceptions(IdWarehouse);
+		auto documentRelease = _documentRepository->getAllReleases(IdWarehouse);
 		printDocumentRowTitle();
 		for (auto doc : documentReception) {
 			printDocument(doc);
@@ -50,12 +50,12 @@ void UIDocumentManager::ShowById() {
 	try
 	{
 		if (typ == "1") {
-			auto documentRelease = _documentRepository->getReleaseById(idDoc);
+			auto documentRelease = _documentRepository->getReleaseById(idDoc, IdWarehouse);
 			printDocumentRowTitle();
 			printDocument(documentRelease);
 		}
 		if (typ == "2") {
-			auto documentReception = _documentRepository->getRecepitonById(idDoc);
+			auto documentReception = _documentRepository->getRecepitonById(idDoc, IdWarehouse);
 			printDocumentRowTitle();
 			printDocument(documentReception);
 		}
@@ -123,7 +123,7 @@ void UIDocumentManager::AddNew() {
 				);
 				auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
 				documentPtr->addProductToDocument(productToAddPtr);
-				auto location = _locationRepository->getById(locationIdGuid);
+				auto location = _locationRepository->getById(locationIdGuid, warehouseId);
 				auto locationProduct = location->AddProductFromDocument(productToAddPtr);
 				_locationRepository->createLocationProduct(locationProduct);
 			}
@@ -174,7 +174,7 @@ void UIDocumentManager::AddNew() {
 				);
 				auto productToAddPtr = std::make_shared<DocumentProduct>(productToAdd);
 				documentPtr->addProductToDocument(productToAddPtr);
-				auto location = _locationRepository->getById(locationIdGuid);
+				auto location = _locationRepository->getById(locationIdGuid, warehouseId);
 				auto locationProduct = location->RemoveProduct(productToAddPtr);
 				_locationRepository->removeLocationProduct(locationProduct->getProductId(), locationProduct->getLocationId());
 			}

@@ -18,12 +18,12 @@ void WarehouseLocationRepository::addLocatation(std::shared_ptr<WarehouseLocatio
 
 }
 
-std::shared_ptr<WarehouseLocation>  WarehouseLocationRepository::getById(std::string id)
+std::shared_ptr<WarehouseLocation>  WarehouseLocationRepository::getById(std::string id, std::string warehouseId)
 {
     sqlite3* db;
     auto rc = sqlite3_open("test.db", &db);
 
-    std::string sqlQuery = "SELECT WarehouseLocationIdGuid, WarehouseIdGuid, Name, Width, Depth, Height, StorageMethod FROM WarehouseLocation WHERE WarehouseLocationIdGuid = '" + id + "';";
+    std::string sqlQuery = "SELECT WarehouseLocationIdGuid, WarehouseIdGuid, Name, Width, Depth, Height, StorageMethod FROM WarehouseLocation WHERE WarehouseLocationIdGuid = '" + id + "' AND WarehouseIdGuid = '" + warehouseId + "';";
     sqlite3_stmt* stmt;
 
     rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
@@ -75,14 +75,14 @@ std::shared_ptr<WarehouseLocation>  WarehouseLocationRepository::getById(std::st
 }
 
 
-std::vector<std::shared_ptr<WarehouseLocation>> WarehouseLocationRepository::getAll()
+std::vector<std::shared_ptr<WarehouseLocation>> WarehouseLocationRepository::getAll(std::string warehouseId)
 {
     sqlite3* db;
 
     auto rc = sqlite3_open("test.db", &db);
 
 
-    std::string sqlQuery = "SELECT WarehouseLocationIdGuid, WarehouseIdGuid, Name, Width, Depth, Height, StorageMethod FROM WarehouseLocation;";
+    std::string sqlQuery = "SELECT WarehouseLocationIdGuid, WarehouseIdGuid, Name, Width, Depth, Height, StorageMethod FROM WarehouseLocation WHERE WarehouseIdGuid = '" + warehouseId +"';";
     sqlite3_stmt* stmt;
 
     rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);

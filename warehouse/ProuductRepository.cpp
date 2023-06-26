@@ -37,7 +37,7 @@ std::vector<std::shared_ptr<Product>> ProuductRepository::getAllProducts(std::st
     int rc = sqlite3_open("test.db", &db);
 
 
-    std::string sqlQuery = "SELECT * FROM Product ";//WHERE WarehouseId = '" + warehouseId + "';";
+    std::string sqlQuery = "SELECT * FROM Product WHERE WarehouseId = '" + warehouseId + "';";
     sqlite3_stmt* stmt;
     rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
 
@@ -127,8 +127,7 @@ std::shared_ptr<Product> ProuductRepository::getProductById(std::string warehous
     sqlite3* db;
     int rc = sqlite3_open("test.db", &db);
 
-    std::string sqlQuery = "SELECT * FROM Product WHERE ProductIdGuid = '" + productId + "';";
-   // std::string sqlQuery = "SELECT * FROM Product WHERE Price = 10;";
+    std::string sqlQuery = "SELECT * FROM Product WHERE ProductIdGuid = '" + productId + "' AND WarehouseId = '" + warehouseId + "';";
     sqlite3_stmt* stmt;
     rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
 

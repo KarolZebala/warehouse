@@ -13,7 +13,7 @@ void UILocationManager::ShowAll() {
 
 	try
 	{
-		auto locations = _locationRepository->getAll();
+		auto locations = _locationRepository->getAll(IdWarehouse);
 		PrintLocationRowTitle();
 		for (auto loc : locations) {
 			PrintLocation(loc);
@@ -35,7 +35,7 @@ void UILocationManager::ShowById() {
 
 	try
 	{
-		auto location = _locationRepository->getById(IDlocation);
+		auto location = _locationRepository->getById(IDlocation, IdWarehouse);
 		PrintLocationRowTitle();
 		PrintLocation(location);
 	}

@@ -23,11 +23,11 @@ void WarehouseDocumentRepository::addRecepiton(std::shared_ptr<WarehouseDocument
 	sqlite3_close(db);
 }
 
-std::vector<std::shared_ptr<WarehouseDocumentReception>> WarehouseDocumentRepository::getAllReceptions()
+std::vector<std::shared_ptr<WarehouseDocumentReception>> WarehouseDocumentRepository::getAllReceptions(std::string warehouseId)
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
-	std::string selectQuery = "SELECT * FROM WarehouseDocumentReception;";
+	std::string selectQuery = "SELECT * FROM WarehouseDocumentReception WHERE WarehouseId = '" + warehouseId + "';";
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
@@ -53,11 +53,11 @@ std::vector<std::shared_ptr<WarehouseDocumentReception>> WarehouseDocumentReposi
 	return receptions;
 }
 
-std::shared_ptr<WarehouseDocumentReception> WarehouseDocumentRepository::getRecepitonById(std::string receptionId)
+std::shared_ptr<WarehouseDocumentReception> WarehouseDocumentRepository::getRecepitonById(std::string receptionId, std::string warehouseId)
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
-	std::string selectQuery = "SELECT * FROM WarehouseDocumentReception WHERE DocumentIdGuid = '" + receptionId + "';";
+	std::string selectQuery = "SELECT * FROM WarehouseDocumentReception WHERE DocumentIdGuid = '" + receptionId + "' AND WarehouseId = '"+ warehouseId  + "';";
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
@@ -110,11 +110,11 @@ void WarehouseDocumentRepository::addRelease(std::shared_ptr<WarehouseDocumentRe
 	sqlite3_close(db);
 }
 
-std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentRepository::getAllReleases()
+std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentRepository::getAllReleases(std::string warehouseId)
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
-	std::string selectQuery = "SELECT DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, WarehouseId,EmployeeName FROM WarehouseDocumentRelease;";
+	std::string selectQuery = "SELECT DocumentIdGuid, Name, CreateDate, IssueDate, ClientName, WarehouseId,EmployeeName FROM WarehouseDocumentRelease WHERE WarehouseId = '" + warehouseId + "';";
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
@@ -139,11 +139,11 @@ std::vector<std::shared_ptr<WarehouseDocumentRelease>> WarehouseDocumentReposito
 	return releases;
 }
 
-std::shared_ptr<WarehouseDocumentRelease> WarehouseDocumentRepository::getReleaseById(std::string receptionId)
+std::shared_ptr<WarehouseDocumentRelease> WarehouseDocumentRepository::getReleaseById(std::string realeseId, std::string warehouseId)
 {
 	sqlite3* db;
 	auto rc = sqlite3_open("test.db", &db);
-	std::string selectQuery = "SELECT * FROM WarehouseDocumentRelease WHERE DocumentIdGuid = '" + receptionId + "';";
+	std::string selectQuery = "SELECT * FROM WarehouseDocumentRelease WHERE DocumentIdGuid = '" + realeseId + "' AND WarehouseId = '" + warehouseId + "';";
 	sqlite3_stmt* stmt;
 	rc = sqlite3_prepare_v2(db, selectQuery.c_str(), -1, &stmt, 0);
 
