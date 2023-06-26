@@ -28,8 +28,7 @@ std::vector<std::shared_ptr<Warehouse>> WarehouseRepository::GetAll()
     while (sqlite3_step(stmt) == SQLITE_ROW) {
         auto id = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
         auto name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-        auto warehouse =  Warehouse(name);
-        warehouse.setId(id);
+        auto warehouse =  Warehouse(name, id);
         auto warehousePtr = std::make_shared<Warehouse>(warehouse);
         warehouses.push_back(warehousePtr);
     }

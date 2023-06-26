@@ -54,10 +54,6 @@ std::string WarehouseLocation::GetId()
     return this->WarehouseLocationIdGuid;
 }
 
-bool WarehouseLocation::CheckIfLocationHasStorageCondition()
-{
-    return true;
-}
 
 bool WarehouseLocation::CheckIfLocationHasSpace(int volume)
 {

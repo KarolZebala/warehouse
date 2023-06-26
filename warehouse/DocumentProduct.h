@@ -2,9 +2,22 @@
 #include<string>
 #include "GuidProvider.h"
 
+/**!
+ * \brief Klasa produkt reprezentuje produkty, ktore wystapily na dokumentach magazynowych
+ */
 class DocumentProduct
 {
 public:
+	/**
+   * Konstruktor klasy Document Product
+   *
+   * \param productId id produktu
+   * \param productName nazwa produktu
+   * \param price cena produktu
+   * \param volume objetosc produktu
+   * \param storageMethod sposob przechowywania
+   * \param documentId id dokumentu magazynowego
+   */
 	DocumentProduct(
 		std::string productId,
 		std::string productName,

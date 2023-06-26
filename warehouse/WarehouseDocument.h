@@ -6,10 +6,24 @@
 #include "Product.h"
 #include "GuidProvider.h"
 #include "DocumentProduct.h"
-
+/**!
+ * \brief Klasa WarehouseDocument jest klasa bazowa, ktora reprezentuje dokumenty magazynowe
+ */
 class WarehouseDocument {
 public:
+    /**
+    * Konstruktor klasy WarehouseDocument
+    *
+    * \param documentName nazwa dokument
+    * \param warehosueId id magazynu
+    */
     explicit WarehouseDocument(std::string documentName, std::string warehosueId, std::string documentId = "");
+
+    /**
+    * Funckcja dodaje do dokumentu magazynowego produkt
+    *
+    * \param product nazwa produktu
+    */
     virtual void addProductToDocument(std::shared_ptr<DocumentProduct> product);
 
     std::string getName();

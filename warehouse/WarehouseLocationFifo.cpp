@@ -2,10 +2,7 @@
 
 std::shared_ptr< WarehouseLocationProduct> WarehouseLocationFifo::AddProductFromDocument(std::shared_ptr<DocumentProduct>  product)
 {
-	auto canProductBeAdded = CheckIfLocationHasStorageCondition();
-	if (!canProductBeAdded) {
-		throw new std::exception("Wrong location selected");
-	}
+	
 	auto isEnoughSpaceInLocation = CheckIfLocationHasSpace(product->getVolume());
 
 	if (!isEnoughSpaceInLocation) {

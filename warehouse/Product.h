@@ -9,11 +9,25 @@
 #include <vector>
 #include <memory>
 
-/**
- * .
+/**!
+ * \brief Klasa produkt reprezentuje produkty w magazynie
  */
 class Product {
 public:
+    /**
+    * Konstruktor klasy Product 
+    * 
+    * \param name nazwa produktu
+    * \param condition stan fizyczny produktu
+    * \param comments komentarz do produktu
+    * \param storageMethod sposob przechowywania produktu
+    * \param price cena produktu
+    * \param quantity ilosc produktu
+    * \param xDimension szeroskosc produktu
+    * \param yDimension dlugosc produktu
+    * \param zDimension wyskosc produktu
+    * \param warehouseId id magazynu
+    */
     explicit Product(
         std::string name,
         std::string condition,

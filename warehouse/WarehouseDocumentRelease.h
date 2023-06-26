@@ -3,10 +3,27 @@
 
 #include "WarehouseDocument.h"
 #include<ctime>
-
+/**!
+ * \brief Klasa WarehouseDocumentRelease ktora reprezentuje wydania magazynowe
+ * 
+ * Jest to dokument wystawiany w momencie wydania towaru z magazunu
+ */
 class WarehouseDocumentRelease : public WarehouseDocument {
 public:
+	/**
+	* Konstruktor klasy WarehouseDocumentReception
+	*
+	* \param documentName nazwa dokument
+	* \param warehosueId id magazynu
+	* \param clientName  klient ktoremu jest wydawany towar
+	* \param employeeName pracownik odpowiedzialny za dokument
+	*/
     WarehouseDocumentRelease(const std::string documentName, std::string warehouseId, std::string clientName, std::string employeeName, std::string docuemntId = "");
+	/**
+	* Funckcja dodaje do wydania magazynowego produkt
+	*
+	* \param product nazwa produktu
+	*/
     void addProductToDocument(std::shared_ptr<DocumentProduct> product);
 	std::time_t getCreateDate();
 
