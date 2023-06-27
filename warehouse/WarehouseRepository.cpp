@@ -39,39 +39,6 @@ std::vector<std::shared_ptr<Warehouse>> WarehouseRepository::GetAll()
     return warehouses;
 }
 
-//std::vector<WarehouseDto> WarehouseRepository::GetAllDto()
-//{
-//    std::vector<WarehouseDto> warehouseDtos;
-//
-//    sqlite3* db;
-//    int rc = sqlite3_open("test.db", &db);
-//
-//    if (rc != SQLITE_OK) {
-//        // obs³uga b³êdu
-//        //return warehouses;
-//    }
-//
-//    std::string sqlQuery = "SELECT IdGuid, Name FROM Warehouse;";
-//    sqlite3_stmt* stmt;
-//    rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
-//
-//    if (rc != SQLITE_OK) {
-//        // obs³uga b³êdu
-//        //return warehouses;
-//    }
-//
-//    while (sqlite3_step(stmt) == SQLITE_ROW) {
-//        WarehouseDto warehouse;
-//        warehouse.IdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
-//        warehouse.Name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-//        warehouseDtos.push_back(warehouse);
-//    }
-//
-//    sqlite3_finalize(stmt);
-//    sqlite3_close(db);
-//
-//    return warehouseDtos;
-//}
 
 std::shared_ptr<Warehouse> WarehouseRepository::GetById(std::string id)
 {
@@ -98,36 +65,3 @@ std::shared_ptr<Warehouse> WarehouseRepository::GetById(std::string id)
     sqlite3_close(db);
     return nullptr;
 }
-
-//WarehouseDto WarehouseRepository::GetByIddDto(std::string id)
-//{
-//    sqlite3* db;
-//    int rc = sqlite3_open("test.db", &db);
-//
-//    if (rc != SQLITE_OK) {
-//        // obs³uga b³êdu
-//        //return warehouses;
-//    }
-//
-//    std::string sqlQuery = "SELECT IdGuid, Name FROM Warehouse WHERE IdGuid = '" + id + "';";
-//    sqlite3_stmt* stmt;
-//    rc = sqlite3_prepare_v2(db, sqlQuery.c_str(), -1, &stmt, 0);
-//
-//    if (rc != SQLITE_OK) {
-//        // obs³uga b³êdu
-//        //return warehouses;
-//    }
-//
-//    if (sqlite3_step(stmt) == SQLITE_ROW) {
-//        WarehouseDto warehouse = WarehouseDto();
-//        warehouse.IdGuid = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
-//        warehouse.Name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-//        sqlite3_finalize(stmt);
-//        sqlite3_close(db);
-//        return warehouse;
-//    }
-//
-//    sqlite3_finalize(stmt);
-//    sqlite3_close(db);
-//    return WarehouseDto();
-//}

@@ -9,6 +9,7 @@ void SeedingService::AddTables()
     char* errMsg;
     rc = sqlite3_exec(db, sqlQuery.c_str(), 0, 0, &errMsg);
 
+
     sqlQuery = "CREATE TABLE IF NOT EXISTS Product (\n"
         "    ProductIdGuid TEXT PRIMARY KEY,\n"
         "    Name TEXT,\n"
