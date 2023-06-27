@@ -7,7 +7,7 @@
 #include "GuidProvider.h"
 #include "DocumentProduct.h"
 /**!
- * \brief Klasa WarehouseDocument jest klasa bazowa, ktora reprezentuje dokumenty magazynowe
+ * \brief Klasa WarehouseDocument jest klasa bazowa, która reprezentuje dokumenty magazynowe
  */
 class WarehouseDocument {
 public:
@@ -22,7 +22,7 @@ public:
     /**
     * Funckcja dodaje do dokumentu magazynowego produkt
     *
-    * \param product nazwa produktu
+    * \param product produkt do dodania
     */
     virtual void addProductToDocument(std::shared_ptr<DocumentProduct> product);
 

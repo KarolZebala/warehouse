@@ -14,8 +14,8 @@ public:
    * \param productId id produktu
    * \param productName nazwa produktu
    * \param price cena produktu
-   * \param volume objetosc produktu
-   * \param storageMethod sposob przechowywania
+   * \param volume objetoœæ produktu
+   * \param storageMethod sposób przechowywania
    * \param documentId id dokumentu magazynowego
    */
 	DocumentProduct(

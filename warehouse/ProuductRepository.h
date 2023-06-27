@@ -6,9 +6,26 @@
  */
 class IProuductRepository {
 public:
+	/**
+	* Funkcja wirtualna zapisuj¹ca do bazy produkt
+	* \param product produkt który ma zostaæ zapisany do bazy
+	*/
 	virtual void addProduct(std::shared_ptr<Product> product) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca wszystkie produkty produkty z bazy
+	* \param warehouseId id magazunu
+	*/
 	virtual std::vector<std::shared_ptr<Product>> getAllProducts(std::string warehouseId) = 0;
+	/**
+	* Funkcja produkt z bazy na podstawie id
+	* \param warehouseId id magazunu
+	* \param productId id produktu
+	*/
 	virtual std::shared_ptr<Product> getProductById(std::string warehouseId, std::string productId) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca produkt z bazy na podstawie jego nazwy
+	* \param name nazwa produktu
+	*/
 	virtual std::shared_ptr<Product> GetProductByName(std::string name) = 0;
 };
 /**!
@@ -28,12 +45,12 @@ public:
 	*/
 	std::shared_ptr<Product> GetProductByName(std::string name);
 	/**
-	* Funkcja produkty z bazy
+	* Funkcja pobiera produkty z bazy
 	* \param warehouseId id magazunu
 	*/
 	std::vector<std::shared_ptr<Product>> getAllProducts(std::string warehouseId);
 	/**
-	* Funkcja produkt z bazy na podstawie id
+	* Funkcja pobiera produkt z bazy na podstawie id
 	* \param warehouseId id magazunu
 	* \param productId id produktu
 	*/

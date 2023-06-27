@@ -7,8 +7,22 @@
  */
 class IWarehouseRepository {
 public:
+	/**
+	* Funkcja wirtualna dodaj¹ca magazyn do bazy
+	*
+	* \param warehouse magazyn do dodania
+	*/
 	virtual void addWarehouse(std::shared_ptr<Warehouse> warehouse) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca magazyny z bazy
+	*
+	*/
 	virtual std::vector<std::shared_ptr<Warehouse>> GetAll() = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca magazyny z bazy po id
+	*
+	* \param id  id magazynu
+	*/
 	virtual std::shared_ptr<Warehouse> GetById(std::string id) = 0;
 };
 /**!

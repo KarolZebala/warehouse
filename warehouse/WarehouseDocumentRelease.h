@@ -22,7 +22,7 @@ public:
 	/**
 	* Funckcja dodaje do wydania magazynowego produkt
 	*
-	* \param product nazwa produktu
+	* \param product produktu do dodania
 	*/
     void addProductToDocument(std::shared_ptr<DocumentProduct> product);
 	std::time_t getCreateDate();

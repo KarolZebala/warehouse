@@ -23,11 +23,11 @@ public:
 	/**
 	* Funckcja dodaje do przyjecia magazynowego produkt
 	*
-	* \param product nazwa produktu
+	* \param product  produkt do dodania
 	*/
 	void addProductToDocument(std::shared_ptr<DocumentProduct> product);
 	/**
-	* Funckcja zwraca wszystkie produktu ktore s¹ na dokumencie
+	* Funckcja zwraca wszystkie produkty które s¹ na dokumencie
 	*
 	*/
 	std::vector<std::shared_ptr<DocumentProduct>> getAllReceptionProduct();

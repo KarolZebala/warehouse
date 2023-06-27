@@ -19,12 +19,12 @@ public:
     * \param name nazwa produktu
     * \param condition stan fizyczny produktu
     * \param comments komentarz do produktu
-    * \param storageMethod sposob przechowywania produktu
+    * \param storageMethod sposób przechowywania produktu
     * \param price cena produktu
-    * \param quantity ilosc produktu
-    * \param xDimension szeroskosc produktu
-    * \param yDimension dlugosc produktu
-    * \param zDimension wyskosc produktu
+    * \param quantity iloœæ produktu
+    * \param xDimension szeroskoœæ produktu
+    * \param yDimension dlugoœæ produktu
+    * \param zDimension wyskoœæ produktu
     * \param warehouseId id magazynu
     */
     explicit Product(

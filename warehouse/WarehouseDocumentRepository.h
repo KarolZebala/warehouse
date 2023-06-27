@@ -7,12 +7,37 @@
  */
 class IWarehouseDocumentRepository {
 public:
+	/**
+	* Funkcja wirtualna dodaj¹ca dokument przyjêcie magazynowe do bazy
+	* \param reception przyjecie do dodania
+	*/
 	virtual void addRecepiton(std::shared_ptr<WarehouseDocumentReception>) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca przyjêcia z bazy
+	* \param warehouseId id magazynu
+	*/
 	virtual std::vector<std::shared_ptr<WarehouseDocumentReception>> getAllReceptions(std::string warehouseId) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca przyjêcie z bazy po id przyjecia
+	* \param receptionId id wydania
+	* \param warehouseId id magazynu
+	*/
 	virtual std::shared_ptr<WarehouseDocumentReception> getRecepitonById(std::string receptionId, std::string warehouseId) = 0;
-
+	/**
+	* Funkcja wirtualna dodaj¹ca wydanie do bazy
+	* \param release wydanie do dodania
+	*/
 	virtual void addRelease(std::shared_ptr<WarehouseDocumentRelease> release) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca wydania z bazy
+	* \param warehouseId id magazynu
+	*/
 	virtual std::vector<std::shared_ptr<WarehouseDocumentRelease>> getAllReleases(std::string warehouseId) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca wydanie z bazy po id wydania
+	* \param releaseId id wydania
+	* \param warehouseId id magazynu
+	*/
 	virtual std::shared_ptr<WarehouseDocumentRelease> getReleaseById(std::string releaseId, std::string warehouseId) = 0;
 };
 
@@ -23,7 +48,7 @@ class WarehouseDocumentRepository : public IWarehouseDocumentRepository
 {
 public:
 	/**
-	* Funkcja dodaje przyjêcie do bazy
+	* Funkcja dodaje dokument przyjêcie magazynowe do bazy
 	* \param reception przyjecie do dodania
 	*/
 	void addRecepiton(std::shared_ptr<WarehouseDocumentReception>  reception);

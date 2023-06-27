@@ -38,9 +38,10 @@ void UIProductManager::ShowById() {
 		PrintProductRowTitle();
 		PrintProduct(Product);
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
 		std::cout << "Operacja siê nie powiod³a " << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 };
 
@@ -55,9 +56,11 @@ void UIProductManager::ShowByName() {
 		PrintProductRowTitle();
 		PrintProduct(product);
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
 		std::cout << "Operacja siê nie powiod³a " << std::endl;
+		std::cout << e.what() << std::endl;
+
 	}
 }
 

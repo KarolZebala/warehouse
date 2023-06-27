@@ -11,10 +11,32 @@
  */
 class IWarehouseLocationRepository {
 public:
+	/**
+	* Funkcja wirtualna dodaj¹ca lokalizacje do bazy
+	* \param location lokalizacja do dodania
+	*/
 	virtual void addLocatation(std::shared_ptr<WarehouseLocation> location) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca lokalizacje z bazy po id
+	* \param id id lokalizaji
+	* \param warehouseId id magazynu
+	*/
 	virtual std::shared_ptr<WarehouseLocation> getById(std::string id, std::string warehouseId) = 0;
+	/**
+	* Funkcja wirtualna pobieraj¹ca wszystkie lokalizacje z bazy
+	* \param warehouseId id magazynu
+	*/
 	virtual std::vector<std::shared_ptr<WarehouseLocation>> getAll(std::string warehouseId) = 0;
+	/**
+	* Funkcja wirtualna dodaj¹ca produkt do danej lokalizacji
+	* \param product produkt do dodania
+	*/
 	virtual void createLocationProduct(std::shared_ptr<WarehouseLocationProduct> product) = 0;
+	/**
+	* Funkcja wirtualna usuwaj¹ca produkt z danej lokalizacji do bazy
+	* \param productId id produktu
+	* \param locationId id lokalizacji
+	*/
 	virtual void removeLocationProduct(std::string productId, std::string locationId) = 0;
 };
 
