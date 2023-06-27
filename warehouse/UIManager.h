@@ -1,11 +1,9 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "WarehouseProductService.h"
-#include "WarehouseDocumentService.h"
-#include "WarehouseLocationService.h"
 #include "WarehouseLocationRepository.h"
 #include "WarehouseDocumentRepository.h"
+#include "ProuductRepository.h"
 /**!
  * \brief Klasa IUIManager jest klasa abstrakcyjn¹, odpowiadaj¹c¹ za wyœwietlanie treœci w UI
  */

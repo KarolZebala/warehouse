@@ -1,5 +1,6 @@
 #pragma once
 #include "UIManager.h"
+#include "ProuductRepository.h"
 /**!
  * \brief UIProductManager klasa zarz¹dzaj¹ca UI produktów
  */

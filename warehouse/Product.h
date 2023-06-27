@@ -1,8 +1,6 @@
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
-#include"StorageConditions.h"
-
 #include "GuidProvider.h"
 #include <string>
 #include <vector>
@@ -70,7 +68,6 @@ private:
 
     std::string WarehouseLocationIdGuid;
     std::string WarehouseId;
-    std::vector<StorageConditions*> _storageConditions;
 };
 
 

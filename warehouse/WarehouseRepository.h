@@ -1,6 +1,5 @@
 #pragma once
 #include "Warehouse.h"
-#include "WarehouseDto.h"
 #include <sqlite3.h>
 /**!
  * \brief Klasa IWarehouseRepository jest klas¹ abstrakcyjn¹, która odpowiada za zapis i odczyt magazynu

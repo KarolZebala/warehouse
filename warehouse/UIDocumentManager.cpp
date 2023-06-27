@@ -1,6 +1,7 @@
 #include "UIDocumentManager.h"
 
 
+
 UIDocumentManager::UIDocumentManager()
 {
 	_documentRepository = std::make_shared<WarehouseDocumentRepository>(WarehouseDocumentRepository());

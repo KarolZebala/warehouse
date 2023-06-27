@@ -2,7 +2,6 @@
 #define WAREHOUSE_H
 
 #include <string>
-#include "StorageArea.h"
 #include "WarehouseDocumentReception.h"
 #include "WarehouseDocumentRelease.h"
 #include "GuidProvider.h"
